@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/edittext_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:hint="@string/hint_title"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/edittext_description"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:hint="@string/hint_description"
+        android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="18dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="bottom"
+            android:textSize="18sp"
+            android:text="@string/textview_period" />
+
+        <EditText
+            android:id="@+id/edittext_period"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:inputType="number"
+            android:gravity="bottom"
+            android:hint="@string/hint_period"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="6"/>
+
+    <Button
+        android:id="@+id/button_sumbit_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:text="@string/enter" />
+
+</LinearLayout>

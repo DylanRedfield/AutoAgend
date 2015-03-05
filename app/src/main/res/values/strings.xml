@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AgendaApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_text">New Class</string>
+    <string name="hint_title">Enter Class Name</string>
+    <string name="hint_description">Enter class description</string>
+    <string name="enter">Enter</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_rename">Rename</string>
+    <string name="default_classname">No Class</string>
+    <string name="default_description">No Description</string>
+    <string name="default_period">No Period</string>
+    <string name="assignments">Assignments</string>
+    <string name="new_class_label">New Class</string>
+    <string name="textview_period">Period: </string>
+    <string name="hint_period">1</string>
+    <string name="classinfo">Class Info</string>
+    <string name="text_new_assignment">New Assignment</string>
+    <string name="text_edit_info">Edit Info</string>
+    <string name="hint_assignment_description">Enter assignment description</string>
+    <string name="hint_assignment_title">Enter assignment title</string>
+    <string name="date_assigned_text">Date Assigned:</string>
+    <string name="date_due_text">Date Due:</string>
+    <string name="date_hint">1/1/15</string>
+    <string name="empty_class">Add a Class!</string>
+    <string name="empty_assignment">Add a Assignment!</string>
+
+</resources>

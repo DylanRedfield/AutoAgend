@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dylanredfield.agendaapp.MainActivity" >
+
+    <item
+        android:id="@+id/add_class"
+        android:icon="@drawable/ic_note_add_black_24dp"
+        android:title="test"
+        android:showAsAction="ifRoom"/>"
+</menu>

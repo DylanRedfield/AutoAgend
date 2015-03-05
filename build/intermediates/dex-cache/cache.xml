@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\dylan_000\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-79259d7f0237d226266354804908a1618f69f313.jar" />
+    </item>
+    <item
+        jar="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-5e310fd73de83e49a97f8b307d2872f0ccecf624.jar" />
+    </item>
+    <item
+        jar="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="95fd37732ec852e99f07eeb516a3650172f1d136">
+        <dex dex="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-9785fac43ae1c14e07406d5db65a80b628f7e5d9.jar" />
+    </item>
+    <item
+        jar="C:\Users\dylan_000\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\gson-2.3.1-0f66db1bd0d551742a8fc450e346a229174ed828.jar" />
+    </item>
+    <item
+        jar="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-8026c4c3e4314bb02108f8fdda9ef1d4a63c4190.jar" />
+    </item>
+
+</items>
