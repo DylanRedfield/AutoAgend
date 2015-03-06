@@ -18,6 +18,7 @@ ADDED from AndroidManifest.xml:7:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
 MERGED from com.android.support:appcompat-v7:21.0.0:15:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.github.shell-software:fab:1.0.5:25:5
 	android:targetSdkVersion
 		ADDED from AndroidManifest.xml:9:9
 		INJECTED from AndroidManifest.xml:0:0

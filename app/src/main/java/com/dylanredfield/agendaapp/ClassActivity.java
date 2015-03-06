@@ -1,20 +1,10 @@
 package com.dylanredfield.agendaapp;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import com.dylanredfield.agendaapp2.R;
-import com.dylanredfield.agendaapp2.R.id;
-import com.dylanredfield.agendaapp2.R.layout;
-import com.dylanredfield.agendaapp2.R.menu;
-
-import android.app.ActionBar;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -28,16 +18,23 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.dylanredfield.agendaapp2.R;
+import com.software.shell.fab.ActionButton;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class ClassActivity extends ActionBarActivity {
 	private ListView mClassInfoListView;
 	private ListView mAssignmentsListView;
 	private ArrayAdapter<String> mClassInfoAdapter;
 	private AssignmentAdapter mAssignmentsAdapter;
-	private Button newAssignment;
+	private ActionButton mNewAssignment;
 	private int index;
 	public static String EXTRA_INT_ASSIGNMENT_POSTITION = "com.dylanredfield.agendaapp.int_assignment_position";
 
@@ -65,17 +62,24 @@ public class ClassActivity extends ActionBarActivity {
 		instaniateAssignmentAdapter();
 
 		// Changes ActionBar to hold current ClassName
-		ActionBar ab = getActionBar();
+		//ActionBar ab = getActionBar();
+		//ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
+		//		.get(index).getClassName());
+                		android.support.v7.app.ActionBar ab = getSupportActionBar();
 		ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
-				.get(index).getClassName());
+                .get(index).getClassName());
+
+        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
 
 		// Registers for context menu for Assignments
 		// TODO make/rename to add context menu for InfoList
 		registerForContextMenu(mAssignmentsListView);
 
 		// Instaniates button and sets onClickListener
-		newAssignment = (Button) findViewById(R.id.button_new_assignment);
-		newAssignment.setOnClickListener(new View.OnClickListener() {
+		mNewAssignment = (ActionButton) findViewById(R.id.action_button_new_assignment);
+        mNewAssignment.setButtonColor(getResources().getColor(R.color.red_500));
+        mNewAssignment.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
+		mNewAssignment.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -213,6 +217,7 @@ public class ClassActivity extends ActionBarActivity {
 		private ArrayList<Assignment> mList;
 		private TextView titleTextView;
 		private CheckBox isCompletedCheck;
+        private TextView assignedDate;
 
 		public AssignmentAdapter(Context context, int resource,
 				int textViewResourceId, ArrayList<Assignment> objects) {
@@ -231,6 +236,12 @@ public class ClassActivity extends ActionBarActivity {
 			titleTextView = (TextView) convertView
 					.findViewById(R.id.assignment_text);
 			titleTextView.setText(mList.get(position).getTitle());
+            assignedDate = (TextView) convertView.findViewById(R.id.assigned_text);
+            if (mList.get(position).getDateAssigned() != null) {
+                assignedDate.setText(calendarToString(mList.get(position).getDateAssigned()));
+            } else {
+                assignedDate.setVisibility(0);
+            }
 
 			isCompletedCheck = (CheckBox) convertView
 					.findViewById(R.id.is_completed_check);
@@ -256,6 +267,11 @@ public class ClassActivity extends ActionBarActivity {
 			return convertView;
 
 		}
+        	public String calendarToString(Calendar c) {
+		String myFormat = "MM/dd/yy";
+		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+		return sdf.format(c.getTime());
+	}
 
 		public CheckBox getCompletedCheck() {
 			return isCompletedCheck;

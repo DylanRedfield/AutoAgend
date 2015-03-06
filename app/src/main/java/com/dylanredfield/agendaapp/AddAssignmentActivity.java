@@ -6,16 +6,21 @@ import java.util.Locale;
 
 import com.dylanredfield.agendaapp2.R;
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddAssignmentActivity extends ActionBarActivity {
 	private EditText mTitle;
@@ -61,27 +66,13 @@ public class AddAssignmentActivity extends ActionBarActivity {
 			}
 		});
 
-		mEnterButton = (Button) findViewById(R.id.button_add_assignment);
-		mEnterButton.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				ClassList
-						.getInstance(getApplicationContext())
-						.getList()
-						.get(index)
-						.getAssignments()
-						.add(new Assignment(mTitle.getText().toString(),
-								mDescription.getText().toString(),
-								mAssignedDate, mDueDate));
-				finish();
-
-			}
-		});
-
-		ActionBar ab = getActionBar();
+		ActionBar ab = getSupportActionBar();
 		ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
-				.get(index).getClassName());
+                .get(index).getClassName());
+
+        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+
 	}
 
 	@Override
@@ -124,6 +115,38 @@ public class AddAssignmentActivity extends ActionBarActivity {
 		}
 	}
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar_enter, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.enter_actionbar:
+                if(!mTitle.getText().toString().equals("")) {
+                    if(mAssignedDate == null) {
+                        mAssignedDate = Calendar.getInstance();
+                    }
+                				ClassList
+						.getInstance(getApplicationContext())
+						.getList()
+						.get(index)
+						.getAssignments()
+						.add(new Assignment(mTitle.getText().toString(),
+								mDescription.getText().toString(),
+								mAssignedDate, mDueDate));
+                finish();} else {
+            Toast.makeText(getApplicationContext(), "Enter a title",
+                    Toast.LENGTH_SHORT).show();}
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 	public void updateDatabase() {
 		// Deletes all information in the database
 		DatabaseHandler.getInstance(getApplicationContext()).deleteAllClasses();

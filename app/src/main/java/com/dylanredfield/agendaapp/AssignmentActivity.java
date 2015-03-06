@@ -6,7 +6,8 @@ import com.dylanredfield.agendaapp2.R;
 import com.dylanredfield.agendaapp2.R.id;
 import com.dylanredfield.agendaapp2.R.layout;
 
-import android.app.ActionBar;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -32,8 +33,11 @@ public class AssignmentActivity extends ActionBarActivity {
 				ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, 0);
 		indexClass = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION,
 				0);
-		ActionBar ab = getActionBar();
-		ab.setTitle(ClassList.getInstance(getApplicationContext()).getList().get(indexClass).getClassName());
+        		ActionBar ab = getSupportActionBar();
+		ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
+                .get(indexClass).getClassName());
+
+        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
 		/*
 		 * mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
 		 * makeListView( mAssignmentInfoList, mAssignmentInfoAdapter,

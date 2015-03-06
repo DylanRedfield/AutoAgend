@@ -6,13 +6,18 @@ import com.dylanredfield.agendaapp2.R;
 import com.dylanredfield.agendaapp2.R.id;
 import com.dylanredfield.agendaapp2.R.layout;
 import com.dylanredfield.agendaapp2.R.menu;
+import com.software.shell.fab.ActionButton;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -21,6 +26,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
@@ -33,16 +40,19 @@ import android.widget.Toast;
 
 // TODO add abilty to rename activities, assignments, and edit
 // TODO change ArrayAdapter to hold custom view
+
+// TODO list 1. Fix assignment sort 2. Add camera func 3. fix add ui
 public class MainActivity extends ActionBarActivity {
 	private ListView mListView;
-	private Button mButtonClass;
+	private ActionButton mButtonClass;
 	private CustomAdapter adapter;
 	private ArrayAdapter<String> noClassAdapter;
 	private ArrayList<String> noClassList;
 	public static final String EXTRA_INT_POSTITION = "com.dylanredfield.agendaapp.int_postition";
 	public int tempInt;
 
-	@Override
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -68,7 +78,9 @@ public class MainActivity extends ActionBarActivity {
 		});
 
 		// Add button listener that adds intent to make new class
-		mButtonClass = (Button) findViewById(R.id.button_new);
+		mButtonClass = (ActionButton) findViewById(id.action_button);
+        mButtonClass.setButtonColor(getResources().getColor(R.color.red_500));
+        mButtonClass.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
 		mButtonClass.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -82,7 +94,12 @@ public class MainActivity extends ActionBarActivity {
 		});
 		// Creates contextMenu
 		registerForContextMenu(mListView);
-
+        ActionBar ab = getSupportActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+        Window window = this.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(this.getResources().getColor(R.color.red_700));
 	}
 
 	public void makeListView() {
@@ -109,7 +126,7 @@ public class MainActivity extends ActionBarActivity {
 
 		// Adds all classes from ArrayList back into database
 		DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
-				ClassList.getInstance(getApplicationContext()).getList());
+                ClassList.getInstance(getApplicationContext()).getList());
 
 	}
 
@@ -221,7 +238,8 @@ public class MainActivity extends ActionBarActivity {
 	public class CustomAdapter extends ArrayAdapter<SchoolClass> {
 
 		private ArrayList<SchoolClass> mList;
-
+        private TextView titleTextView;
+        private TextView currentAssignment;
 		public CustomAdapter(Context context, int resource,
 				int textViewResourceId, ArrayList<SchoolClass> objects) {
 			super(context, resource, textViewResourceId, objects);
@@ -235,18 +253,25 @@ public class MainActivity extends ActionBarActivity {
 				convertView = getLayoutInflater().inflate(R.layout.class_row,
 						null);
 			}
-			TextView titleTextView = (TextView) convertView
+			titleTextView = (TextView) convertView
 					.findViewById(R.id.class_name_text);
 			titleTextView.setText(mList.get(position).getClassName());
 
-			TextView currentAssignment = (TextView) convertView
+			currentAssignment = (TextView) convertView
 					.findViewById(R.id.current_assignment);
-			currentAssignment.setText(mList.get(position).getAssignments()
-					.size()
-					+ " assignments");
+			currentAssignment.setText(getAssignmentString(mList.get(position).getAssignments()
+					.size()));
 			return convertView;
 
 		}
+
+        private String getAssignmentString(int assignments) {
+           if(assignments == 0 || assignments >1) {
+               return "" + assignments + " assignments" ;
+           } else {
+               return "" + assignments + " assignment";
+           }
+        }
 
 	}
 }
