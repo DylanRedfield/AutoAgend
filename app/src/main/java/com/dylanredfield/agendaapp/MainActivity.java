@@ -2,10 +2,12 @@ package com.dylanredfield.agendaapp;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -60,12 +62,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        // Makes listview, sets up adapter, and applies adapter
-
+        // Makes listview that holds classes, sets up adapter, and applies adapter
         makeListView();
-        showFlag = true;
-        mLinearLayout = (RelativeLayout) findViewById(R.id.main_linear_layout);
 
         // Add listener for each item in list
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -74,49 +72,51 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
+                // When clicked ClassActivty is called to show assignments
                 Intent i = new Intent(getApplicationContext(),
                         ClassActivity.class);
+                // Position represents the index spot in the ClassList
                 i.putExtra(EXTRA_INT_POSTITION, position);
                 startActivity(i);
 
             }
         });
 
-        // Add button listener that adds intent to make new class
-        mButtonClass = (ActionButton) findViewById(R.id.action_button);
-        mButtonClass.setButtonColor(getResources().getColor(R.color.red_500));
-        mButtonClass.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
-        mButtonClass.setButtonColorPressed(getResources().getColor(R.color.red_900));
+        // Creates ActionButton for 3 buttons
+        mButtonClass = (ActionButton) findViewById(id.action_button);
+        makeActionButton(mButtonClass, R.drawable.ic_note_add_white_36dp);
 
-        mButtonPicture = (ActionButton) findViewById(R.id.action_button_picture);
-        mButtonPicture.setButtonColor(getResources().getColor(R.color.red_500));
-        mButtonPicture.setImageDrawable(getResources()
-                .getDrawable(R.drawable.ic_file_image_box_white_48dp));
-        mButtonPicture.setButtonColorPressed(getResources().getColor(R.color.red_900));
+        mButtonPicture = (ActionButton) findViewById(id.action_button_picture);
+        makeActionButton(mButtonPicture, R.drawable.ic_file_image_box_white_48dp);
 
         mButtonText = (ActionButton) findViewById(id.action_button_assignment);
-        mButtonText.setButtonColor(getResources().getColor(R.color.red_500));
-        mButtonText.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
-        mButtonText.setButtonColorPressed(getResources().getColor(R.color.red_900));
-
+        makeActionButton(mButtonText, R.drawable.ic_note_add_white_36dp);
 
         mButtonClass.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                if (showFlag) {
+
+                // Opens and closes ActionButtonMenu
+
+                // Show flags defaults value
+                if (!showFlag) {
+
+                    // Sets buttons visible (relative layout)
                     mButtonPicture.setVisibility(View.VISIBLE);
                     mButtonText.setVisibility(View.VISIBLE);
 
+                    // Changes base button to drawable close
                     mButtonClass.setImageDrawable(getResources()
                             .getDrawable(R.drawable.ic_close_white_48dp));
-                    showFlag = false;
+                    showFlag = true;
                 } else {
+
+                    // Opposite as above
                     mButtonPicture.setVisibility(View.INVISIBLE);
                     mButtonText.setVisibility(View.INVISIBLE);
                     mButtonClass.setImageDrawable(getResources()
                             .getDrawable(R.drawable.ic_note_add_white_36dp));
-                    showFlag = true;
+                    showFlag = false;
                 }
 
 
@@ -152,6 +152,16 @@ public class MainActivity extends ActionBarActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+    }
+
+    public ActionButton makeActionButton(ActionButton ab, int drawable) {
+        // Creates, and sets ActionButtons
+        ab.setButtonColor(getResources().getColor(R.color.red_500));
+        ab.setButtonColorPressed(getResources().getColor(R.color.red_900));
+        ab.setImageDrawable(getResources().getDrawable(drawable));
+        ab.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+        return ab;
     }
 
     public void makeListView() {
