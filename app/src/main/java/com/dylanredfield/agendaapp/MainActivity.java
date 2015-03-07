@@ -41,7 +41,9 @@ import java.util.ArrayList;
 // TODO add abilty to rename activities, assignments, and edit
 // TODO change ArrayAdapter to hold custom view
 
-// TODO list 1. Fix assignment sort 2. Add camera func 3. fix add ui
+// TODO Add due date to assignment list
+// TODO Add new class dialog instead of activity
+// TODO list 1. Fix assignment sort 2. Add camera func
 public class MainActivity extends ActionBarActivity {
     private ListView mListView;
     private ActionButton mButtonClass;
