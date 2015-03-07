@@ -48,6 +48,8 @@ public class MainActivity extends ActionBarActivity {
     private ActionButton mButtonCancel;
     private ActionButton mButtonPicture;
     private ActionButton mButtonText;
+    private ActionBar mActionBar;
+    private Window mWindow;
     private RelativeLayout mLinearLayout;
     private CustomAdapter adapter;
     private ArrayAdapter<String> noClassAdapter;
@@ -65,6 +67,63 @@ public class MainActivity extends ActionBarActivity {
         // Makes listview that holds classes, sets up adapter, and applies adapter
         makeListView();
 
+        // Creates ActionButton for 3 buttons and sets properties
+        declareActionButtons();
+
+        // Adds all listeners for buttons, and items in list
+        addListeners();
+
+        // Sets up ActionBar and StatusBar
+        setBars();
+
+        // Creates contextMenu
+        registerForContextMenu(mListView);
+
+
+    }
+
+    public void makeListView() {
+
+        // Creates listview holding mClassList
+        mListView = (ListView) findViewById(R.id.list);
+        /*
+         * adapter = new ArrayAdapter<SchoolClass>(this,
+		 * android.R.layout.simple_list_item_1, android.R.id.text1,
+		 * ClassList.getInstance(getApplicationContext()).getList());
+		 */
+        adapter = new CustomAdapter(getApplicationContext(),
+                android.R.layout.simple_list_item_1, android.R.id.text1,
+                ClassList.getInstance(getApplicationContext()).getList());
+
+        mListView.setAdapter(adapter);
+        mListView.setEmptyView(findViewById(R.id.empty_list));
+
+    }
+
+    public void declareActionButtons() {
+        mButtonClass = (ActionButton) findViewById(id.action_button);
+
+        // Call to second helper method that sets properties
+        makeActionButton(mButtonClass, R.drawable.ic_note_add_white_36dp);
+
+        mButtonPicture = (ActionButton) findViewById(id.action_button_picture);
+        makeActionButton(mButtonPicture, R.drawable.ic_file_image_box_white_48dp);
+
+        mButtonText = (ActionButton) findViewById(id.action_button_assignment);
+        makeActionButton(mButtonText, R.drawable.ic_note_add_white_36dp);
+    }
+
+    public ActionButton makeActionButton(ActionButton ab, int drawable) {
+        // Creates, and sets ActionButtons
+        ab.setButtonColor(getResources().getColor(R.color.red_500));
+        ab.setButtonColorPressed(getResources().getColor(R.color.red_900));
+        ab.setImageDrawable(getResources().getDrawable(drawable));
+        ab.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+        return ab;
+    }
+
+    public void addListeners() {
         // Add listener for each item in list
         mListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -82,16 +141,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        // Creates ActionButton for 3 buttons
-        mButtonClass = (ActionButton) findViewById(id.action_button);
-        makeActionButton(mButtonClass, R.drawable.ic_note_add_white_36dp);
-
-        mButtonPicture = (ActionButton) findViewById(id.action_button_picture);
-        makeActionButton(mButtonPicture, R.drawable.ic_file_image_box_white_48dp);
-
-        mButtonText = (ActionButton) findViewById(id.action_button_assignment);
-        makeActionButton(mButtonText, R.drawable.ic_note_add_white_36dp);
-
+        // Add listener for base ActionBarMenu
         mButtonClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,59 +178,44 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
             }
         });
+
+        // Add listener for text only assignment
         mButtonText.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // intent to NewClassActivity
+                // intent to NewClassActivity, makes sure a class is made because
+                // will need to choose class
+
                 if (ClassList.getInstance(getApplicationContext()).getList().size() > 0) {
                     Intent i = new Intent(getApplicationContext(),
                             AddAssignmentHomeActivity.class);
                     startActivity(i);
                 } else {
+                    // If there was no class forces to add one
                     Toast.makeText(getApplicationContext(), "Create a class first by clicking " +
                                     "plus above",
                             Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        // Creates contextMenu
-        registerForContextMenu(mListView);
-        ActionBar ab = getSupportActionBar();
-        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
-        Window window = this.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.red_700));
     }
 
-    public ActionButton makeActionButton(ActionButton ab, int drawable) {
-        // Creates, and sets ActionButtons
-        ab.setButtonColor(getResources().getColor(R.color.red_500));
-        ab.setButtonColorPressed(getResources().getColor(R.color.red_900));
-        ab.setImageDrawable(getResources().getDrawable(drawable));
-        ab.setButtonColorPressed(getResources().getColor(R.color.red_900));
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setBars() {
+        // Changes ActionBar color
+        mActionBar = getSupportActionBar();
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
 
-        return ab;
+        // if able to sets statusbar to dark red
+        if (21 <= Build.VERSION.SDK_INT) {
+            mWindow = this.getWindow();
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+        }
     }
 
-    public void makeListView() {
-
-        // Creates listview holding mClassList
-        mListView = (ListView) findViewById(R.id.list);
-        /*
-         * adapter = new ArrayAdapter<SchoolClass>(this,
-		 * android.R.layout.simple_list_item_1, android.R.id.text1,
-		 * ClassList.getInstance(getApplicationContext()).getList());
-		 */
-        adapter = new CustomAdapter(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1,
-                ClassList.getInstance(getApplicationContext()).getList());
-
-        mListView.setAdapter(adapter);
-        mListView.setEmptyView(findViewById(R.id.empty_list));
-
-    }
 
     public void updateDatabase() {
         // Deletes all information in the database
@@ -192,6 +227,7 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    // Is used for xml android:onClick. Used when listView is empty
     public void buttonClick(View v) {
         Intent i = new Intent(getApplicationContext(), NewClassActivity.class);
         startActivity(i);
@@ -297,6 +333,7 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    // CustomAdapter for ListView
     public class CustomAdapter extends ArrayAdapter<SchoolClass> {
 
         private ArrayList<SchoolClass> mList;
@@ -318,10 +355,15 @@ public class MainActivity extends ActionBarActivity {
             }
             titleTextView = (TextView) convertView
                     .findViewById(R.id.class_name_text);
+
+            // Set to class name
             titleTextView.setText(mList.get(position).getClassName());
 
             currentAssignment = (TextView) convertView
                     .findViewById(R.id.current_assignment);
+
+            // Sets to ammount of current assignments.
+            // Get assignment String makes sure correct plural is used
             currentAssignment.setText(getAssignmentString(mList.get(position).getAssignments()
                     .size()));
             return convertView;
