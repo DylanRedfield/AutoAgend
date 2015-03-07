@@ -3,4 +3,5 @@
     <color name="red_100">#FFCDD2</color>
     <color name="red_500">#F44336</color>
     <color name="red_700">#D32F2f</color>
+    <color name="red_900">#B71C1C</color>
 </resources>

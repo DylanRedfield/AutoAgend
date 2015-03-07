@@ -24,7 +24,9 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,8 +43,13 @@ import java.util.ArrayList;
 public class MainActivity extends ActionBarActivity {
     private ListView mListView;
     private ActionButton mButtonClass;
+    private ActionButton mButtonCancel;
+    private ActionButton mButtonPicture;
+    private ActionButton mButtonText;
+    private RelativeLayout mLinearLayout;
     private CustomAdapter adapter;
     private ArrayAdapter<String> noClassAdapter;
+    private boolean showFlag;
     private ArrayList<String> noClassList;
     public static final String EXTRA_INT_POSTITION = "com.dylanredfield.agendaapp.int_postition";
     public int tempInt;
@@ -57,6 +64,8 @@ public class MainActivity extends ActionBarActivity {
         // Makes listview, sets up adapter, and applies adapter
 
         makeListView();
+        showFlag = true;
+        mLinearLayout = (RelativeLayout) findViewById(R.id.main_linear_layout);
 
         // Add listener for each item in list
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -74,15 +83,57 @@ public class MainActivity extends ActionBarActivity {
         });
 
         // Add button listener that adds intent to make new class
-        mButtonClass = (ActionButton) findViewById(id.action_button);
+        mButtonClass = (ActionButton) findViewById(R.id.action_button);
         mButtonClass.setButtonColor(getResources().getColor(R.color.red_500));
         mButtonClass.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
+        mButtonClass.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+        mButtonPicture = (ActionButton) findViewById(R.id.action_button_picture);
+        mButtonPicture.setButtonColor(getResources().getColor(R.color.red_500));
+        mButtonPicture.setImageDrawable(getResources()
+                .getDrawable(R.drawable.ic_file_image_box_white_48dp));
+        mButtonPicture.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+        mButtonText = (ActionButton) findViewById(id.action_button_assignment);
+        mButtonText.setButtonColor(getResources().getColor(R.color.red_500));
+        mButtonText.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
+        mButtonText.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+
         mButtonClass.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                if (showFlag) {
+                    mButtonPicture.setVisibility(View.VISIBLE);
+                    mButtonText.setVisibility(View.VISIBLE);
+
+                    mButtonClass.setImageDrawable(getResources()
+                            .getDrawable(R.drawable.ic_close_white_48dp));
+                    showFlag = false;
+                } else {
+                    mButtonPicture.setVisibility(View.INVISIBLE);
+                    mButtonText.setVisibility(View.INVISIBLE);
+                    mButtonClass.setImageDrawable(getResources()
+                            .getDrawable(R.drawable.ic_note_add_white_36dp));
+                    showFlag = true;
+                }
+
+
+            }
+        });
+        mButtonPicture.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        mButtonText.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
                 // intent to NewClassActivity
-                if(ClassList.getInstance(getApplicationContext()).getList().size() > 0) {
+                if (ClassList.getInstance(getApplicationContext()).getList().size() > 0) {
                     Intent i = new Intent(getApplicationContext(),
                             AddAssignmentHomeActivity.class);
                     startActivity(i);
@@ -91,7 +142,6 @@ public class MainActivity extends ActionBarActivity {
                                     "plus above",
                             Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
         // Creates contextMenu

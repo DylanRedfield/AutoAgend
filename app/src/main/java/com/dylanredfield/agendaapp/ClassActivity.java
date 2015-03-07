@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dylanredfield.agendaapp2.R;
 import com.software.shell.fab.ActionButton;
@@ -32,7 +33,10 @@ public class ClassActivity extends ActionBarActivity {
     private ListView mAssignmentsListView;
     private ArrayAdapter<String> mClassInfoAdapter;
     private AssignmentAdapter mAssignmentsAdapter;
-    private ActionButton mNewAssignment;
+    private ActionButton mButtonClass;
+    private ActionButton mButtonPicture;
+    private ActionButton mButtonText;
+    private boolean showFlag;
     private int index;
     public static String EXTRA_INT_ASSIGNMENT_POSTITION = "com.dylanredfield.agendaapp.int_assignment_position";
 
@@ -47,10 +51,11 @@ public class ClassActivity extends ActionBarActivity {
 
         // Gets index extra
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+        showFlag = true;
 
         // ListView from arrayList
         /*
-		 * mClassInfoListView = (ListView) findViewById(R.id.classinfo_list);
+         * mClassInfoListView = (ListView) findViewById(R.id.classinfo_list);
 		 * makeListView(mClassInfoListView, mClassInfoAdapter, ClassList
 		 * .getInstance(getApplicationContext()).getList().get(index)
 		 * .makeList());
@@ -74,19 +79,66 @@ public class ClassActivity extends ActionBarActivity {
         registerForContextMenu(mAssignmentsListView);
 
         // Instaniates button and sets onClickListener
-        mNewAssignment = (ActionButton) findViewById(R.id.action_button_new_assignment);
-        mNewAssignment.setButtonColor(getResources().getColor(R.color.red_500));
-        mNewAssignment.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
-        mNewAssignment.setOnClickListener(new View.OnClickListener() {
+
+        mButtonClass = (ActionButton) findViewById(R.id.action_button);
+        mButtonClass.setButtonColor(getResources().getColor(R.color.red_500));
+        mButtonClass.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
+        mButtonClass.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+        mButtonPicture = (ActionButton) findViewById(R.id.action_button_picture);
+        mButtonPicture.setButtonColor(getResources().getColor(R.color.red_500));
+        mButtonPicture.setImageDrawable(getResources()
+                .getDrawable(R.drawable.ic_file_image_box_white_48dp));
+        mButtonPicture.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+        mButtonText = (ActionButton) findViewById(R.id.action_button_assignment);
+        mButtonText.setButtonColor(getResources().getColor(R.color.red_500));
+        mButtonText.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
+        mButtonText.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+
+        mButtonClass.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),
-                        AddAssignmentActivity.class);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                if (showFlag) {
+                    mButtonPicture.setVisibility(View.VISIBLE);
+                    mButtonText.setVisibility(View.VISIBLE);
 
-                startActivity(i);
+                    mButtonClass.setImageDrawable(getResources()
+                            .getDrawable(R.drawable.ic_close_white_48dp));
+                    showFlag = false;
+                } else {
+                    mButtonPicture.setVisibility(View.INVISIBLE);
+                    mButtonText.setVisibility(View.INVISIBLE);
+                    mButtonClass.setImageDrawable(getResources()
+                            .getDrawable(R.drawable.ic_note_add_white_36dp));
+                    showFlag = true;
+                }
 
+
+            }
+        });
+        mButtonPicture.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        mButtonText.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // intent to NewClassActivity
+                if (ClassList.getInstance(getApplicationContext()).getList().size() > 0) {
+                    Intent i = new Intent(getApplicationContext(),
+                            AddAssignmentActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Create a class first by clicking " +
+                                    "plus above",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

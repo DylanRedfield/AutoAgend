@@ -102,6 +102,7 @@
     <color name="red_100">#FFCDD2</color>
     <color name="red_500">#F44336</color>
     <color name="red_700">#D32F2f</color>
+    <color name="red_900">#B71C1C</color>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="ripple_material_dark">#40ffffff</color>

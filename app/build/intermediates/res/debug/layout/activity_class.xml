@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical" >
 
     <TextView
@@ -41,13 +40,34 @@
             android:textStyle="normal" />
     </LinearLayout>
     <com.software.shell.fab.ActionButton
-        android:id="@+id/action_button_new_assignment"
+        android:id="@+id/action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/fab_margin"
-        />
+        android:layout_marginRight="@dimen/fab_margin" />
+
+
+    <com.software.shell.fab.ActionButton
+        android:id="@+id/action_button_assignment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/action_button"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:visibility="invisible" />
+
+    <com.software.shell.fab.ActionButton
+        android:id="@+id/action_button_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/action_button_assignment"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>
