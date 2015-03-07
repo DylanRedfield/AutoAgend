@@ -30,6 +30,8 @@
             android:layout_height="wrap_content"
             android:text="@string/empty_class"
             android:textAllCaps="false"
+            android:textAlignment="center"
+            android:paddingBottom="8dp"
             android:textSize="20sp"
             android:textStyle="normal" />
     </LinearLayout>

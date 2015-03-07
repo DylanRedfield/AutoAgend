@@ -1,44 +1,41 @@
 package com.dylanredfield.agendaapp;
 
-import com.dylanredfield.agendaapp2.R;
-import com.dylanredfield.agendaapp2.R.id;
-import com.dylanredfield.agendaapp2.R.layout;
-
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dylanredfield.agendaapp2.R;
+
 public class NewClassActivity extends ActionBarActivity {
-	private EditText mTitle;
-	private EditText mDescription;
-	private EditText mPeriod;
-	private Button mEnter;
+    private EditText mTitle;
+    private EditText mDescription;
+    private EditText mPeriod;
+    private Button mEnter;
 
-	String mTitleString;
-	int period;
+    String mTitleString;
+    int period;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new_class);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_class);
 
-		mTitle = (EditText) findViewById(R.id.edittext_title);
-		mDescription = (EditText) findViewById(R.id.edittext_description);
-		mPeriod = (EditText) findViewById(R.id.edittext_period);
-                		ActionBar ab = getSupportActionBar();
+        mTitle = (EditText) findViewById(R.id.edittext_title);
+        mDescription = (EditText) findViewById(R.id.edittext_description);
+        mPeriod = (EditText) findViewById(R.id.edittext_period);
+        ActionBar ab = getSupportActionBar();
 
         ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
 
-	}
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -46,7 +43,8 @@ public class NewClassActivity extends ActionBarActivity {
         inflater.inflate(R.menu.actionbar_enter, menu);
         return super.onCreateOptionsMenu(menu);
     }
-        @Override
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
@@ -57,38 +55,39 @@ public class NewClassActivity extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     public void onButtonClick() {
-                        // TODO accept all input types (period cant be null
-                if (!mTitle.getText().toString().equals("")) {
-                    if (mPeriod.getText().toString().equals("")) {
-                        period = ClassList.getInstance(getApplicationContext()).getList()
-                                .size() + 1;
+        // TODO accept all input types (period cant be null
+        if (!mTitle.getText().toString().equals("")) {
+            if (mPeriod.getText().toString().equals("")) {
+                period = ClassList.getInstance(getApplicationContext()).getList()
+                        .size() + 1;
 
-                    } else {
-                        period = Integer.parseInt(mPeriod.getText().toString());
-                    }
-                    ClassList.getInstance(getApplicationContext()).addSchoolClass(
-                            new SchoolClass(mTitle.getText().toString(),
-                                    mDescription.getText().toString(), period));
+            } else {
+                period = Integer.parseInt(mPeriod.getText().toString());
+            }
+            ClassList.getInstance(getApplicationContext()).addSchoolClass(
+                    new SchoolClass(mTitle.getText().toString(),
+                            mDescription.getText().toString(), period));
 
-                    updateDatabase();
-                    finish();
-                    ActionBar ab = getSupportActionBar();
+            updateDatabase();
+            finish();
+            ActionBar ab = getSupportActionBar();
 
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Enter a class title",
-                            Toast.LENGTH_SHORT).show();
-                }
+        } else {
+            Toast.makeText(getApplicationContext(), "Enter a class title",
+                    Toast.LENGTH_SHORT).show();
+        }
 
     }
-	public void updateDatabase() {
-		// Deletes all information in the database
-		DatabaseHandler.getInstance(getApplicationContext()).deleteAllClasses();
 
-		// Adds all classes from ArrayList back into database
-		DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
-				ClassList.getInstance(getApplicationContext()).getList());
+    public void updateDatabase() {
+        // Deletes all information in the database
+        DatabaseHandler.getInstance(getApplicationContext()).deleteAllClasses();
 
-	}
+        // Adds all classes from ArrayList back into database
+        DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
+                ClassList.getInstance(getApplicationContext()).getList());
+
+    }
 }

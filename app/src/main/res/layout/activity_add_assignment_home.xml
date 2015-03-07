@@ -80,9 +80,31 @@
             android:inputType="date" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/class_name" />
+
+        <EditText
+            android:id="@+id/class_picker"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"
+            android:gravity="center"
+            android:hint="@string/class_hint"
+            android:inputType="date" />
+    </LinearLayout>
     <TextView
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_weight="4"/>
+        android:layout_weight="3"/>
 
-</LinearLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_add_assignment.xml -->
+</LinearLayout>

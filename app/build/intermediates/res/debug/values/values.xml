@@ -231,7 +231,8 @@
     <string name="app_name">AgendaApp</string>
     <string name="assignments">Assignments</string>
     <string name="button_text">New Class</string>
-    <string name="classinfo">Class Info</string>
+    <string name="class_hint">Mathematics</string>
+    <string name="class_name">Class Name:</string>
     <string name="date_assigned_text">Date Assigned:</string>
     <string name="date_due_text">Date Due:</string>
     <string name="date_hint">1/1/15</string>
@@ -239,7 +240,7 @@
     <string name="default_description">No Description</string>
     <string name="default_period">No Period</string>
     <string name="empty_assignment">Add a Assignment!</string>
-    <string name="empty_class">Add a Class!</string>
+    <string name="empty_class">Add a class by clicking the \"+\"</string>
     <string name="enter">Enter</string>
     <string name="hello_world">Hello world!</string>
     <string name="hint_assignment_description">Enter assignment description</string>

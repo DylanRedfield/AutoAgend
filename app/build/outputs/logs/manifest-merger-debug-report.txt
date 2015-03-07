@@ -63,18 +63,24 @@ ADDED from AndroidManifest.xml:25:9
 	android:name
 		ADDED from AndroidManifest.xml:26:13
 activity#com.dylanredfield.agendaapp.AddAssignmentActivity
-ADDED from AndroidManifest.xml:29:9
+ADDED from AndroidManifest.xml:28:9
 	android:label
-		ADDED from AndroidManifest.xml:31:13
-	android:name
 		ADDED from AndroidManifest.xml:30:13
-activity#com.dylanredfield.agendaapp.ClassActivity
-ADDED from AndroidManifest.xml:33:9
-	android:label
-		ADDED from AndroidManifest.xml:35:13
 	android:name
-		ADDED from AndroidManifest.xml:34:13
+		ADDED from AndroidManifest.xml:29:13
+activity#com.dylanredfield.agendaapp.ClassActivity
+ADDED from AndroidManifest.xml:31:9
+	android:label
+		ADDED from AndroidManifest.xml:33:13
+	android:name
+		ADDED from AndroidManifest.xml:32:13
 activity#com.dylanredfield.agendaapp.AssignmentActivity
+ADDED from AndroidManifest.xml:34:9
+	android:label
+		ADDED from AndroidManifest.xml:36:13
+	android:name
+		ADDED from AndroidManifest.xml:35:13
+activity#com.dylanredfield.agendaapp.AddAssignmentHomeActivity
 ADDED from AndroidManifest.xml:37:9
 	android:label
 		ADDED from AndroidManifest.xml:39:13

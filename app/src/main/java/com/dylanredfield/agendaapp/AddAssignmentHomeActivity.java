@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AddAssignmentActivity extends ActionBarActivity {
+public class AddAssignmentHomeActivity extends ActionBarActivity {
     private EditText mTitle;
     private EditText mDescription;
     private EditText mDateAssignedPicker;
@@ -45,7 +45,7 @@ public class AddAssignmentActivity extends ActionBarActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_assignment);
+        setContentView(R.layout.activity_add_assignment_home);
 
         // Class index
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
@@ -53,7 +53,6 @@ public class AddAssignmentActivity extends ActionBarActivity {
         while (a.getParent() != null) {
             a = a.getParent();
         }
-
         mTitle = (EditText) findViewById(R.id.edittext_title);
         mDescription = (EditText) findViewById(R.id.edittext_description);
 
@@ -78,12 +77,44 @@ public class AddAssignmentActivity extends ActionBarActivity {
             }
         });
 
+        mClassSelector = (EditText) findViewById(R.id.class_picker);
+        mClassSelector.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ListView listView = new ListView(a);
+                listView.setAdapter(new ArrayAdapter<String>(a,
+                        android.R.layout.simple_list_item_1,
+                        ClassList.getInstance(getApplicationContext()).getListString()));
+
+                final Dialog dialog = new Dialog(a);
+                dialog.setTitle("Choose Class");
+                dialog.setContentView(listView);
+                dialog.show();
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        index = position;
+                        updtaeClassEditText();
+                        dialog.hide();
+                    }
+                });
+            }
+        });
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
                 .get(index).getClassName());
 
         ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
 
+    }
+
+    public void updtaeClassEditText() {
+        mClassSelector.setText(ClassList.getInstance(getApplicationContext()).getListString()
+                .get(index));
     }
 
     @Override

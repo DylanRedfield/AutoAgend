@@ -17,7 +17,6 @@
     <string name="new_class_label">New Class</string>
     <string name="textview_period">Period: </string>
     <string name="hint_period">1</string>
-    <string name="classinfo">Class Info</string>
     <string name="text_new_assignment">New Assignment</string>
     <string name="text_edit_info">Edit Info</string>
     <string name="hint_assignment_description">Enter assignment description</string>
@@ -25,7 +24,9 @@
     <string name="date_assigned_text">Date Assigned:</string>
     <string name="date_due_text">Date Due:</string>
     <string name="date_hint">1/1/15</string>
-    <string name="empty_class">Add a Class!</string>
+    <string name="empty_class">Add a class by clicking the \"+\"</string>
     <string name="empty_assignment">Add a Assignment!</string>
+    <string name="class_name">Class Name:</string>
+    <string name="class_hint">Mathematics</string>
 
 </resources>
