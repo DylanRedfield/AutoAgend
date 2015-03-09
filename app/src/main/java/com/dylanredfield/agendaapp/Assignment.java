@@ -1,5 +1,6 @@
 package com.dylanredfield.agendaapp;
 
+import android.graphics.Bitmap;
 import android.graphics.Picture;
 
 import java.text.SimpleDateFormat;
@@ -12,15 +13,18 @@ public class Assignment {
     private String mDescription;
     private Calendar mDateAssigned;
     private Calendar mDateDue;
+    private Bitmap mThumbnail;
     private Picture mPicture;
     private boolean mCompleted;
+    private Bitmap thumbnail;
 
     public Assignment(String title, String description, Calendar dateAssigned,
-                      Calendar dateDue) {
+                      Calendar dateDue, Bitmap thumbnail) {
         mTitle = title;
         mDescription = description;
         mDateAssigned = dateAssigned;
         mDateDue = dateDue;
+        mThumbnail = thumbnail;
     }
 
     public String getTitle() {
@@ -61,6 +65,9 @@ public class Assignment {
 
     public void setCompleted(boolean completed) {
         mCompleted = completed;
+    }
+    public Bitmap getThumbnail() {
+        return mThumbnail;
     }
 
     public ArrayList<String> makeList() {

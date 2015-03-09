@@ -16,6 +16,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -185,7 +186,7 @@ public class ClassActivity extends ActionBarActivity {
         // recreates adapters to update them
         // TODO check to see if bundle is better for this
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
-		/*
+        /*
 		 * mClassInfoListView = (ListView) findViewById(R.id.classinfo_list);
 		 * makeListView(mClassInfoListView, mClassInfoAdapter, ClassList
 		 * .getInstance(getApplicationContext()).getList().get(index)
@@ -278,6 +279,7 @@ public class ClassActivity extends ActionBarActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            // Save db on assignemnt add
 
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(

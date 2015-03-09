@@ -1,6 +1,7 @@
 package com.dylanredfield.agendaapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,7 +39,7 @@ public class AssignmentActivity extends ActionBarActivity {
 
         ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
         /*
-		 * mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
+         * mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
 		 * makeListView( mAssignmentInfoList, mAssignmentInfoAdapter,
 		 * ClassList.getInstance(getApplicationContext()).getList()
 		 * .get(indexClass).getAssignments() .get(indexAssignment).makeList());
@@ -96,6 +98,7 @@ public class AssignmentActivity extends ActionBarActivity {
             infoTextView = (TextView) convertView
                     .findViewById(R.id.assignment_info);
             infoTextView.setText(mList.get(position).substring(2));
+
 
             return convertView;
 

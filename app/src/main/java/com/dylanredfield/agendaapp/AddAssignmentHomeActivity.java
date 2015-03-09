@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -38,6 +39,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     private Calendar mDueDate;
     private Context mContext;
     private Activity a;
+    private Bitmap mBitmap;
     public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
     public static final String DUE_TAG = "DUE_TAG";
     // get value from index from parent class
@@ -49,6 +51,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
 
         // Class index
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+        mBitmap = (Bitmap) getIntent().getParcelableExtra(MainActivity.BITMAP_STRING);
         a = this;
         while (a.getParent() != null) {
             a = a.getParent();
@@ -190,7 +193,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                             .getAssignments()
                             .add(new Assignment(mTitle.getText().toString(),
                                     mDescription.getText().toString(),
-                                    mAssignedDate, mDueDate));
+                                    mAssignedDate, mDueDate, mBitmap));
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Enter a title",

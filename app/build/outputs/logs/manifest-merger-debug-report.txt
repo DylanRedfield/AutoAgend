@@ -46,49 +46,53 @@ ADDED from AndroidManifest.xml:16:9
 		ADDED from AndroidManifest.xml:18:13
 	android:name
 		ADDED from AndroidManifest.xml:17:13
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from AndroidManifest.xml:19:9
+	android:name
+		ADDED from AndroidManifest.xml:19:26
 activity#com.dylanredfield.agendaapp.MainActivity
-ADDED from AndroidManifest.xml:20:9
+ADDED from AndroidManifest.xml:21:9
 	android:label
+		ADDED from AndroidManifest.xml:23:13
+	android:name
 		ADDED from AndroidManifest.xml:22:13
-	android:name
-		ADDED from AndroidManifest.xml:21:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:23:13
+ADDED from AndroidManifest.xml:24:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:24:17
+ADDED from AndroidManifest.xml:25:17
 	android:name
-		ADDED from AndroidManifest.xml:24:25
+		ADDED from AndroidManifest.xml:25:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:26:17
+ADDED from AndroidManifest.xml:27:17
 	android:name
-		ADDED from AndroidManifest.xml:26:27
+		ADDED from AndroidManifest.xml:27:27
 activity#com.dylanredfield.agendaapp.NewClassActivity
-ADDED from AndroidManifest.xml:29:9
+ADDED from AndroidManifest.xml:30:9
 	android:label
+		ADDED from AndroidManifest.xml:32:13
+	android:name
 		ADDED from AndroidManifest.xml:31:13
-	android:name
-		ADDED from AndroidManifest.xml:30:13
 activity#com.dylanredfield.agendaapp.AddAssignmentActivity
-ADDED from AndroidManifest.xml:32:9
+ADDED from AndroidManifest.xml:33:9
 	android:label
+		ADDED from AndroidManifest.xml:35:13
+	android:name
 		ADDED from AndroidManifest.xml:34:13
-	android:name
-		ADDED from AndroidManifest.xml:33:13
 activity#com.dylanredfield.agendaapp.ClassActivity
-ADDED from AndroidManifest.xml:35:9
+ADDED from AndroidManifest.xml:36:9
 	android:label
+		ADDED from AndroidManifest.xml:38:13
+	android:name
 		ADDED from AndroidManifest.xml:37:13
-	android:name
-		ADDED from AndroidManifest.xml:36:13
 activity#com.dylanredfield.agendaapp.AssignmentActivity
-ADDED from AndroidManifest.xml:38:9
+ADDED from AndroidManifest.xml:39:9
 	android:label
+		ADDED from AndroidManifest.xml:41:13
+	android:name
 		ADDED from AndroidManifest.xml:40:13
-	android:name
-		ADDED from AndroidManifest.xml:39:13
 activity#com.dylanredfield.agendaapp.AddAssignmentHomeActivity
-ADDED from AndroidManifest.xml:41:9
+ADDED from AndroidManifest.xml:42:9
 	android:label
-		ADDED from AndroidManifest.xml:43:13
+		ADDED from AndroidManifest.xml:44:13
 	android:name
-		ADDED from AndroidManifest.xml:42:13
+		ADDED from AndroidManifest.xml:43:13

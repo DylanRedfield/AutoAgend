@@ -159,7 +159,7 @@ public class AddAssignmentActivity extends ActionBarActivity {
                             .getAssignments()
                             .add(new Assignment(mTitle.getText().toString(),
                                     mDescription.getText().toString(),
-                                    mAssignedDate, mDueDate));
+                                    mAssignedDate, mDueDate, null));
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Enter a title",
