@@ -2,6 +2,7 @@ package com.dylanredfield.agendaapp;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dylanredfield.agendaapp2.R;
 
@@ -22,6 +24,7 @@ public class AssignmentActivity extends ActionBarActivity {
     private AssignmentInfoAdapter mAssignmentInfoAdapter;
     private int indexClass;
     private int indexAssignment;
+    private ImageView mPictureView;
 
     @Override
     protected void onCreate(Bundle b) {
@@ -51,6 +54,17 @@ public class AssignmentActivity extends ActionBarActivity {
                 .getInstance(getApplicationContext()).getList()
                 .get(indexClass).getAssignments().get(indexAssignment).makeList2());
         mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
+
+        mPictureView = (ImageView) findViewById(R.id.picture_imageview);
+        if(ClassList.getInstance(getApplicationContext()).getList().get(indexClass)
+                .getAssignments().get(indexAssignment).getFilePath() != null) {
+            Bitmap bm = BitmapFactory.decodeFile(ClassList.getInstance(getApplicationContext())
+                    .getList().get(indexClass).getAssignments()
+                    .get(indexAssignment).getFilePath());
+            mPictureView.setImageBitmap(bm);
+            mPictureView.setVisibility(View.VISIBLE);
+
+        }
     }
 
     public void makeListView(ListView listView, ArrayAdapter<String> adapter,

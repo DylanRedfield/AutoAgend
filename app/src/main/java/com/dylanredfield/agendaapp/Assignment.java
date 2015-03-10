@@ -14,17 +14,17 @@ public class Assignment {
     private Calendar mDateAssigned;
     private Calendar mDateDue;
     private Bitmap mThumbnail;
-    private Picture mPicture;
+    private String mFilePath;
     private boolean mCompleted;
     private Bitmap thumbnail;
 
     public Assignment(String title, String description, Calendar dateAssigned,
-                      Calendar dateDue, Bitmap thumbnail) {
+                      Calendar dateDue, String filePath) {
         mTitle = title;
         mDescription = description;
         mDateAssigned = dateAssigned;
         mDateDue = dateDue;
-        mThumbnail = thumbnail;
+        mFilePath = filePath;
     }
 
     public String getTitle() {
@@ -61,6 +61,9 @@ public class Assignment {
 
     public boolean isCompleted() {
         return mCompleted;
+    }
+    public String getFilePath() {
+        return mFilePath;
     }
 
     public void setCompleted(boolean completed) {

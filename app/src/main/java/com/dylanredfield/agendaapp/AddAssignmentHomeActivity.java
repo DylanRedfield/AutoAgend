@@ -40,6 +40,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     private Context mContext;
     private Activity a;
     private Bitmap mBitmap;
+    private String mFileLocation;
     public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
     public static final String DUE_TAG = "DUE_TAG";
     // get value from index from parent class
@@ -51,7 +52,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
 
         // Class index
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
-        mBitmap = (Bitmap) getIntent().getParcelableExtra(MainActivity.BITMAP_STRING);
+        mFileLocation = getIntent().getStringExtra("TEST");
         a = this;
         while (a.getParent() != null) {
             a = a.getParent();
@@ -193,7 +194,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                             .getAssignments()
                             .add(new Assignment(mTitle.getText().toString(),
                                     mDescription.getText().toString(),
-                                    mAssignedDate, mDueDate, mBitmap));
+                                    mAssignedDate, mDueDate, mFileLocation));
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Enter a title",
