@@ -1,11 +1,13 @@
 package com.dylanredfield.agendaapp;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,7 +41,10 @@ public class AddAssignmentActivity extends ActionBarActivity {
     private Calendar mAssignedDate;
     private Calendar mDueDate;
     private Context mContext;
+    private ActionBar mActionBar;
+    private Window mWindow;
     private Activity a;
+    private String mFileLocation;
     public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
     public static final String DUE_TAG = "DUE_TAG";
     // get value from index from parent class
@@ -49,6 +56,8 @@ public class AddAssignmentActivity extends ActionBarActivity {
 
         // Class index
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+
+        mFileLocation = getIntent().getStringExtra("TEST");
         a = this;
         while (a.getParent() != null) {
             a = a.getParent();
@@ -78,12 +87,7 @@ public class AddAssignmentActivity extends ActionBarActivity {
             }
         });
 
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
-                .get(index).getClassName());
-
-        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
-
+        setBars();
     }
 
     @Override
@@ -159,7 +163,7 @@ public class AddAssignmentActivity extends ActionBarActivity {
                             .getAssignments()
                             .add(new Assignment(mTitle.getText().toString(),
                                     mDescription.getText().toString(),
-                                    mAssignedDate, mDueDate, null));
+                                    mAssignedDate, mDueDate, mFileLocation));
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Enter a title",
@@ -179,6 +183,23 @@ public class AddAssignmentActivity extends ActionBarActivity {
         DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
                 ClassList.getInstance(getApplicationContext()).getList());
 
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setBars() {
+        // Changes ActionBar color
+        mActionBar = getSupportActionBar();
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+        mActionBar.setTitle(ClassList.getInstance(getApplicationContext()).getList()
+                .get(index).getClassName());
+
+        // if able to sets statusbar to dark red
+        if (21 <= Build.VERSION.SDK_INT) {
+            mWindow = this.getWindow();
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+        }
     }
 
     public void updateEditText(String tag) {

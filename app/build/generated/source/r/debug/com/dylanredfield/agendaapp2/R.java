@@ -1503,9 +1503,9 @@ containing a value of this type.
         public static final int action_bar_spinner=0x7f080001;
         public static final int action_bar_subtitle=0x7f080024;
         public static final int action_bar_title=0x7f080023;
-        public static final int action_button=0x7f08004d;
-        public static final int action_button_assignment=0x7f08004e;
-        public static final int action_button_picture=0x7f08004f;
+        public static final int action_button=0x7f08004c;
+        public static final int action_button_assignment=0x7f08004d;
+        public static final int action_button_picture=0x7f08004e;
         public static final int action_context_bar=0x7f080037;
         public static final int action_menu_divider=0x7f080002;
         public static final int action_menu_presenter=0x7f080003;
@@ -1519,7 +1519,7 @@ containing a value of this type.
         public static final int assignment_info=0x7f080056;
         public static final int assignment_info_label=0x7f080055;
         public static final int assignment_text=0x7f080058;
-        public static final int assignment_textview=0x7f08004b;
+        public static final int assignment_textview=0x7f08004a;
         public static final int assignments_list=0x7f080049;
         public static final int beginning=0x7f080016;
         public static final int bottom=0x7f080021;
@@ -1541,11 +1541,12 @@ containing a value of this type.
         public static final int edittext_description=0x7f080045;
         public static final int edittext_period=0x7f080054;
         public static final int edittext_title=0x7f080044;
-        public static final int empty_list=0x7f08004c;
+        public static final int empty_list=0x7f08004b;
         public static final int end=0x7f080017;
         public static final int enter_actionbar=0x7f08005c;
         public static final int expand_activities_button=0x7f080027;
         public static final int expanded_menu=0x7f08002d;
+        public static final int full_screen_image=0x7f08004f;
         public static final int home=0x7f080004;
         public static final int homeAsUp=0x7f08000d;
         public static final int icon=0x7f08002b;
@@ -1562,7 +1563,6 @@ containing a value of this type.
         public static final int none=0x7f08000e;
         public static final int normal=0x7f08000a;
         public static final int period_layout=0x7f080053;
-        public static final int picture_imageview=0x7f08004a;
         public static final int progress_circular=0x7f080005;
         public static final int progress_horizontal=0x7f080006;
         public static final int radio=0x7f080030;
@@ -1624,14 +1624,15 @@ containing a value of this type.
         public static final int activity_add_assignment_home=0x7f030018;
         public static final int activity_assignment=0x7f030019;
         public static final int activity_class=0x7f03001a;
-        public static final int activity_main=0x7f03001b;
-        public static final int activity_new_class=0x7f03001c;
-        public static final int assignment_detail_row=0x7f03001d;
-        public static final int assignment_row=0x7f03001e;
-        public static final int class_row=0x7f03001f;
-        public static final int empty_list_view=0x7f030020;
-        public static final int list_item=0x7f030021;
-        public static final int support_simple_spinner_dropdown_item=0x7f030022;
+        public static final int activity_image_full_screen=0x7f03001b;
+        public static final int activity_main=0x7f03001c;
+        public static final int activity_new_class=0x7f03001d;
+        public static final int assignment_detail_row=0x7f03001e;
+        public static final int assignment_row=0x7f03001f;
+        public static final int class_row=0x7f030020;
+        public static final int empty_list_view=0x7f030021;
+        public static final int list_item=0x7f030022;
+        public static final int support_simple_spinner_dropdown_item=0x7f030023;
     }
     public static final class menu {
         public static final int actionbar_enter=0x7f0c0000;
@@ -1663,27 +1664,28 @@ containing a value of this type.
         public static final int button_text=0x7f0a0012;
         public static final int class_hint=0x7f0a0013;
         public static final int class_name=0x7f0a0014;
-        public static final int date_assigned_text=0x7f0a0015;
-        public static final int date_due_text=0x7f0a0016;
-        public static final int date_hint=0x7f0a0017;
-        public static final int default_classname=0x7f0a0018;
-        public static final int default_description=0x7f0a0019;
-        public static final int default_period=0x7f0a001a;
-        public static final int empty_assignment=0x7f0a001b;
-        public static final int empty_class=0x7f0a001c;
-        public static final int enter=0x7f0a001d;
-        public static final int hello_world=0x7f0a001e;
-        public static final int hint_assignment_description=0x7f0a001f;
-        public static final int hint_assignment_title=0x7f0a0020;
-        public static final int hint_description=0x7f0a0021;
-        public static final int hint_period=0x7f0a0022;
-        public static final int hint_title=0x7f0a0023;
-        public static final int menu_delete=0x7f0a0024;
-        public static final int menu_rename=0x7f0a0025;
-        public static final int new_class_label=0x7f0a0026;
-        public static final int text_edit_info=0x7f0a0027;
-        public static final int text_new_assignment=0x7f0a0028;
-        public static final int textview_period=0x7f0a0029;
+        public static final int click_for_pic=0x7f0a0015;
+        public static final int date_assigned_text=0x7f0a0016;
+        public static final int date_due_text=0x7f0a0017;
+        public static final int date_hint=0x7f0a0018;
+        public static final int default_classname=0x7f0a0019;
+        public static final int default_description=0x7f0a001a;
+        public static final int default_period=0x7f0a001b;
+        public static final int empty_assignment=0x7f0a001c;
+        public static final int empty_class=0x7f0a001d;
+        public static final int enter=0x7f0a001e;
+        public static final int hello_world=0x7f0a001f;
+        public static final int hint_assignment_description=0x7f0a0020;
+        public static final int hint_assignment_title=0x7f0a0021;
+        public static final int hint_description=0x7f0a0022;
+        public static final int hint_period=0x7f0a0023;
+        public static final int hint_title=0x7f0a0024;
+        public static final int menu_delete=0x7f0a0025;
+        public static final int menu_rename=0x7f0a0026;
+        public static final int new_class_label=0x7f0a0027;
+        public static final int text_edit_info=0x7f0a0028;
+        public static final int text_new_assignment=0x7f0a0029;
+        public static final int textview_period=0x7f0a002a;
     }
     public static final class style {
         /** 

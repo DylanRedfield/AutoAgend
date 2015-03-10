@@ -62,6 +62,7 @@ public class Assignment {
     public boolean isCompleted() {
         return mCompleted;
     }
+
     public String getFilePath() {
         return mFilePath;
     }
@@ -69,6 +70,7 @@ public class Assignment {
     public void setCompleted(boolean completed) {
         mCompleted = completed;
     }
+
     public Bitmap getThumbnail() {
         return mThumbnail;
     }
@@ -93,6 +95,9 @@ public class Assignment {
         }
         if (mDateDue != null) {
             temp.add("Du" + calendarToString(mDateDue));
+        }
+        if (mFilePath != null){
+            temp.add("Pi" + "Click Here to View Photo");
         }
         return temp;
     }

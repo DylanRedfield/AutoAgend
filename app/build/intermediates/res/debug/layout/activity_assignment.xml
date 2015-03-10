@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <!--
         <TextView
@@ -19,16 +19,20 @@
 
     <ListView
         android:id="@+id/assignments_list"
-        android:layout_marginTop= "12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </ListView>
-    <ImageView
-        android:id="@+id/picture_imageview"
-        android:src="@drawable/ic_note_add_black_24dp"
-        android:layout_below="@id/assignments_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginTop="12dp"></ListView>
+
+<!--    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/click_for_pic_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/click_for_pic"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:onClick="onTextViewClick"
+        android:textAllCaps="false"
+        android:layout_below="@id/assignments_list"/> -->
 
 </RelativeLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_assignment.xml -->

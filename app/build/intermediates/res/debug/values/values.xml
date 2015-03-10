@@ -234,6 +234,7 @@
     <string name="button_text">New Class</string>
     <string name="class_hint">Mathematics</string>
     <string name="class_name">Class Name:</string>
+    <string name="click_for_pic">Click Here to View Picture</string>
     <string name="date_assigned_text">Date Assigned:</string>
     <string name="date_due_text">Date Due:</string>
     <string name="date_hint">1/1/15</string>

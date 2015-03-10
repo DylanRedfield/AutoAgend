@@ -28,5 +28,6 @@
     <string name="empty_assignment">Add a Assignment!</string>
     <string name="class_name">Class Name:</string>
     <string name="class_hint">Mathematics</string>
+    <string name="click_for_pic">Click Here to View Picture</string>
 
 </resources>

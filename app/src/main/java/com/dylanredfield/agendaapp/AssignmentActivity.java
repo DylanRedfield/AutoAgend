@@ -1,14 +1,19 @@
 package com.dylanredfield.agendaapp;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,6 +30,9 @@ public class AssignmentActivity extends ActionBarActivity {
     private int indexClass;
     private int indexAssignment;
     private ImageView mPictureView;
+    private TextView mPictureTextView;
+    private ActionBar mActionBar;
+    private Window mWindow;
 
     @Override
     protected void onCreate(Bundle b) {
@@ -36,11 +44,6 @@ public class AssignmentActivity extends ActionBarActivity {
                 ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, 0);
         indexClass = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION,
                 0);
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
-                .get(indexClass).getClassName());
-
-        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
         /*
          * mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
 		 * makeListView( mAssignmentInfoList, mAssignmentInfoAdapter,
@@ -55,16 +58,12 @@ public class AssignmentActivity extends ActionBarActivity {
                 .get(indexClass).getAssignments().get(indexAssignment).makeList2());
         mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
 
-        mPictureView = (ImageView) findViewById(R.id.picture_imageview);
-        if(ClassList.getInstance(getApplicationContext()).getList().get(indexClass)
+        if (ClassList.getInstance(getApplicationContext()).getList().get(indexClass)
                 .getAssignments().get(indexAssignment).getFilePath() != null) {
-            Bitmap bm = BitmapFactory.decodeFile(ClassList.getInstance(getApplicationContext())
-                    .getList().get(indexClass).getAssignments()
-                    .get(indexAssignment).getFilePath());
-            mPictureView.setImageBitmap(bm);
-            mPictureView.setVisibility(View.VISIBLE);
 
         }
+        setBars();
+
     }
 
     public void makeListView(ListView listView, ArrayAdapter<String> adapter,
@@ -74,6 +73,28 @@ public class AssignmentActivity extends ActionBarActivity {
                 android.R.layout.simple_list_item_1, android.R.id.text1, list);
 
         listView.setAdapter(adapter);
+    }
+
+    public void onTextViewClick(View view) {
+        Intent i = new Intent(getApplicationContext(), ImageFullScreenActivity.class);
+        i.putExtra(MainActivity.EXTRA_INT_POSTITION, indexClass);
+        i.putExtra(ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, indexAssignment);
+        startActivity(i);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setBars() {
+        // Changes ActionBar color
+        mActionBar = getSupportActionBar();
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+
+        // if able to sets statusbar to dark red
+        if (21 <= Build.VERSION.SDK_INT) {
+            mWindow = this.getWindow();
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+        }
     }
 
     public class AssignmentInfoAdapter extends ArrayAdapter<String> {
@@ -108,10 +129,18 @@ public class AssignmentActivity extends ActionBarActivity {
                 titleTextView.setText("Date Assigned");
             } else if (substring.equals("Du")) {
                 titleTextView.setText("Date Due");
+            } else if (substring.equals("Pi")) {
+                titleTextView.setText("Picture");
             }
             infoTextView = (TextView) convertView
                     .findViewById(R.id.assignment_info);
             infoTextView.setText(mList.get(position).substring(2));
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onTextViewClick(v);
+                }
+            });
 
 
             return convertView;

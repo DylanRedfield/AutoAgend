@@ -44,6 +44,9 @@
         <activity
             android:name="com.dylanredfield.agendaapp.AddAssignmentHomeActivity"
             android:label="@string/new_class_label" />
+        <activity
+            android:name="com.dylanredfield.agendaapp.ImageFullScreenActivity"
+            android:label="@string/new_class_label" />
     </application>
 
 </manifest>

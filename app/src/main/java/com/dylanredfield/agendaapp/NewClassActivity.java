@@ -1,12 +1,16 @@
 package com.dylanredfield.agendaapp;
 
+import android.annotation.TargetApi;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +22,8 @@ public class NewClassActivity extends ActionBarActivity {
     private EditText mDescription;
     private EditText mPeriod;
     private Button mEnter;
+    private ActionBar mActionBar;
+    private Window mWindow;
 
     String mTitleString;
     int period;
@@ -30,10 +36,8 @@ public class NewClassActivity extends ActionBarActivity {
         mTitle = (EditText) findViewById(R.id.edittext_title);
         mDescription = (EditText) findViewById(R.id.edittext_description);
         mPeriod = (EditText) findViewById(R.id.edittext_period);
-        ActionBar ab = getSupportActionBar();
 
-        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
-
+        setBars();
     }
 
     @Override
@@ -72,13 +76,27 @@ public class NewClassActivity extends ActionBarActivity {
 
             updateDatabase();
             finish();
-            ActionBar ab = getSupportActionBar();
 
         } else {
             Toast.makeText(getApplicationContext(), "Enter a class title",
                     Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setBars() {
+        // Changes ActionBar color
+        mActionBar = getSupportActionBar();
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+
+        // if able to sets statusbar to dark red
+        if (21 <= Build.VERSION.SDK_INT) {
+            mWindow = this.getWindow();
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+        }
     }
 
     public void updateDatabase() {

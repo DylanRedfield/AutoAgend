@@ -100,3 +100,9 @@ ADDED from AndroidManifest.xml:45:9
 		ADDED from AndroidManifest.xml:47:13
 	android:name
 		ADDED from AndroidManifest.xml:46:13
+activity#com.dylanredfield.agendaapp.ImageFullScreenActivity
+ADDED from AndroidManifest.xml:48:9
+	android:label
+		ADDED from AndroidManifest.xml:50:13
+	android:name
+		ADDED from AndroidManifest.xml:49:13

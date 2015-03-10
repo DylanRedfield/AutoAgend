@@ -1,9 +1,15 @@
 package com.dylanredfield.agendaapp;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -11,6 +17,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
@@ -24,9 +32,12 @@ import android.widget.Toast;
 import com.dylanredfield.agendaapp2.R;
 import com.software.shell.fab.ActionButton;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class ClassActivity extends ActionBarActivity {
@@ -37,8 +48,12 @@ public class ClassActivity extends ActionBarActivity {
     private ActionButton mButtonClass;
     private ActionButton mButtonPicture;
     private ActionButton mButtonText;
+    private String mCurrentPhotoPath;
     private boolean showFlag;
     private int index;
+    private ActionBar mActionBar;
+    private Window mWindow;
+    public static int REQUEST_IMAGE_CAPTURE_CLASS = 2;
     public static String EXTRA_INT_ASSIGNMENT_POSTITION = "com.dylanredfield.agendaapp.int_assignment_position";
 
     @Override
@@ -50,71 +65,81 @@ public class ClassActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class);
 
-        // Gets index extra
+        // Gets index extra of class
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
-        showFlag = true;
-
-        // ListView from arrayList
-        /*
-         * mClassInfoListView = (ListView) findViewById(R.id.classinfo_list);
-		 * makeListView(mClassInfoListView, mClassInfoAdapter, ClassList
-		 * .getInstance(getApplicationContext()).getList().get(index)
-		 * .makeList());
-		 */
 
         // Creates AssignmentAdapter, ect
         instaniateAssignmentAdapter();
 
-        // Changes ActionBar to hold current ClassName
-        //ActionBar ab = getActionBar();
-        //ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
-        //		.get(index).getClassName());
-        android.support.v7.app.ActionBar ab = getSupportActionBar();
-        ab.setTitle(ClassList.getInstance(getApplicationContext()).getList()
-                .get(index).getClassName());
 
-        ab.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+        // Instaniates ActionButtons and sets properties
+        declareActionButtons();
+
+
+        // Adds all listeners
+        setListeners();
+
+        // Sets statusbar and actionbar
+        setBars();
 
         // Registers for context menu for Assignments
         // TODO make/rename to add context menu for InfoList
         registerForContextMenu(mAssignmentsListView);
+    }
 
-        // Instaniates button and sets onClickListener
+    public void instaniateAssignmentAdapter() {
+        mAssignmentsListView = (ListView) findViewById(R.id.assignments_list);
+        ClassList.getInstance(getApplicationContext()).getList().get(index)
+                .sortAssignmentsByCompleted();
+        mAssignmentsAdapter = new AssignmentAdapter(getApplicationContext(),
+                android.R.layout.simple_list_item_1, android.R.id.text1,
+                ClassList.getInstance(getApplicationContext()).getList()
+                        .get(index).getAssignments());
+        mAssignmentsListView.setAdapter(mAssignmentsAdapter);
+        mAssignmentsListView.setEmptyView(findViewById(R.id.empty_list));
+    }
 
+    public void declareActionButtons() {
         mButtonClass = (ActionButton) findViewById(R.id.action_button);
-        mButtonClass.setButtonColor(getResources().getColor(R.color.red_500));
-        mButtonClass.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
-        mButtonClass.setButtonColorPressed(getResources().getColor(R.color.red_900));
+
+        // Call to second helper method that sets properties
+        makeActionButton(mButtonClass, R.drawable.ic_note_add_white_36dp);
 
         mButtonPicture = (ActionButton) findViewById(R.id.action_button_picture);
-        mButtonPicture.setButtonColor(getResources().getColor(R.color.red_500));
-        mButtonPicture.setImageDrawable(getResources()
-                .getDrawable(R.drawable.ic_file_image_box_white_48dp));
-        mButtonPicture.setButtonColorPressed(getResources().getColor(R.color.red_900));
+        makeActionButton(mButtonPicture, R.drawable.ic_file_image_box_white_48dp);
 
         mButtonText = (ActionButton) findViewById(R.id.action_button_assignment);
-        mButtonText.setButtonColor(getResources().getColor(R.color.red_500));
-        mButtonText.setImageDrawable(getResources().getDrawable(R.drawable.ic_note_add_white_36dp));
-        mButtonText.setButtonColorPressed(getResources().getColor(R.color.red_900));
+        makeActionButton(mButtonText, R.drawable.ic_note_add_white_36dp);
+    }
 
+    public ActionButton makeActionButton(ActionButton ab, int drawable) {
+        // Creates, and sets ActionButtons
+        ab.setButtonColor(getResources().getColor(R.color.red_500));
+        ab.setButtonColorPressed(getResources().getColor(R.color.red_900));
+        ab.setImageDrawable(getResources().getDrawable(drawable));
+        ab.setButtonColorPressed(getResources().getColor(R.color.red_900));
 
+        return ab;
+    }
+
+    public void setListeners() {
         mButtonClass.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (showFlag) {
+                if (!showFlag) {
                     mButtonPicture.setVisibility(View.VISIBLE);
                     mButtonText.setVisibility(View.VISIBLE);
 
                     mButtonClass.setImageDrawable(getResources()
                             .getDrawable(R.drawable.ic_close_white_48dp));
-                    showFlag = false;
+                    showFlag = true;
                 } else {
                     mButtonPicture.setVisibility(View.INVISIBLE);
                     mButtonText.setVisibility(View.INVISIBLE);
                     mButtonClass.setImageDrawable(getResources()
                             .getDrawable(R.drawable.ic_note_add_white_36dp));
-                    showFlag = true;
+                    showFlag = false;
                 }
 
 
@@ -124,6 +149,7 @@ public class ClassActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
+                dispatchTakePictureIntent();
             }
         });
         mButtonText.setOnClickListener(new View.OnClickListener() {
@@ -158,26 +184,68 @@ public class ClassActivity extends ActionBarActivity {
 
             }
         });
-        mAssignmentsListView.setEmptyView(findViewById(R.id.empty_list));
-
     }
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setBars() {
+        // Changes ActionBar color
+        mActionBar = getSupportActionBar();
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
 
+        // if able to sets statusbar to dark red
+        if (21 <= Build.VERSION.SDK_INT) {
+            mWindow = this.getWindow();
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+        }
+    }
     @Override
     protected void onPause() {
         super.onPause();
 
     }
 
-    public void instaniateAssignmentAdapter() {
-        mAssignmentsListView = (ListView) findViewById(R.id.assignments_list);
-        ClassList.getInstance(getApplicationContext()).getList().get(index)
-                .sortAssignmentsByCompleted();
-        mAssignmentsAdapter = new AssignmentAdapter(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1,
-                ClassList.getInstance(getApplicationContext()).getList()
-                        .get(index).getAssignments());
-        mAssignmentsListView.setAdapter(mAssignmentsAdapter);
+    private void dispatchTakePictureIntent() {
+
+        // Makes intent to take pic
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException e) {
+                //eror
+            }
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_CLASS);
+            }
+        }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE_CLASS && resultCode == RESULT_OK) {
+            //Bundle extras = data.getExtras();
+
+            Intent i = new Intent(getApplicationContext(), AddAssignmentActivity.class);
+
+            i.putExtra("TEST", mCurrentPhotoPath);
+            startActivity(i);
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "1mind_" + timeStamp + ".jpg";
+        File photo = new File(Environment.getExternalStorageDirectory(), imageFileName);
+        mCurrentPhotoPath = photo.getAbsolutePath();
+        return photo;
+    }
+
 
     @Override
     protected void onResume() {
@@ -187,7 +255,7 @@ public class ClassActivity extends ActionBarActivity {
         // TODO check to see if bundle is better for this
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
         /*
-		 * mClassInfoListView = (ListView) findViewById(R.id.classinfo_list);
+         * mClassInfoListView = (ListView) findViewById(R.id.classinfo_list);
 		 * makeListView(mClassInfoListView, mClassInfoAdapter, ClassList
 		 * .getInstance(getApplicationContext()).getList().get(index)
 		 * .makeList());
@@ -263,6 +331,8 @@ public class ClassActivity extends ActionBarActivity {
 
     }
 
+
+
     public class AssignmentAdapter extends ArrayAdapter<Assignment> {
 
         private ArrayList<Assignment> mList;
@@ -319,6 +389,7 @@ public class ClassActivity extends ActionBarActivity {
             return convertView;
 
         }
+
 
         public String calendarToString(Calendar c) {
             String myFormat = "MM/dd/yy";
