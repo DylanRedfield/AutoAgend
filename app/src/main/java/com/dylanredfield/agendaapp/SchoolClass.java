@@ -1,6 +1,7 @@
 package com.dylanredfield.agendaapp;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SchoolClass {
 
@@ -8,16 +9,21 @@ public class SchoolClass {
     private String mClassName;
     private String mDescription;
     private ArrayList<Assignment> mAssignments;
+    private Calendar mStartTime;
+    private Calendar mEndTime;
 
     public SchoolClass() {
         mAssignments = new ArrayList<Assignment>();
     }
 
-    public SchoolClass(String className, String description, int period) {
+    public SchoolClass(String className, String description, int period,
+                       Calendar assignedTime, Calendar dueTime) {
         mPeriod = period;
         mClassName = className;
         mDescription = description;
         mAssignments = new ArrayList<Assignment>();
+        mStartTime = assignedTime;
+        mEndTime = dueTime;
     }
 
     public String getClassName() {
@@ -54,6 +60,12 @@ public class SchoolClass {
 
     public void setAssignments(ArrayList<Assignment> assignments) {
         mAssignments = assignments;
+    }
+    public Calendar getStartTime() {
+        return mStartTime;
+    }
+    public Calendar getEndTime() {
+        return mEndTime;
     }
 
     public ArrayList<String> makeList() {
