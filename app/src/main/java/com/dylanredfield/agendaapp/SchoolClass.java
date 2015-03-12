@@ -64,9 +64,16 @@ public class SchoolClass {
     public Calendar getStartTime() {
         return mStartTime;
     }
+    public void setStartTime(Calendar c) {
+        mStartTime = c;
+    }
     public Calendar getEndTime() {
         return mEndTime;
     }
+    public void setEndTime(Calendar c) {
+        mEndTime = c;
+    }
+
 
     public ArrayList<String> makeList() {
         ArrayList<String> temp = new ArrayList<String>();

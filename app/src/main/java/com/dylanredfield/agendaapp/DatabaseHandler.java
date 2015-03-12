@@ -9,7 +9,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     private Context mAppContext;
@@ -41,15 +46,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_CLASS_NAME = "classname";
     private static final String KEY_ASSIGNMENTS = "assignments";
     private static final String KEY_DESCRIPTION = "description";
-
-    // private static final String KEY_ASSIGNMENTS = "assignments";
+    private static final String KEY_START_TIME = "startTime";
+    private static final String KEY_END_TIME = "endTime";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_SCHOOL_CLASS_TABLE = "CREATE TABLE "
                 + TABLE_SCHOOL_CLASSES + "(" + KEY_PERIOD
                 + " INTEGER PRIMARY KEY," + KEY_DESCRIPTION + " TEXT,"
-                + KEY_CLASS_NAME + " TEXT," + KEY_ASSIGNMENTS + " TEXT" + ")";
+                + KEY_CLASS_NAME + " TEXT," + KEY_ASSIGNMENTS + " TEXT," + KEY_START_TIME
+                + " INTEGER PRIMARY KEY," + KEY_END_TIME + " INTEGER PRIMARY KEY" + ")";
         db.execSQL(CREATE_SCHOOL_CLASS_TABLE);
 
     }
@@ -109,6 +115,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         new TypeToken<ArrayList<Assignment>>() {
                         }.getType());
                 sc.setAssignments(obj);
+                sc.setStartTime(getDate(Integer.parseInt(cursor.getString(4))));
+                sc.setStartTime(getDate(Integer.parseInt(cursor.getString(5))));
 
                 // Adding contact to list
                 classList.add(sc);
@@ -129,7 +137,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_DESCRIPTION, classList.get(a).getDescription());
             values.put(KEY_PERIOD, classList.get(a).getPeriod());
             values.put(KEY_ASSIGNMENTS, arrayListToString(classList.get(a)
-                    .getAssignments()));
+                   .getAssignments()));
+            values.put(KEY_START_TIME,  (int) (classList.get(a).getStartTime().getTimeInMillis()));
+            values.put(KEY_END_TIME, (int)(classList.get(a).getEndTime().getTimeInMillis()));
             // Inserting Row
             db.insert(TABLE_SCHOOL_CLASSES, null, values);
 
@@ -138,10 +148,48 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    public static String formatDateTime(Context context, String timeToFormat) {
+
+        String finalDateTime = "";
+
+        SimpleDateFormat iso8601Format = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss");
+
+        Date date = null;
+        if (timeToFormat != null) {
+            try {
+                date = iso8601Format.parse(timeToFormat);
+            } catch (ParseException e) {
+                date = null;
+            }
+
+            if (date != null) {
+                long when = date.getTime();
+                int flags = 0;
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
+                flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
+
+                finalDateTime = android.text.format.DateUtils.formatDateTime(context,
+                        when + TimeZone.getDefault().getOffset(when), flags);
+            }
+        }
+        return finalDateTime;
+    }
+    public Calendar getDate(long milliSeconds)
+    {
+
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return calendar;
+    }
+
     public String arrayListToString(ArrayList<Assignment> classList) {
         // shit dont work, arrayList is comoing in as null?
         /*
-		 * JSONObject json = new JSONObject(); String arrayList = ""; try {
+         * JSONObject json = new JSONObject(); String arrayList = ""; try {
 		 * Toast.makeText(mAppContext, new JSONArray(classList).toString(),
 		 * Toast.LENGTH_SHORT).show(); JSONArray jsonArray = new JSONArray();
 		 * for (Assignment a : classList) jsonArray.put(a); json.put(KEY_JSON,
