@@ -23,6 +23,20 @@
         <dex dex="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-9785fac43ae1c14e07406d5db65a80b628f7e5d9.jar" />
     </item>
     <item
+        jar="C:\Users\dylan_000\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.7\b321fd17a60912973a8344da427487c65ccbb552\joda-time-2.7-no-tzdb.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b321fd17a60912973a8344da427487c65ccbb552">
+        <dex dex="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\joda-time-2.7-no-tzdb-257c73dd05c39ce8ca1c0dcd5dc89a1f0c23038f.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\exploded-aar\net.danlew\android.joda\2.7.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="18e495b860cfc2d0f526015a04f80cc7c099cfdc">
+        <dex dex="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-9aa4fbeaa35d41069a866231e2700ed554b54aec.jar" />
+    </item>
+    <item
         jar="C:\Users\dylan_000\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
         jumboMode="false"
         revision="21.1.2"
