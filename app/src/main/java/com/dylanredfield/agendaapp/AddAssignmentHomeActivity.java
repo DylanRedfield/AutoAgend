@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,7 +30,9 @@ import android.widget.Toast;
 import com.dylanredfield.agendaapp2.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class AddAssignmentHomeActivity extends ActionBarActivity {
@@ -41,11 +44,13 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     private Button mEnterButton;
     private Calendar mAssignedDate;
     private Calendar mDueDate;
+    private Date time;
     private Context mContext;
     private Activity a;
     private Bitmap mBitmap;
     private String mFileLocation;
     private ActionBar mActionBar;
+    private ArrayList<SchoolClass> mClassList;
     private Window mWindow;
     public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
     public static final String DUE_TAG = "DUE_TAG";
@@ -58,16 +63,42 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
 
         // Class index
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+
+        // Needs location of picture in order to make class
         mFileLocation = getIntent().getStringExtra("TEST");
+
+        mClassList = ClassList.getInstance(getApplicationContext()).getList();
+
+        // Used to make ListView in class selector
         a = this;
         while (a.getParent() != null) {
             a = a.getParent();
         }
+
+        instantiateViews();
+
+        setListeners();
+
+
+        checkTimeFrame();
+
+        setBars();
+    }
+
+    public void instantiateViews() {
         mTitle = (EditText) findViewById(R.id.edittext_title);
         mDescription = (EditText) findViewById(R.id.edittext_description);
 
         mDateAssignedPicker = (EditText) findViewById(R.id.date_assigned_picker);
 
+
+        mDateDuePicker = (EditText) findViewById(R.id.date_due_picker);
+
+
+        mClassSelector = (EditText) findViewById(R.id.class_picker);
+    }
+
+    public void setListeners() {
         mDateAssignedPicker.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -76,8 +107,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                 newFragment.show(getFragmentManager(), ASSIGNED_TAG);
             }
         });
-
-        mDateDuePicker = (EditText) findViewById(R.id.date_due_picker);
         mDateDuePicker.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -86,8 +115,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                 newFragment.show(getFragmentManager(), DUE_TAG);
             }
         });
-
-        mClassSelector = (EditText) findViewById(R.id.class_picker);
         mClassSelector.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -106,18 +133,69 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
+                        // Changes index to be the position the user selected
                         index = position;
-                        updtaeClassEditText();
+                        updateClassEditText();
                         dialog.hide();
                     }
                 });
             }
         });
-        setBars();
+    }
+
+    public void checkTimeFrame() {
+        time = Calendar.getInstance().getTime();
+        ArrayList<SchoolClass> mList = mClassList;
+
+        // Changes index if assignment falls under time frame of class
+        for (int a = 0; a < mList.size(); a++) {
+            if (mList.get(a).getStartTime() != null && mList.get(a).getEndTime() != null &&
+                    time.after(mList.get(a).getStartTime().getTime()) && time.before(mList.get(a)
+                    .getEndTime().getTime())) {
+                index = a;
+                updateClassEditText();
+            }
+
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setBars() {
+        // Changes ActionBar color
+        mActionBar = getSupportActionBar();
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+
+        // if able to sets statusbar to dark red
+        if (21 <= Build.VERSION.SDK_INT) {
+            mWindow = this.getWindow();
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+        }
+    }
+
+    public void updateDatabase() {
+        // Deletes all information in the database
+        DatabaseHandler.getInstance(getApplicationContext()).deleteAllClasses();
+
+        // Adds all classes from ArrayList back into database
+        DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
+                ClassList.getInstance(getApplicationContext()).getList());
 
     }
 
-    public void updtaeClassEditText() {
+    public void updateEditText(String tag) {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        if (mAssignedDate != null && tag.equals(ASSIGNED_TAG)) {
+            mDateAssignedPicker.setText(sdf.format(mAssignedDate.getTime()));
+        }
+        if (mAssignedDate != null && tag.equals(DUE_TAG)) {
+            mDateDuePicker.setText(sdf.format(mDueDate.getTime()));
+        }
+    }
+
+    public void updateClassEditText() {
         mClassSelector.setText(ClassList.getInstance(getApplicationContext()).getListString()
                 .get(index));
     }
@@ -125,6 +203,46 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar_enter, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.enter_actionbar:
+                if (!mTitle.getText().toString().equals("") ) {
+                    if(!mClassSelector.getText().toString().equals("")) {
+                        if (mAssignedDate == null) {
+                            mAssignedDate = Calendar.getInstance();
+                        }
+                        mClassList
+                                .get(index)
+                                .getAssignments()
+                                .add(new Assignment(mTitle.getText().toString(),
+                                        mDescription.getText().toString(),
+                                        mAssignedDate, mDueDate, mFileLocation));
+                        updateDatabase();
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Select a class",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Enter a title",
+                            Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public class DatePickerFragment extends DialogFragment implements
@@ -159,89 +277,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
             }
             updateEditText(getTag());
 
-        }
-    }
-
-    /*public class ClassDialog extends DialogFragment {
-        Calendar c;
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-
-        }
-    }*/
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu items for use in the action bar
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actionbar_enter, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.enter_actionbar:
-                if (!mTitle.getText().toString().equals("")) {
-                    if (mAssignedDate == null) {
-                        mAssignedDate = Calendar.getInstance();
-                    }
-                    ClassList
-                            .getInstance(getApplicationContext())
-                            .getList()
-                            .get(index)
-                            .getAssignments()
-                            .add(new Assignment(mTitle.getText().toString(),
-                                    mDescription.getText().toString(),
-                                    mAssignedDate, mDueDate, mFileLocation));
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Enter a title",
-                            Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public void updateDatabase() {
-        // Deletes all information in the database
-        DatabaseHandler.getInstance(getApplicationContext()).deleteAllClasses();
-
-        // Adds all classes from ArrayList back into database
-        DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
-                ClassList.getInstance(getApplicationContext()).getList());
-
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void setBars() {
-        // Changes ActionBar color
-        mActionBar = getSupportActionBar();
-        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
-        mActionBar.setTitle(ClassList.getInstance(getApplicationContext()).getList()
-                .get(index).getClassName());
-
-        // if able to sets statusbar to dark red
-        if (21 <= Build.VERSION.SDK_INT) {
-            mWindow = this.getWindow();
-            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
-        }
-    }
-
-    public void updateEditText(String tag) {
-        String myFormat = "MM/dd/yy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        if (mAssignedDate != null && tag.equals(ASSIGNED_TAG)) {
-            mDateAssignedPicker.setText(sdf.format(mAssignedDate.getTime()));
-        }
-        if (mAssignedDate != null && tag.equals(DUE_TAG)) {
-            mDateDuePicker.setText(sdf.format(mDueDate.getTime()));
         }
     }
 }

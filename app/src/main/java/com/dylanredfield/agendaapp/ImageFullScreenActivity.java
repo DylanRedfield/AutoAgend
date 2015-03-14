@@ -13,6 +13,9 @@ import android.widget.ImageView;
 
 import com.dylanredfield.agendaapp2.R;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by dylan_000 on 3/9/2015.
  */
@@ -21,6 +24,7 @@ public class ImageFullScreenActivity extends ActionBarActivity {
     private int indexClass;
     private int indexAssignment;
     private ActionBar mActionBar;
+    private ArrayList<SchoolClass> mClassList;
     private Window mWindow;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -32,14 +36,15 @@ public class ImageFullScreenActivity extends ActionBarActivity {
 
         indexClass = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
         indexAssignment = getIntent().getIntExtra(ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, 0);
+        mClassList = ClassList.getInstance(getApplicationContext()).getList();
 
         mImageView = (ImageView) findViewById(R.id.full_screen_image);
-        mImageView.setImageBitmap(BitmapFactory.decodeFile(ClassList.getInstance(getApplicationContext())
-                .getList().get(indexClass).getAssignments()
+        mImageView.setImageBitmap(BitmapFactory.decodeFile(mClassList.get(indexClass)
+                .getAssignments()
                 .get(indexAssignment).getFilePath()));
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
-        mActionBar.setTitle(ClassList.getInstance(getApplicationContext()).getList()
+        mActionBar.setTitle(mClassList
         .get(indexClass).getAssignments().get(indexAssignment).getTitle());
 
         // if able to sets statusbar to dark red

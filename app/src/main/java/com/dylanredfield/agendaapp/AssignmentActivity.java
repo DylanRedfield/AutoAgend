@@ -31,6 +31,7 @@ public class AssignmentActivity extends ActionBarActivity {
     private int indexAssignment;
     private ImageView mPictureView;
     private TextView mPictureTextView;
+    private ArrayList<SchoolClass> mClassList;
     private ActionBar mActionBar;
     private Window mWindow;
 
@@ -44,6 +45,7 @@ public class AssignmentActivity extends ActionBarActivity {
                 ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, 0);
         indexClass = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION,
                 0);
+        mClassList = ClassList.getInstance(getApplicationContext()).getList();
         /*
          * mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
 		 * makeListView( mAssignmentInfoList, mAssignmentInfoAdapter,
@@ -53,12 +55,11 @@ public class AssignmentActivity extends ActionBarActivity {
         mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
         mAssignmentInfoAdapter = new AssignmentInfoAdapter(
                 getApplicationContext(), android.R.layout.simple_list_item_1,
-                android.R.id.text1, ClassList
-                .getInstance(getApplicationContext()).getList()
+                android.R.id.text1, mClassList
                 .get(indexClass).getAssignments().get(indexAssignment).makeList2());
         mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
 
-        if (ClassList.getInstance(getApplicationContext()).getList().get(indexClass)
+        if (mClassList.get(indexClass)
                 .getAssignments().get(indexAssignment).getFilePath() != null) {
 
         }
@@ -87,6 +88,8 @@ public class AssignmentActivity extends ActionBarActivity {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+        mActionBar.setTitle(mClassList
+                .get(indexClass).getAssignments().get(indexAssignment).getTitle());
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {

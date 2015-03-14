@@ -48,11 +48,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 // TODO add abilty to rename activities, assignments, and edit
-// TODO change ArrayAdapter to hold custom view
 
 // TODO Add due date to assignment list
 // TODO Add new class dialog instead of activity
-// TODO list 1. Fix assignment sort 2. Add camera func
+// TODO list 1. Fix assignment sort
 public class MainActivity extends ActionBarActivity {
     private ListView mListView;
     private ActionButton mButtonClass;
@@ -63,10 +62,9 @@ public class MainActivity extends ActionBarActivity {
     private Window mWindow;
     private RelativeLayout mLinearLayout;
     private CustomAdapter adapter;
-    private ArrayAdapter<String> noClassAdapter;
     private boolean showFlag;
-    private ArrayList<String> noClassList;
     private String mCurrentPhotoPath;
+    private ArrayList<SchoolClass> mClassList;
     public static final String EXTRA_INT_POSTITION = "com.dylanredfield.agendaapp.int_postition";
     public int tempInt;
     public static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -78,6 +76,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mClassList = ClassList.getInstance(getApplicationContext()).getList();
         // Makes listview that holds classes, sets up adapter, and applies adapter
         makeListView();
 
@@ -106,8 +105,7 @@ public class MainActivity extends ActionBarActivity {
 		 * ClassList.getInstance(getApplicationContext()).getList());
 		 */
         adapter = new CustomAdapter(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1,
-                ClassList.getInstance(getApplicationContext()).getList());
+                android.R.layout.simple_list_item_1, android.R.id.text1, mClassList);
 
         mListView.setAdapter(adapter);
         mListView.setEmptyView(findViewById(R.id.empty_list));
@@ -240,8 +238,7 @@ public class MainActivity extends ActionBarActivity {
         DatabaseHandler.getInstance(getApplicationContext()).deleteAllClasses();
 
         // Adds all classes from ArrayList back into database
-        DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
-                ClassList.getInstance(getApplicationContext()).getList());
+        DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(mClassList);
 
     }
 
@@ -302,8 +299,7 @@ public class MainActivity extends ActionBarActivity {
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // Uses index spot to change name in array list
-                ClassList.getInstance(getApplicationContext()).getList()
-                        .get(tempInt).setClassName(input.getText().toString());
+                mClassList.get(tempInt).setClassName(input.getText().toString());
 
             }
         });
@@ -326,11 +322,10 @@ public class MainActivity extends ActionBarActivity {
             File photoFile = null;
             try {
                 photoFile = createImageFile();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 //eror
             }
-            if(photoFile != null) {
+            if (photoFile != null) {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(photoFile));
 
@@ -349,11 +344,12 @@ public class MainActivity extends ActionBarActivity {
             startActivity(i);
         }
     }
+
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "1mind_" + timeStamp + ".jpg";
-        File photo = new File(Environment.getExternalStorageDirectory(),  imageFileName);
+        File photo = new File(Environment.getExternalStorageDirectory(), imageFileName);
         mCurrentPhotoPath = photo.getAbsolutePath();
         return photo;
     }
@@ -368,6 +364,11 @@ public class MainActivity extends ActionBarActivity {
         } else {
             makeListView();
         }
+        mButtonPicture.setVisibility(View.INVISIBLE);
+        mButtonText.setVisibility(View.INVISIBLE);
+        mButtonClass.setImageDrawable(getResources()
+                .getDrawable(R.drawable.ic_note_add_white_36dp));
+        showFlag = false;
 
     }
 
