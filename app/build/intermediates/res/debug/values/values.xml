@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
@@ -211,86 +211,6 @@
     <item name="split_action_bar" type="id"/>
     <item name="up" type="id"/>
     <integer name="abc_max_action_buttons">2</integer>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/net.danlew/android.joda/2.7.1/res/values/values.xml -->
-    <eat-comment/>
-    <plurals name="abbrev_in_num_days">
-        <item quantity="one">tomorrow</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> days</item>
-    </plurals>
-    <plurals name="abbrev_in_num_hours">
-        <item quantity="one">in 1 hour</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> hours</item>
-    </plurals>
-    <plurals name="abbrev_in_num_minutes">
-        <item quantity="one">in 1 min</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> mins</item>
-    </plurals>
-    <plurals name="abbrev_in_num_seconds">
-        <item quantity="one">in 1 sec</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> secs</item>
-    </plurals>
-    <plurals name="abbrev_num_days_ago">
-        <item quantity="one">yesterday</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> days ago</item>
-    </plurals>
-    <plurals name="abbrev_num_hours_ago">
-        <item quantity="one">1 hour ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> hours ago</item>
-    </plurals>
-    <plurals name="abbrev_num_minutes_ago">
-        <item quantity="one">1 min ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> mins ago</item>
-    </plurals>
-    <plurals name="abbrev_num_seconds_ago">
-        <item quantity="one">1 sec ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> secs ago</item>
-    </plurals>
-    <plurals name="duration_hours">
-        <item quantity="one">1 hour</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> hours</item>
-    </plurals>
-    <plurals name="duration_minutes">
-        <item quantity="one">1 minute</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> minutes</item>
-    </plurals>
-    <plurals name="duration_seconds">
-        <item quantity="one">1 second</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> seconds</item>
-    </plurals>
-    <plurals name="in_num_days">
-        <item quantity="one">tomorrow</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> days</item>
-    </plurals>
-    <plurals name="in_num_hours">
-        <item quantity="one">in 1 hour</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> hours</item>
-    </plurals>
-    <plurals name="in_num_minutes">
-        <item quantity="one">in 1 minute</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> minutes</item>
-    </plurals>
-    <plurals name="in_num_seconds">
-        <item quantity="one">in 1 second</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> seconds</item>
-    </plurals>
-    <plurals name="num_days_ago">
-        <item quantity="one">yesterday</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> days ago</item>
-    </plurals>
-    <plurals name="num_hours_ago">
-        <item quantity="one">1 hour ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> hours ago</item>
-    </plurals>
-    <plurals name="num_minutes_ago">
-        <item quantity="one">1 minute ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> minutes ago</item>
-    </plurals>
-    <plurals name="num_seconds_ago">
-        <item quantity="one">1 second ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> seconds ago</item>
-    </plurals>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
-    <eat-comment/>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
@@ -314,17 +234,10 @@
     <string name="button_text">New Class</string>
     <string name="class_hint">Mathematics</string>
     <string name="class_name">Class Name:</string>
-    <string name="class_time_end_text">Class time end: </string>
-    <string name="class_time_start_text">Class time start: </string>
     <string name="click_for_pic">Click Here to View Picture</string>
     <string name="date_assigned_text">Date Assigned:</string>
     <string name="date_due_text">Date Due:</string>
     <string name="date_hint">1/1/15</string>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/net.danlew/android.joda/2.7.1/res/values/values.xml -->
-    <eat-comment/>
-    <string name="date_time">%1$s, %2$s</string>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
-    <eat-comment/>
     <string name="default_classname">No Class</string>
     <string name="default_description">No Description</string>
     <string name="default_period">No Period</string>
@@ -340,17 +253,9 @@
     <string name="menu_delete">Delete</string>
     <string name="menu_rename">Rename</string>
     <string name="new_class_label">New Class</string>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/net.danlew/android.joda/2.7.1/res/values/values.xml -->
-    <eat-comment/>
-    <string name="preposition_for_date">on <ns1:g example="May 29" id="date">%s</ns1:g></string>
-    <string name="preposition_for_time">at <ns1:g example="2:33 am" id="time">%s</ns1:g></string>
-    <string name="relative_time">"<ns1:g example="4 hours ago" id="date">%1$s</ns1:g>, <ns1:g example="11:00 am" id="time">%2$s</ns1:g>"</string>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
-    <eat-comment/>
     <string name="text_edit_info">Edit Info</string>
     <string name="text_new_assignment">New Assignment</string>
     <string name="textview_period">Period: </string>
-    <string name="time_hint">12:00 AM</string>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">

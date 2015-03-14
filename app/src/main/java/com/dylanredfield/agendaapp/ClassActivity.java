@@ -53,7 +53,6 @@ public class ClassActivity extends ActionBarActivity {
     private int index;
     private ActionBar mActionBar;
     private Window mWindow;
-    private ArrayList<SchoolClass> mClassList;
     public static int REQUEST_IMAGE_CAPTURE_CLASS = 2;
     public static String EXTRA_INT_ASSIGNMENT_POSTITION = "com.dylanredfield.agendaapp.int_assignment_position";
 
@@ -66,7 +65,6 @@ public class ClassActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class);
 
-        mClassList = ClassList.getInstance(getApplicationContext()).getList();
         // Gets index extra of class
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
 
@@ -91,11 +89,11 @@ public class ClassActivity extends ActionBarActivity {
 
     public void instaniateAssignmentAdapter() {
         mAssignmentsListView = (ListView) findViewById(R.id.assignments_list);
-        mClassList.get(index)
+        ClassList.getInstance(getApplicationContext()).getList().get(index)
                 .sortAssignmentsByCompleted();
         mAssignmentsAdapter = new AssignmentAdapter(getApplicationContext(),
                 android.R.layout.simple_list_item_1, android.R.id.text1,
-                mClassList
+                ClassList.getInstance(getApplicationContext()).getList()
                         .get(index).getAssignments());
         mAssignmentsListView.setAdapter(mAssignmentsAdapter);
         mAssignmentsListView.setEmptyView(findViewById(R.id.empty_list));
@@ -159,10 +157,15 @@ public class ClassActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 // intent to NewClassActivity
-                Intent i = new Intent(getApplicationContext(),
-                        AddAssignmentActivity.class);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
-                startActivity(i);
+                if (ClassList.getInstance(getApplicationContext()).getList().size() > 0) {
+                    Intent i = new Intent(getApplicationContext(),
+                            AddAssignmentActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Create a class first by clicking " +
+                                    "plus above",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -182,14 +185,11 @@ public class ClassActivity extends ActionBarActivity {
             }
         });
     }
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setBars() {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
-        mActionBar.setTitle(mClassList
-                .get(index).getClassName());
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
@@ -199,7 +199,6 @@ public class ClassActivity extends ActionBarActivity {
             mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
         }
     }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -234,7 +233,6 @@ public class ClassActivity extends ActionBarActivity {
             Intent i = new Intent(getApplicationContext(), AddAssignmentActivity.class);
 
             i.putExtra("TEST", mCurrentPhotoPath);
-            i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
             startActivity(i);
         }
     }
@@ -263,10 +261,6 @@ public class ClassActivity extends ActionBarActivity {
 		 * .makeList());
 		 */
         instaniateAssignmentAdapter();
-        mButtonPicture.setVisibility(View.INVISIBLE);
-        mButtonText.setVisibility(View.INVISIBLE);
-        mButtonClass.setImageDrawable(getResources()
-                .getDrawable(R.drawable.ic_note_add_white_36dp));
 
     }
 
@@ -295,7 +289,7 @@ public class ClassActivity extends ActionBarActivity {
 
         // Adds all classes from ArrayList back into database
         DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
-                mClassList);
+                ClassList.getInstance(getApplicationContext()).getList());
 
     }
 
@@ -322,7 +316,7 @@ public class ClassActivity extends ActionBarActivity {
             // delete assignment
             case R.id.delete_assignment:
 
-                mClassList.get(index)
+                ClassList.getInstance(getApplicationContext()).getList().get(index)
                         .getAssignments().remove(info.position);
                 // Reinstaniate the list
                 instaniateAssignmentAdapter();
@@ -336,6 +330,7 @@ public class ClassActivity extends ActionBarActivity {
         }
 
     }
+
 
 
     public class AssignmentAdapter extends ArrayAdapter<Assignment> {
@@ -367,7 +362,7 @@ public class ClassActivity extends ActionBarActivity {
             if (mList.get(position).getDateAssigned() != null) {
                 assignedDate.setText(calendarToString(mList.get(position).getDateAssigned()));
             } else {
-                assignedDate.setVisibility(View.INVISIBLE);
+                assignedDate.setVisibility(0);
             }
 
             isCompletedCheck = (CheckBox) convertView
@@ -382,7 +377,7 @@ public class ClassActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     // Sets coresponding mCompleted to if the box is checked
-                    mClassList
+                    ClassList.getInstance(getApplicationContext()).getList()
                             .get(index).getAssignments().get((int) v.getTag())
                             .setCompleted(((CheckBox) v).isChecked());
 

@@ -29,8 +29,5 @@
     <string name="class_name">Class Name:</string>
     <string name="class_hint">Mathematics</string>
     <string name="click_for_pic">Click Here to View Picture</string>
-    <string name="class_time_start_text">Class time start: </string>
-    <string name="class_time_end_text">Class time end: </string>
-    <string name="time_hint">12:00 AM</string>
 
 </resources>

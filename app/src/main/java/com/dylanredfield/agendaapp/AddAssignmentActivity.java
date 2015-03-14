@@ -28,7 +28,6 @@ import android.widget.Toast;
 import com.dylanredfield.agendaapp2.R;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -46,7 +45,6 @@ public class AddAssignmentActivity extends ActionBarActivity {
     private Window mWindow;
     private Activity a;
     private String mFileLocation;
-    private ArrayList<SchoolClass> mClassList;
     public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
     public static final String DUE_TAG = "DUE_TAG";
     // get value from index from parent class
@@ -58,8 +56,6 @@ public class AddAssignmentActivity extends ActionBarActivity {
 
         // Class index
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
-
-        mClassList = ClassList.getInstance(getApplicationContext()).getList();
 
         mFileLocation = getIntent().getStringExtra("TEST");
         a = this;
@@ -160,13 +156,14 @@ public class AddAssignmentActivity extends ActionBarActivity {
                     if (mAssignedDate == null) {
                         mAssignedDate = Calendar.getInstance();
                     }
-                    mClassList
+                    ClassList
+                            .getInstance(getApplicationContext())
+                            .getList()
                             .get(index)
                             .getAssignments()
                             .add(new Assignment(mTitle.getText().toString(),
                                     mDescription.getText().toString(),
                                     mAssignedDate, mDueDate, mFileLocation));
-                    updateDatabase();
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Enter a title",
@@ -184,7 +181,7 @@ public class AddAssignmentActivity extends ActionBarActivity {
 
         // Adds all classes from ArrayList back into database
         DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
-                mClassList);
+                ClassList.getInstance(getApplicationContext()).getList());
 
     }
 
@@ -192,9 +189,8 @@ public class AddAssignmentActivity extends ActionBarActivity {
     public void setBars() {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
-        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
-                .getColor(R.color.red_500)));
-        mActionBar.setTitle(mClassList
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+        mActionBar.setTitle(ClassList.getInstance(getApplicationContext()).getList()
                 .get(index).getClassName());
 
         // if able to sets statusbar to dark red
