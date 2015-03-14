@@ -29,9 +29,7 @@ import android.widget.Toast;
 import com.dylanredfield.agendaapp2.R;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class AddAssignmentHomeActivity extends ActionBarActivity {
@@ -43,14 +41,11 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     private Button mEnterButton;
     private Calendar mAssignedDate;
     private Calendar mDueDate;
-    private Calendar mCurrentTime;
-    private Date time;
     private Context mContext;
     private Activity a;
     private Bitmap mBitmap;
     private String mFileLocation;
     private ActionBar mActionBar;
-    private ArrayList<SchoolClass> mClassList;
     private Window mWindow;
     public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
     public static final String DUE_TAG = "DUE_TAG";
@@ -64,13 +59,10 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
         // Class index
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
         mFileLocation = getIntent().getStringExtra("TEST");
-        mClassList = ClassList.getInstance(getApplicationContext()).getList();
         a = this;
         while (a.getParent() != null) {
             a = a.getParent();
         }
-        mCurrentTime.getInstance();
-        checkTimeFrame();
         mTitle = (EditText) findViewById(R.id.edittext_title);
         mDescription = (EditText) findViewById(R.id.edittext_description);
 
@@ -196,13 +188,14 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                     if (mAssignedDate == null) {
                         mAssignedDate = Calendar.getInstance();
                     }
-                    mClassList
+                    ClassList
+                            .getInstance(getApplicationContext())
+                            .getList()
                             .get(index)
                             .getAssignments()
                             .add(new Assignment(mTitle.getText().toString(),
                                     mDescription.getText().toString(),
                                     mAssignedDate, mDueDate, mFileLocation));
-                    updateDatabase();
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Enter a title",
@@ -229,7 +222,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
-        mActionBar.setTitle(mClassList
+        mActionBar.setTitle(ClassList.getInstance(getApplicationContext()).getList()
                 .get(index).getClassName());
 
         // if able to sets statusbar to dark red
@@ -249,22 +242,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
         }
         if (mAssignedDate != null && tag.equals(DUE_TAG)) {
             mDateDuePicker.setText(sdf.format(mDueDate.getTime()));
-        }
-    }
-
-    public void checkTimeFrame() {
-        time = mCurrentTime.getInstance().getTime();
-        ArrayList<SchoolClass> mList = mClassList;
-
-        // Need to set times in DB
-        for (int a = 0; a < mList.size(); a++) {
-            if (mList.get(a).getStartTime() != null && mList.get(a).getEndTime() != null &&
-                    time.after(mList.get(a).getStartTime().getTime()) && time.before(mList.get(a)
-                    .getEndTime().getTime())) {
-                Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
-            } else if (mList.get(a).getStartTime() == null){
-                Toast.makeText(getApplicationContext(), "test2", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 }

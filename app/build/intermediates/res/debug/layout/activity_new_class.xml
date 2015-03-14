@@ -1,31 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/test"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:layout_marginRight="12dp"
-    android:layout_marginEnd="12dp"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/label_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/new_class_label"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+    android:id="@+id/test"
+    android:orientation="vertical" >
 
     <EditText
         android:id="@+id/edittext_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/label_text"
+        android:layout_marginTop="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
         android:gravity="bottom"
         android:hint="@string/hint_title"
         android:inputType="textCapWords" />
@@ -35,92 +21,37 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edittext_title"
+        android:layout_marginTop="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
         android:gravity="bottom"
         android:hint="@string/hint_description"
         android:inputType="text" />
-
-
-    <LinearLayout
-        android:id="@+id/timepicker_assigned_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edittext_description"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:text="@string/class_time_start_text" />
-
-        <EditText
-            android:id="@+id/timepicker_assigned"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="false"
-            android:gravity="center"
-            android:hint="@string/time_hint"
-            android:inputType="date" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/timepicker_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/timepicker_assigned_layout"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:text="@string/class_time_end_text" />
-
-        <EditText
-            android:id="@+id/timepicker_due"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="false"
-            android:gravity="center"
-            android:hint="@string/time_hint"
-            android:inputType="date" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/period_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/timepicker_layout"
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp"
-        android:orientation="horizontal">
+        android:layout_below="@id/edittext_description"
+        android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="bottom"
-            android:text="@string/textview_period"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:text="@string/textview_period" />
 
         <EditText
             android:id="@+id/edittext_period"
             android:layout_width="wrap_content"
+            android:padding="12dp"
             android:layout_height="fill_parent"
-            android:gravity="bottom"
-            android:hint="@string/hint_period"
             android:inputType="number"
-            android:padding="12dp" />
+            android:gravity="bottom"
+            android:hint="@string/hint_period"/>
     </LinearLayout>
 
 </RelativeLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_new_class.xml -->
