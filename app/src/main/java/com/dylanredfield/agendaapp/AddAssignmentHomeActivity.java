@@ -143,7 +143,8 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     }
 
     public void checkTimeFrame() {
-        int currentMintues = time.HOUR_OF_DAY * 60 + time.MINUTE;
+        time = Calendar.getInstance();
+        int currentMintues = time.get(Calendar.HOUR_OF_DAY) * 60 + time.get(Calendar.MINUTE);
         int startMinutes = 0;
         int endMinutes = 0;
 
@@ -153,10 +154,10 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
         for (int a = 0; a < mList.size(); a++) {
 
             if (mList.get(a).getStartTime() != null && mList.get(a).getEndTime() != null) {
-                startMinutes = mList.get(a).getStartTime().HOUR_OF_DAY * 60 + mList.get(a)
-                        .getStartTime().MINUTE;
-                endMinutes = mList.get(a).getEndTime().HOUR_OF_DAY * 60 + mList.get(a)
-                        .getEndTime().MINUTE;
+                startMinutes = mList.get(a).getStartTime().get(Calendar.HOUR_OF_DAY) * 60
+                        + mList.get(a).getStartTime().get(Calendar.MINUTE);
+                endMinutes = mList.get(a).getEndTime().get(Calendar.HOUR_OF_DAY) * 60
+                        + mList.get(a).getEndTime().get(Calendar.MINUTE);
                 if(currentMintues > startMinutes && currentMintues < endMinutes) {
                     index = a;
                     updateClassEditText();
@@ -185,7 +186,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     public void setBars() {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
-        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {

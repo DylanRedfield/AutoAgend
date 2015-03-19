@@ -50,7 +50,7 @@
             android:label="@string/new_class_label"></activity>
         <activity
             android:name="com.dylanredfield.agendaapp.EditClassInfoActivity"
-            android:label="@string/new_class_label"></activity>
+            android:label="@string/edit_class"></activity>
         <activity
             android:name="com.dylanredfield.agendaapp.EditAssignmentInfoActivity"
             android:label="@string/new_class_label"></activity>

@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.dylanredfield.agendaapp2.R;
 
@@ -26,6 +27,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class EditClassInfoActivity extends ActionBarActivity {
+    public static final String ASSIGNED_TIME_TAG = "ASSIGNED_TIME_TAG";
+    public static final String DUE_TIME_TAG = "DUE_TIME_TAG";
     private int classIndex;
     private EditText mTitleEditText;
     private EditText mDescriptionEditText;
@@ -37,8 +40,6 @@ public class EditClassInfoActivity extends ActionBarActivity {
     private ActionBar mActionBar;
     private Window mWindow;
     private ArrayList<SchoolClass> mList;
-    public static final String ASSIGNED_TIME_TAG = "ASSIGNED_TIME_TAG";
-    public static final String DUE_TIME_TAG = "DUE_TIME_TAG";
 
     @Override
     protected void onCreate(Bundle b) {
@@ -110,10 +111,17 @@ public class EditClassInfoActivity extends ActionBarActivity {
         ArrayList<Assignment> temp = new ArrayList<Assignment>();
         temp = mList.get(classIndex).getAssignments();
 
-        mList.set(classIndex, new SchoolClass(mTitleEditText.getText().toString(),
-                mDescriptionEditText.getText().toString(),
-                Integer.parseInt(mPeriod.getText().toString()), mAssignedTime, mDueTime));
-        mList.get(classIndex).setAssignments(temp);
+        if (!mTitleEditText.getText().toString().equals("")) {
+            mList.set(classIndex, new SchoolClass(mTitleEditText.getText().toString(),
+                    mDescriptionEditText.getText().toString(),
+                    Integer.parseInt(mPeriod.getText().toString()), mAssignedTime, mDueTime));
+            mList.get(classIndex).setAssignments(temp);
+            updateDatabase();
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), "Enter a Class Name", Toast.LENGTH_SHORT)
+                    .show();
+        }
     }
 
     public void updateDatabase() {
@@ -141,8 +149,7 @@ public class EditClassInfoActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.enter_actionbar:
                 updateList();
-                updateDatabase();
-                finish();
+
 
                 return true;
             default:
@@ -154,6 +161,17 @@ public class EditClassInfoActivity extends ActionBarActivity {
         String myFormat = "h:mm a";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         return sdf.format(c.getTime());
+    }
+
+    public void updateEditText(String tag) {
+        String myFormat = "h:mm a";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        if (mAssignedTime != null && tag.equals(ASSIGNED_TIME_TAG)) {
+            mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
+        }
+        if (mDueTime != null && tag.equals(DUE_TIME_TAG)) {
+            mEndTime.setText(sdf.format(mDueTime.getTime()));
+        }
     }
 
     public class TimePickerFragment extends DialogFragment
@@ -186,17 +204,6 @@ public class EditClassInfoActivity extends ActionBarActivity {
                 mDueTime = c;
             }
             updateEditText(getTag());
-        }
-    }
-
-    public void updateEditText(String tag) {
-        String myFormat = "h:mm a";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        if (mAssignedTime != null && tag.equals(ASSIGNED_TIME_TAG)) {
-            mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
-        }
-        if (mDueTime != null && tag.equals(DUE_TIME_TAG)) {
-            mEndTime.setText(sdf.format(mDueTime.getTime()));
         }
     }
 }

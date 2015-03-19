@@ -42,10 +42,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-// TODO add abilty to rename activities, assignments, and edit
 
 // TODO Add due date to assignment list
-// TODO list 1. Fix assignment sort
 public class MainActivity extends ActionBarActivity {
     private ListView mListView;
     private ActionButton mButtonClass;

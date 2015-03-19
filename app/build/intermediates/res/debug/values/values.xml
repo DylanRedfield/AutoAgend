@@ -363,14 +363,13 @@
         -->
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
+
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-
-    </style>
-    <style name="AppTheme.DialogTheme" parent="Theme.AppCompat.Light.Dialog">
-
         <item name="android:colorPrimary">@color/red_500</item>
-        <item name="android:colorPrimaryDark">@color/red_100</item>
-        <item name="android:colorAccent">@color/red_700</item>
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="android:colorPrimaryDark">@color/red_700</item>
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="android:colorAccent">@color/red_100</item>
 
     </style>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
@@ -1299,6 +1298,17 @@ m>        <item name="android:textColorLink">@color/link_text_material_dark</ite
     <style name="RtlOverlay.Widget.AppCompat.SearchView.MagIcon" parent="android:Widget">
         <item name="android:layout_marginLeft">@dimen/abc_dropdownitem_text_padding_left</item>
     </style>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="StyledDialog" parent="Theme.AppCompat.Light.Dialog">
+
+        <item name="android:colorPrimary">@color/red_500</item>
+        <item name="android:colorPrimaryDark">@color/red_700</item>
+        <item name="android:colorAccent">@color/red_100</item>
+
+    </style>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>
     <style name="TextAppearance.AppCompat.Body2" parent="Base.TextAppearance.AppCompat.Body2"/>

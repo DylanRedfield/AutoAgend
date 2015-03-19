@@ -14,7 +14,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginTop="20dp"
-        android:text="@string/new_class_label"
+        android:text="@string/edit_class"
         android:textSize="20sp"
         android:textStyle="bold" />
 

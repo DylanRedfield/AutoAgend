@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dylanredfield.agendaapp2.R;
 
@@ -124,11 +125,18 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
         //Need to copy assignments while making new class
         String temp = mList.get(classIndex).getAssignments().get(mAssignmentIndex).getFilePath();
 
-        mList.get(classIndex).getAssignments().set(mAssignmentIndex,
-                new Assignment(mTitleEditText.getText().toString(),
-                        mDescriptionEditText.getText().toString(),
-                        mAssignedTime,
-                        mDueTime, temp));
+        if (!mTitleEditText.getText().toString().equals("")) {
+
+            mList.get(classIndex).getAssignments().set(mAssignmentIndex,
+                    new Assignment(mTitleEditText.getText().toString(),
+                            mDescriptionEditText.getText().toString(),
+                            mAssignedTime,
+                            mDueTime, temp));
+            updateDatabase();
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), "Enter a Title", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void updateDatabase() {
@@ -156,8 +164,6 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.enter_actionbar:
                 updateList();
-                updateDatabase();
-                finish();
 
                 return true;
             default:

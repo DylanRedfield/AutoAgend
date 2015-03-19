@@ -209,7 +209,7 @@ public class AddAssignmentActivity extends ActionBarActivity {
         if (mAssignedDate != null && tag.equals(ASSIGNED_TAG)) {
             mDateAssignedPicker.setText(sdf.format(mAssignedDate.getTime()));
         }
-        if (mAssignedDate != null && tag.equals(DUE_TAG)) {
+        if (mDueDate != null && tag.equals(DUE_TAG)) {
             mDateDuePicker.setText(sdf.format(mDueDate.getTime()));
         }
     }

@@ -85,12 +85,14 @@ public class SchoolClass {
     public void sortAssignmentsByCompleted() {
         ArrayList<Assignment> holder = new ArrayList<Assignment>();
 
-        for (Assignment a : mAssignments) {
-            if (a.isCompleted()) {
-                holder.add(a);
+        for(int a = 0; a < mAssignments.size(); a++) {
+            if(!mAssignments.get(a).isCompleted()) {
+                holder.add(mAssignments.get(a));
             }
-            if (!a.isCompleted()) {
-                holder.add(0, a);
+        }
+        for(int b = 0; b < mAssignments.size(); b++) {
+            if(mAssignments.get(b).isCompleted()) {
+                holder.add(mAssignments.get(b));
             }
         }
         mAssignments = holder;

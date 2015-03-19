@@ -88,8 +88,7 @@ public class AssignmentActivity extends ActionBarActivity {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
-        mActionBar.setTitle(mClassList
-                .get(indexClass).getAssignments().get(indexAssignment).getTitle());
+        mActionBar.setTitle(mClassList.get(indexClass).getClassName());
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
@@ -172,16 +171,16 @@ public class AssignmentActivity extends ActionBarActivity {
                 titleTextView.setText("Date Due");
             } else if (substring.equals("Pi")) {
                 titleTextView.setText("Picture");
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onTextViewClick(v);
+                    }
+                });
             }
             infoTextView = (TextView) convertView
                     .findViewById(R.id.assignment_info);
             infoTextView.setText(mList.get(position).substring(2));
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onTextViewClick(v);
-                }
-            });
 
 
             return convertView;
