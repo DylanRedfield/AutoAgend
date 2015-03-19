@@ -1512,9 +1512,9 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f090033;
         public static final int action_mode_bar_stub=0x7f090032;
         public static final int action_mode_close_button=0x7f090025;
-        public static final int action_settings=0x7f090069;
+        public static final int action_settings=0x7f090068;
         public static final int activity_chooser_view_content=0x7f090026;
-        public static final int add_class=0x7f090068;
+        public static final int add_class=0x7f090069;
         public static final int always=0x7f090019;
         public static final int assigned_text=0x7f09005e;
         public static final int assignment_info=0x7f09005d;
@@ -1632,24 +1632,26 @@ containing a value of this type.
         public static final int activity_add_assignment_home=0x7f030018;
         public static final int activity_assignment=0x7f030019;
         public static final int activity_class=0x7f03001a;
-        public static final int activity_edit_class_info=0x7f03001b;
-        public static final int activity_image_full_screen=0x7f03001c;
-        public static final int activity_main=0x7f03001d;
-        public static final int activity_new_class=0x7f03001e;
-        public static final int assignment_detail_row=0x7f03001f;
-        public static final int assignment_row=0x7f030020;
-        public static final int class_row=0x7f030021;
-        public static final int empty_list_view=0x7f030022;
-        public static final int list_item=0x7f030023;
-        public static final int support_simple_spinner_dropdown_item=0x7f030024;
+        public static final int activity_edit_assignment_info=0x7f03001b;
+        public static final int activity_edit_class_info=0x7f03001c;
+        public static final int activity_image_full_screen=0x7f03001d;
+        public static final int activity_main=0x7f03001e;
+        public static final int activity_new_class=0x7f03001f;
+        public static final int assignment_detail_row=0x7f030020;
+        public static final int assignment_row=0x7f030021;
+        public static final int class_row=0x7f030022;
+        public static final int empty_list_view=0x7f030023;
+        public static final int list_item=0x7f030024;
+        public static final int support_simple_spinner_dropdown_item=0x7f030025;
     }
     public static final class menu {
         public static final int actionbar_enter=0x7f0e0000;
         public static final int actionbar_main=0x7f0e0001;
         public static final int assignment_context=0x7f0e0002;
         public static final int class_context=0x7f0e0003;
-        public static final int main=0x7f0e0004;
-        public static final int main_actions=0x7f0e0005;
+        public static final int edit_assignment_actions=0x7f0e0004;
+        public static final int main=0x7f0e0005;
+        public static final int main_actions=0x7f0e0006;
     }
     public static final class plurals {
         public static final int abbrev_in_num_days=0x7f0b0000;
@@ -2167,26 +2169,27 @@ containing a value of this type.
         public static final int default_classname=0x7f0c001c;
         public static final int default_description=0x7f0c001d;
         public static final int default_period=0x7f0c001e;
-        public static final int edit_class=0x7f0c001f;
-        public static final int empty_assignment=0x7f0c0020;
-        public static final int empty_class=0x7f0c0021;
-        public static final int enter=0x7f0c0022;
-        public static final int hello_world=0x7f0c0023;
-        public static final int hint_assignment_description=0x7f0c0024;
-        public static final int hint_assignment_title=0x7f0c0025;
-        public static final int hint_description=0x7f0c0026;
-        public static final int hint_period=0x7f0c0027;
-        public static final int hint_title=0x7f0c0028;
-        public static final int menu_delete=0x7f0c0029;
-        public static final int menu_rename=0x7f0c002a;
-        public static final int new_class_label=0x7f0c002b;
-        public static final int preposition_for_date=0x7f0c002c;
-        public static final int preposition_for_time=0x7f0c002d;
-        public static final int relative_time=0x7f0c002e;
-        public static final int text_edit_info=0x7f0c002f;
-        public static final int text_new_assignment=0x7f0c0030;
-        public static final int textview_period=0x7f0c0031;
-        public static final int time_hint=0x7f0c0032;
+        public static final int edit_assignment=0x7f0c001f;
+        public static final int edit_class=0x7f0c0020;
+        public static final int empty_assignment=0x7f0c0021;
+        public static final int empty_class=0x7f0c0022;
+        public static final int enter=0x7f0c0023;
+        public static final int hello_world=0x7f0c0024;
+        public static final int hint_assignment_description=0x7f0c0025;
+        public static final int hint_assignment_title=0x7f0c0026;
+        public static final int hint_description=0x7f0c0027;
+        public static final int hint_period=0x7f0c0028;
+        public static final int hint_title=0x7f0c0029;
+        public static final int menu_delete=0x7f0c002a;
+        public static final int menu_rename=0x7f0c002b;
+        public static final int new_class_label=0x7f0c002c;
+        public static final int preposition_for_date=0x7f0c002d;
+        public static final int preposition_for_time=0x7f0c002e;
+        public static final int relative_time=0x7f0c002f;
+        public static final int text_edit_info=0x7f0c0030;
+        public static final int text_new_assignment=0x7f0c0031;
+        public static final int textview_period=0x7f0c0032;
+        public static final int time_hint=0x7f0c0033;
     }
     public static final class style {
         /** 

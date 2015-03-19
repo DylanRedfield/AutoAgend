@@ -33,5 +33,6 @@
     <string name="class_time_end_text">Class time end: </string>
     <string name="time_hint">12:00 AM</string>
     <string name="edit_class">Edit Class Info</string>
+    <string name="edit_assignment">Edit Assignment Info</string>
 
 </resources>

@@ -13,7 +13,6 @@ import android.widget.ImageView;
 
 import com.dylanredfield.agendaapp2.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

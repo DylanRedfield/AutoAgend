@@ -32,7 +32,6 @@ import com.dylanredfield.agendaapp2.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class AddAssignmentHomeActivity extends ActionBarActivity {

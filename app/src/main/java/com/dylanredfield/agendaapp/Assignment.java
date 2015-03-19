@@ -1,7 +1,6 @@
 package com.dylanredfield.agendaapp;
 
 import android.graphics.Bitmap;
-import android.graphics.Picture;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

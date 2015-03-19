@@ -25,10 +25,8 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dylanredfield.agendaapp2.R;
 import com.software.shell.fab.ActionButton;
@@ -253,6 +251,7 @@ public class ClassActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
 
         // recreates adapters to update them
         // TODO check to see if bundle is better for this

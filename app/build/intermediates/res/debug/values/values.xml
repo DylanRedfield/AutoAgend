@@ -328,6 +328,7 @@
     <string name="default_classname">No Class</string>
     <string name="default_description">No Description</string>
     <string name="default_period">No Period</string>
+    <string name="edit_assignment">Edit Assignment Info</string>
     <string name="edit_class">Edit Class Info</string>
     <string name="empty_assignment">Add a Assignment!</string>
     <string name="empty_class">Add a class by clicking the \"+\"</string>

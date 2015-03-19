@@ -3,13 +3,14 @@ package com.dylanredfield.agendaapp;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -18,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dylanredfield.agendaapp2.R;
 
@@ -97,6 +97,44 @@ public class AssignmentActivity extends ActionBarActivity {
             mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
+        mAssignmentInfoAdapter = new AssignmentInfoAdapter(
+                getApplicationContext(), android.R.layout.simple_list_item_1,
+                android.R.id.text1, mClassList
+                .get(indexClass).getAssignments().get(indexAssignment).makeList2());
+        mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.edit_assignment_actions, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent i = new Intent(getApplicationContext(),
+                        EditAssignmentInfoActivity.class);
+                i.putExtra(MainActivity.EXTRA_INT_POSTITION, indexClass);
+                i.putExtra(ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, indexAssignment);
+                startActivity(i);
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
