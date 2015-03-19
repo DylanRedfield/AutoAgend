@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.dylanredfield.agendaapp.MainActivity" >
 
-    <item
-        android:id="@+id/add_class"
-        android:icon="@drawable/ic_note_add_black_24dp"
-        android:title="test"
-        android:showAsAction="ifRoom"/>"
+    <item android:id="@+id/action_settings"
+        android:title="@string/edit_class"
+        app:showAsAction="never" />
 </menu>
 <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/main_actions.xml -->

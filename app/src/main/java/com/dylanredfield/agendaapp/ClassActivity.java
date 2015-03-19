@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -268,6 +269,8 @@ public class ClassActivity extends ActionBarActivity {
         mButtonClass.setImageDrawable(getResources()
                 .getDrawable(R.drawable.ic_note_add_white_36dp));
 
+        setBars();
+
     }
 
     public void makeListView(ListView listView, ArrayAdapter<String> adapter,
@@ -406,6 +409,30 @@ public class ClassActivity extends ActionBarActivity {
             return isCompletedCheck;
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent i = new Intent(getApplicationContext(),
+                        EditClassInfoActivity.class);
+                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                startActivity(i);
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

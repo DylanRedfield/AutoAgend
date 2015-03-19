@@ -188,7 +188,7 @@ public class NewClassActivity extends ActionBarActivity {
         if (mAssignedTime != null && tag.equals(ASSIGNED_TIME_TAG)) {
             mTimeAssignedSelector.setText(sdf.format(mAssignedTime.getTime()));
         }
-        if (mAssignedTime != null && tag.equals(DUE_TIME_TAG)) {
+        if (mDueTime != null && tag.equals(DUE_TIME_TAG)) {
             mTimeDueSelector.setText(sdf.format(mDueTime.getTime()));
         }
     }

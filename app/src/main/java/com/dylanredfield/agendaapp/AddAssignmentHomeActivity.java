@@ -44,7 +44,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     private Button mEnterButton;
     private Calendar mAssignedDate;
     private Calendar mDueDate;
-    private Date time;
+    private Calendar time;
     private Context mContext;
     private Activity a;
     private Bitmap mBitmap;
@@ -144,17 +144,40 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     }
 
     public void checkTimeFrame() {
-        time = Calendar.getInstance().getTime();
+        int currentMintues = time.HOUR_OF_DAY * 60 + time.MINUTE;
+        int startMinutes = 0;
+        int endMinutes = 0;
+
         ArrayList<SchoolClass> mList = mClassList;
 
         // Changes index if assignment falls under time frame of class
         for (int a = 0; a < mList.size(); a++) {
-            if (mList.get(a).getStartTime() != null && mList.get(a).getEndTime() != null &&
+
+            if (mList.get(a).getStartTime() != null && mList.get(a).getEndTime() != null) {
+                startMinutes = mList.get(a).getStartTime().HOUR_OF_DAY * 60 + mList.get(a)
+                        .getStartTime().MINUTE;
+                endMinutes = mList.get(a).getEndTime().HOUR_OF_DAY * 60 + mList.get(a)
+                        .getEndTime().MINUTE;
+                if(currentMintues > startMinutes && currentMintues < endMinutes) {
+                    index = a;
+                    updateClassEditText();
+                }
+                else {
+                Log.d("test1", "Current time: " + currentMintues
+                        + "\n Start Time: " + startMinutes
+                        + "\n End Time: " + endMinutes);
+            }
+            }
+/*            if (mList.get(a).getStartTime() != null && mList.get(a).getEndTime() != null &&
                     time.after(mList.get(a).getStartTime().getTime()) && time.before(mList.get(a)
                     .getEndTime().getTime())) {
                 index = a;
                 updateClassEditText();
-            }
+            } else {
+                Log.d("test1", "Current time: " + time
+                        + "\n Start Time: " + mList.get(a).getStartTime().getTime()
+                        + " End Time: " + mList.get(a).getEndTime().getTime());
+            }*/
 
         }
     }
@@ -218,8 +241,8 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.enter_actionbar:
-                if (!mTitle.getText().toString().equals("") ) {
-                    if(!mClassSelector.getText().toString().equals("")) {
+                if (!mTitle.getText().toString().equals("")) {
+                    if (!mClassSelector.getText().toString().equals("")) {
                         if (mAssignedDate == null) {
                             mAssignedDate = Calendar.getInstance();
                         }

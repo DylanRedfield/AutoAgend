@@ -15,6 +15,13 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
     </style>
-    
+    <style name="AppTheme.DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+
+        <item name="android:colorPrimary">@color/red_500</item>
+        <item name="android:colorPrimaryDark">@color/red_100</item>
+        <item name="android:colorAccent">@color/red_700</item>
+
+    </style>
 </resources>

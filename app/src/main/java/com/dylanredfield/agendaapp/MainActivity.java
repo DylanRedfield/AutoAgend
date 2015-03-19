@@ -50,7 +50,6 @@ import java.util.Date;
 // TODO add abilty to rename activities, assignments, and edit
 
 // TODO Add due date to assignment list
-// TODO Add new class dialog instead of activity
 // TODO list 1. Fix assignment sort
 public class MainActivity extends ActionBarActivity {
     private ListView mListView;

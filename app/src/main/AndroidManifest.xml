@@ -48,6 +48,9 @@
         <activity
             android:name="com.dylanredfield.agendaapp.ImageFullScreenActivity"
             android:label="@string/new_class_label"></activity>
+        <activity
+            android:name="com.dylanredfield.agendaapp.EditClassInfoActivity"
+            android:label="@string/new_class_label"></activity>
     </application>
 
 </manifest>

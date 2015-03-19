@@ -328,6 +328,7 @@
     <string name="default_classname">No Class</string>
     <string name="default_description">No Description</string>
     <string name="default_period">No Period</string>
+    <string name="edit_class">Edit Class Info</string>
     <string name="empty_assignment">Add a Assignment!</string>
     <string name="empty_class">Add a class by clicking the \"+\"</string>
     <string name="enter">Enter</string>
@@ -362,6 +363,14 @@
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
+    </style>
+    <style name="AppTheme.DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+
+        <item name="android:colorPrimary">@color/red_500</item>
+        <item name="android:colorPrimaryDark">@color/red_100</item>
+        <item name="android:colorAccent">@color/red_700</item>
+
     </style>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment/>
