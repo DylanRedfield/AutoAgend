@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mancala</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="default_pit">1</string>
+</resources>
