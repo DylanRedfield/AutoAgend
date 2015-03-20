@@ -1512,9 +1512,9 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f090033;
         public static final int action_mode_bar_stub=0x7f090032;
         public static final int action_mode_close_button=0x7f090025;
-        public static final int action_settings=0x7f090068;
+        public static final int action_settings=0x7f090067;
         public static final int activity_chooser_view_content=0x7f090026;
-        public static final int add_class=0x7f090069;
+        public static final int add_class=0x7f090068;
         public static final int always=0x7f090019;
         public static final int assigned_text=0x7f09005e;
         public static final int assignment_info=0x7f09005d;
@@ -1536,7 +1536,7 @@ containing a value of this type.
         public static final int decor_content_parent=0x7f090034;
         public static final int default_activity_button=0x7f090029;
         public static final int delete_assignment=0x7f090064;
-        public static final int delete_class=0x7f090066;
+        public static final int delete_class=0x7f090065;
         public static final int dialog=0x7f09001e;
         public static final int disableHome=0x7f09000c;
         public static final int dropdown=0x7f09001f;
@@ -1570,8 +1570,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f090005;
         public static final int progress_horizontal=0x7f090006;
         public static final int radio=0x7f090030;
-        public static final int rename_assignment=0x7f090065;
-        public static final int rename_class=0x7f090067;
+        public static final int rename_class=0x7f090066;
         public static final int search_badge=0x7f09003a;
         public static final int search_bar=0x7f090039;
         public static final int search_button=0x7f09003b;

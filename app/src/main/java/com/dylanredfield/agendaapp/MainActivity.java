@@ -390,6 +390,7 @@ public class MainActivity extends ActionBarActivity {
         private ArrayList<SchoolClass> mList;
         private TextView titleTextView;
         private TextView currentAssignment;
+        private String titleString;
 
         public CustomAdapter(Context context, int resource,
                              int textViewResourceId, ArrayList<SchoolClass> objects) {
@@ -408,7 +409,11 @@ public class MainActivity extends ActionBarActivity {
                     .findViewById(R.id.class_name_text);
 
             // Set to class name
-            titleTextView.setText(mList.get(position).getClassName());
+            titleString = mList.get(position).getClassName();
+            if(titleString.length() > 20) {
+                titleString = titleString.substring(0, 20) + "...";
+            }
+            titleTextView.setText(titleString);
 
             currentAssignment = (TextView) convertView
                     .findViewById(R.id.current_assignment);

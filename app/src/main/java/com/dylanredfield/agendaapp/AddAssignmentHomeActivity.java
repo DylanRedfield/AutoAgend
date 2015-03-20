@@ -186,6 +186,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     public void setBars() {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {

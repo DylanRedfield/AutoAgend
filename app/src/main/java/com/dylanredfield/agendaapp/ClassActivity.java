@@ -330,9 +330,6 @@ public class ClassActivity extends ActionBarActivity {
                 instaniateAssignmentAdapter();
                 updateDatabase();
                 return true;
-            // Rename class
-            case R.id.rename_assignment:
-                // Makes int the value of index spot
             default:
                 return true;
         }
