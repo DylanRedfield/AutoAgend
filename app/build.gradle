@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.dylanredfield.agendaapp2"
-        minSdkVersion 11
+        minSdkVersion 9
         targetSdkVersion 21
     }
 
@@ -23,5 +23,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.0'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.github.shell-software:fab:1.0.5'
-    compile 'com.doomonafireball.betterpickers:library:1.5.3'
 }

@@ -33,8 +33,4 @@
         <item name="android:colorAccent">@color/accent_color_picker</item>
 
     </style>
-
-    <style name="MyCustomBetterPickerTheme">
-        <item name="bpTextColor">@color/red_500</item>
-    </style>
 </resources>

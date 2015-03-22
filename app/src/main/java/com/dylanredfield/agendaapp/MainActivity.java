@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity {
     public int tempInt;
     public static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final String BITMAP_STRING = "BIT_MAP_IMAGE";
+    public static final String FILE_LOCATION_STRING = "FILE_LOCATION";
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -76,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
         declareActionButtons();
 
         // Adds all listeners for buttons, and items in list
-        addListeners();
+        setListeners();
 
         // Sets up ActionBar and StatusBar
         setBars();
@@ -126,7 +127,7 @@ public class MainActivity extends ActionBarActivity {
         return ab;
     }
 
-    public void addListeners() {
+    public void setListeners() {
         // Add listener for each item in list
         mListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -331,7 +332,7 @@ public class MainActivity extends ActionBarActivity {
             //Bundle extras = data.getExtras();
 
             Intent i = new Intent(getApplicationContext(), AddAssignmentHomeActivity.class);
-            i.putExtra("TEST", mCurrentPhotoPath);
+            i.putExtra(FILE_LOCATION_STRING, mCurrentPhotoPath);
             startActivity(i);
         }
     }

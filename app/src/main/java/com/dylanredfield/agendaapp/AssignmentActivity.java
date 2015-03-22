@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,10 +26,8 @@ import java.util.ArrayList;
 public class AssignmentActivity extends ActionBarActivity {
     private ListView mAssignmentInfoList;
     private AssignmentInfoAdapter mAssignmentInfoAdapter;
-    private int indexClass;
-    private int indexAssignment;
-    private ImageView mPictureView;
-    private TextView mPictureTextView;
+    private int mIndexClass;
+    private int mIndexAssignment;
     private ArrayList<SchoolClass> mClassList;
     private ActionBar mActionBar;
     private Window mWindow;
@@ -41,30 +38,29 @@ public class AssignmentActivity extends ActionBarActivity {
         setContentView(R.layout.activity_assignment);
 
 
-        indexAssignment = getIntent().getIntExtra(
+        mIndexAssignment = getIntent().getIntExtra(
                 ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, 0);
-        indexClass = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION,
+        mIndexClass = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION,
                 0);
         mClassList = ClassList.getInstance(getApplicationContext()).getList();
-        /*
-         * mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
-		 * makeListView( mAssignmentInfoList, mAssignmentInfoAdapter,
-		 * ClassList.getInstance(getApplicationContext()).getList()
-		 * .get(indexClass).getAssignments() .get(indexAssignment).makeList());
-		 */
-        mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
-        mAssignmentInfoAdapter = new AssignmentInfoAdapter(
-                getApplicationContext(), android.R.layout.simple_list_item_1,
-                android.R.id.text1, mClassList
-                .get(indexClass).getAssignments().get(indexAssignment).makeList2());
-        mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
 
-        if (mClassList.get(indexClass)
-                .getAssignments().get(indexAssignment).getFilePath() != null) {
+        makeListView();
+
+        if (mClassList.get(mIndexClass)
+                .getAssignments().get(mIndexAssignment).getFilePath() != null) {
 
         }
         setBars();
 
+    }
+
+    public void makeListView() {
+        mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
+        mAssignmentInfoAdapter = new AssignmentInfoAdapter(
+                getApplicationContext(), android.R.layout.simple_list_item_1,
+                android.R.id.text1, mClassList
+                .get(mIndexClass).getAssignments().get(mIndexAssignment).makeList2());
+        mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
     }
 
     public void makeListView(ListView listView, ArrayAdapter<String> adapter,
@@ -76,10 +72,11 @@ public class AssignmentActivity extends ActionBarActivity {
         listView.setAdapter(adapter);
     }
 
+    // Method with android:onClick attribute in XML
     public void onTextViewClick(View view) {
         Intent i = new Intent(getApplicationContext(), ImageFullScreenActivity.class);
-        i.putExtra(MainActivity.EXTRA_INT_POSTITION, indexClass);
-        i.putExtra(ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, indexAssignment);
+        i.putExtra(MainActivity.EXTRA_INT_POSTITION, mIndexClass);
+        i.putExtra(ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, mIndexAssignment);
         startActivity(i);
     }
 
@@ -89,7 +86,7 @@ public class AssignmentActivity extends ActionBarActivity {
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
                 .getColor(R.color.primary_color)));
-        mActionBar.setTitle(mClassList.get(indexClass).getClassName());
+        mActionBar.setTitle(mClassList.get(mIndexClass).getClassName());
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
@@ -103,11 +100,13 @@ public class AssignmentActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Needs to re-instantiate list view since it is only created onCreate()
         mAssignmentInfoList = (ListView) findViewById(R.id.assignments_list);
         mAssignmentInfoAdapter = new AssignmentInfoAdapter(
                 getApplicationContext(), android.R.layout.simple_list_item_1,
                 android.R.id.text1, mClassList
-                .get(indexClass).getAssignments().get(indexAssignment).makeList2());
+                .get(mIndexClass).getAssignments().get(mIndexAssignment).makeList2());
         mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
 
     }
@@ -128,8 +127,8 @@ public class AssignmentActivity extends ActionBarActivity {
             case R.id.action_settings:
                 Intent i = new Intent(getApplicationContext(),
                         EditAssignmentInfoActivity.class);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, indexClass);
-                i.putExtra(ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, indexAssignment);
+                i.putExtra(MainActivity.EXTRA_INT_POSTITION, mIndexClass);
+                i.putExtra(ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, mIndexAssignment);
                 startActivity(i);
 
                 return true;
@@ -162,6 +161,10 @@ public class AssignmentActivity extends ActionBarActivity {
             titleTextView = (TextView) convertView
                     .findViewById(R.id.assignment_info_label);
             substring = mList.get(position).substring(0, 2);
+
+            // In the makeString method 2 chars are appended to the begining of the string
+            // to check what kind of information it is.  If it equals a known info set the title
+            // is set
             if (substring.equals("Ti")) {
                 titleTextView.setText("Title");
             } else if (substring.equals("De")) {
