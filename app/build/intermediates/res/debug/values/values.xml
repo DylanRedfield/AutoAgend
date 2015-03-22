@@ -1,5 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/arrays.xml -->
+    <eat-comment/>
+    <string-array name="backup_country_codes" translatable="false">
+        <item>"SX"</item>
+        <item>"BQ"</item>
+        <item>"CW"</item>
+        <item>"SS"</item>
+    </string-array>
+    <string-array name="backup_country_names">
+        <item>"Sint Maarten"</item>
+        <item>"Caribbean Netherlands"</item>
+        <item>"Curaçao"</item>
+        <item>"South Sudan"</item>
+    </string-array>
+    <string-array name="recurrence_freq">
+        <item>REPEAT DAILY</item>
+        <item>REPEAT WEEKLY</item>
+        <item>REPEAT MONTHLY</item>
+        <item>REPEAT YEARLY</item>
+    </string-array>
+    <string-array name="repeat_by_nth_fri">
+        <item>on every first Friday</item>
+        <item>on every second Friday</item>
+        <item>on every third Friday</item>
+        <item>on every fourth Friday</item>
+        <item>on every last Friday</item>
+    </string-array>
+    <string-array name="repeat_by_nth_mon">
+        <item>on every first Monday</item>
+        <item>on every second Monday</item>
+        <item>on every third Monday</item>
+        <item>on every fourth Monday</item>
+        <item>on every last Monday</item>
+    </string-array>
+    <string-array name="repeat_by_nth_sat">
+        <item>on every first Saturday</item>
+        <item>on every second Saturday</item>
+        <item>on every third Saturday</item>
+        <item>on every fourth Saturday</item>
+        <item>on every last Saturday</item>
+    </string-array>
+    <string-array name="repeat_by_nth_sun">
+        <item>on every first Sunday</item>
+        <item>on every second Sunday</item>
+        <item>on every third Sunday</item>
+        <item>on every fourth Sunday</item>
+        <item>on every last Sunday</item>
+    </string-array>
+    <string-array name="repeat_by_nth_thurs">
+        <item>on every first Thursday</item>
+        <item>on every second Thursday</item>
+        <item>on every third Thursday</item>
+        <item>on every fourth Thursday</item>
+        <item>on every last Thursday</item>
+    </string-array>
+    <string-array name="repeat_by_nth_tues">
+        <item>on every first Tuesday</item>
+        <item>on every second Tuesday</item>
+        <item>on every third Tuesday</item>
+        <item>on every fourth Tuesday</item>
+        <item>on every last Tuesday</item>
+    </string-array>
+    <string-array name="repeat_by_nth_wed">
+        <item>on every first Wednesday</item>
+        <item>on every second Wednesday</item>
+        <item>on every third Wednesday</item>
+        <item>on every fourth Wednesday</item>
+        <item>on every last Wednesday</item>
+    </string-array>
+    <string-array name="timezone_rename_ids" translatable="false">
+
+        <!-- Australia -->
+        <item>"Australia/Darwin"</item>
+        <item>"Australia/Adelaide"</item>
+        <item>"Australia/Brisbane"</item>
+        <item>"Australia/Sydney"</item>
+
+        <!-- Canada -->
+        <!-- Non DST version -->
+        <item>"America/Dawson_Creek"</item>
+        <!-- Non DST version -->
+        <item>"America/Regina"</item>
+        <!-- Non DST version -->
+        <item>"America/Atikokan"</item>
+        <!-- Non DST version -->
+        <item>"America/Blanc-Sablon"</item>
+
+        <!-- US -->
+        <!-- Non DST version -->
+        <item>"Pacific/Honolulu"</item>
+        <!-- DST version -->
+        <item>"America/Adak"</item>
+        <!-- Non DST version -->
+        <item>"America/Metlakatla"</item>
+        <!-- Non DST version -->
+        <item>"America/Phoenix"</item>
+
+        <!-- Mexico -->
+        <!-- DST version with post-2006 US rule -->
+        <item>"America/Tijuana"</item>
+        <!-- DST version with post-2006 US rule -->
+        <item>"America/Ojinaga"</item>
+        <!-- DST version with post-2006 US rule -->
+        <item>"America/Matamoros"</item>
+        <!-- Non DST version -->
+        <item>"America/Hermosillo"</item>
+
+        <!-- Other time zones with missing labels from the framework -->
+        <!-- Missing string in ICS -->
+        <item>"Africa/Juba"</item>
+        <!-- Missing string in ICS -->
+        <item>"America/Kralendijk"</item>
+        <!-- Missing string in ICS -->
+        <item>"America/Lower_Princes"</item>
+        <!-- Only had GMT as the display string -->
+        <item>"Europe/Minsk"</item>
+        <!-- Only had GMT as the display string -->
+        <item>"Europe/Kaliningrad"</item>
+
+        <!-- Brazil -->
+        <!-- Non DST version -->
+        <item>"America/Porto_Velho"</item>
+        <!-- Non DST version -->
+        <item>"America/Belem"</item>
+    </string-array>
+    <string-array name="timezone_rename_labels">
+
+        <!-- Australia -->
+        <item>"Australian Central - NT"</item>
+        <item>"Australian Central - SA"</item>
+        <item>"Australian Eastern - QLD"</item>
+        <item>"Australian Eastern - NSW"</item>
+
+        <!-- Canada -->
+        <item>"Mountain Standard - Dawson Creek"</item>
+        <item>"Central Standard - Saskatchewan"</item>
+        <item>"Eastern Standard - Atikokan"</item>
+        <item>"Atlantic Standard - Quebec"</item>
+
+        <!-- US -->
+        <item>"Hawaii-Aleutian - Hawaii"</item>
+        <item>"Hawaii-Aleutian - Alaska"</item>
+        <item>"Pacific Standard - Metlakatla"</item>
+        <item>"Mountain Standard - Arizona"</item>
+
+        <!-- Mexico -->
+        <item>"Pacific - Baja California"</item>
+        <item>"Mountain - Chihuahua"</item>
+        <item>"Central - Tamaulipas"</item>
+        <item>"Mountain - Sonora"</item>
+
+        <!-- Other countries with missing or undesirable labels from the framework -->
+        <item>"East Africa Time"</item>
+        <item>"Atlantic Standard Time"</item>
+        <item>"Atlantic Standard Time"</item>
+        <item>"Eastern European Time"</item>
+        <item>"Kaliningrad Time"</item>
+
+        <!-- Brazil -->
+        <!-- Non DST version of Amazon Standard Time -->
+        <item>"Amazon - Rondônia"</item>
+        <!-- Non DST version of Brasilia Standard Time -->
+        <item>"Brasilia - Pará"</item>
+    </string-array>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
@@ -16,12 +180,29 @@
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="accent_color">#FF5722</color>
+    <color name="accent_color_picker">#FF5722</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="ampm_text_color">#8c8c8c</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="background_floating_material_dark">#ff424242</color>
     <color name="background_floating_material_light">#ffeeeeee</color>
     <color name="background_material_dark">#ff303030</color>
     <color name="background_material_light">#ffeeeeee</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="blue">#33b5e5</color>
+    <color name="blue_focused">#c1e8f7</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
@@ -30,10 +211,46 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="calendar_header">#999999</color>
+    <color name="calendar_selected_date_text">#ffd1d2d4</color>
+    <color name="circle_background">#f2f2f2</color>
+    <color name="dark_gray">#363636</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="dark_primary">#D84315</color>
+    <color name="dark_primary_picker">#FF8A65</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="darker_blue">#0099cc</color>
+    <color name="date_picker_text_normal">#ff999999</color>
+    <color name="date_picker_view_animator">#f2f2f2</color>
+    <color name="default_button_background_dark">#00000000</color>
+    <color name="default_button_background_light">#00000000</color>
+    <color name="default_button_background_pressed_dark">#46c5c1ff</color>
+    <color name="default_button_background_pressed_light">#ff00ddff</color>
+    <color name="default_divider_color_dark">#28ffffff</color>
+    <color name="default_divider_color_light">#28000000</color>
+    <color name="default_keyboard_indicator_color_dark">#ff33b5e5</color>
+    <color name="default_keyboard_indicator_color_light">#ff00ddff</color>
+    <color name="default_text_color_holo_dark">#ffffffff</color>
+    <color name="default_text_color_holo_dark_disabled">#ff4c4c4c</color>
+    <color name="default_text_color_holo_light">#ff000000</color>
+    <color name="default_text_color_holo_light_disabled">#ffb2b2b2</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="done_disabled_dark">#bfbfbf</color>
+    <color name="done_text_color_dark_disabled">#888888</color>
+    <color name="done_text_color_dark_normal">#ffffff</color>
+    <color name="done_text_color_disabled">#cccccc</color>
+    <color name="done_text_color_normal">#000000</color>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.github.shell-software/fab/1.0.5/res/values/values.xml -->
     <eat-comment/>
     <color name="fab_material_amber_500">#ffc107</color>
@@ -82,6 +299,18 @@
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="light_gray">#404040</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="light_primary_color">#FFCDD2</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="line_background">#cccccc</color>
+    <color name="line_dark">#808080</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="link_text_material_dark">@color/material_deep_teal_200</color>
     <color name="link_text_material_light">@color/material_deep_teal_500</color>
     <color name="material_blue_grey_800">#ff37474f</color>
@@ -89,6 +318,16 @@
     <color name="material_blue_grey_950">#ff21272b</color>
     <color name="material_deep_teal_200">#ff80cbc4</color>
     <color name="material_deep_teal_500">#ff009688</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="neutral_pressed">#33999999</color>
+    <color name="numbers_text_color">#8c8c8c</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="primary_color">#FF5722</color>
+    <color name="primary_color_picker">#F4511E</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="primary_dark_material_dark">#ff000000</color>
     <color name="primary_dark_material_light">#ff757575</color>
     <color name="primary_material_dark">#ff212121</color>
@@ -97,12 +336,20 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="recurrence_bubble_text_normal">#ff737373</color>
+    <color name="recurrence_picker_background">#fff2f2f2</color>
+    <color name="red">#ff3333</color>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="red_100">#FFCDD2</color>
-    <color name="red_500">#F44336</color>
-    <color name="red_700">#D32F2f</color>
-    <color name="red_900">#B71C1C</color>
+    <color name="red_100">#d32f2f</color>
+    <color name="red_500">#d32f2f</color>
+    <color name="red_700">#d50000</color>
+    <color name="red_900">#d50000</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="red_focused">#853333</color>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="ripple_material_dark">#40ffffff</color>
@@ -113,6 +360,11 @@
     <color name="secondary_text_disabled_material_light">#24000000</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_black">#7f000000</color>
+    <color name="white">#ffffff</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionButton"><attr format="enum" name="type"><enum name="DEFAULT" value="0"/><enum name="MINI" value="1"/><enum name="normal" value="0"/><enum name="mini" value="1"/></attr><attr format="color" name="button_color"/><attr format="color" name="button_colorPressed"/><attr format="dimension" name="shadow_radius"/><attr format="dimension" name="shadow_xOffset"/><attr format="dimension" name="shadow_yOffset"/><attr format="color" name="shadow_color"/><attr format="dimension" name="stroke_width"/><attr format="color" name="stroke_color"/><attr format="reference" name="show_animation"/><attr format="reference" name="hide_animation"/><attr format="reference" name="image"/><attr format="dimension" name="image_size"/><attr format="reference" name="animation_onShow"/><attr format="reference" name="animation_onHide"/></declare-styleable>
@@ -120,6 +372,9 @@
     <declare-styleable name="ActionMenuView"/>
     <declare-styleable name="ActionMode"><attr name="titleTextStyle"/><attr name="subtitleTextStyle"/><attr name="background"/><attr name="backgroundSplit"/><attr name="height"/><attr format="reference" name="closeItemLayout"/></declare-styleable>
     <declare-styleable name="ActivityChooserView"><attr format="string" name="initialActivityCount"/><attr format="reference" name="expandActivityOverflowButtonDrawable"/></declare-styleable>
+    <declare-styleable name="Android"><attr name="android:textColor"/><attr name="android:textSize"/><attr name="android:textStyle"/><attr name="android:typeface"/><attr name="android:textColorHighlight"/><attr name="android:textColorHint"/><attr name="android:textColorLink"/></declare-styleable>
+    <declare-styleable name="BetterPickersDialogFragment"><attr format="reference" name="bpTextColor"/><attr format="reference" name="bpTitleColor"/><attr format="reference" name="bpDeleteIcon"/><attr format="reference" name="bpCheckIcon"/><attr format="reference" name="bpKeyBackground"/><attr format="reference" name="bpButtonBackground"/><attr format="color" name="bpTitleDividerColor"/><attr format="color" name="bpDividerColor"/><attr format="color" name="bpKeyboardIndicatorColor"/><attr format="reference" name="bpDialogBackground"/></declare-styleable>
+    <declare-styleable name="BetterPickersSwitchTheme"><attr format="reference" name="bpSwitchStyle"/><attr format="reference" name="bpSwitchPreferenceStyle"/></declare-styleable>
     <declare-styleable name="CompatTextView"><attr format="reference|boolean" name="textAllCaps"/></declare-styleable>
     <declare-styleable name="DrawerArrowToggle"><attr format="color" name="color"/><attr format="boolean" name="spinBars"/><attr format="dimension" name="drawableSize"/><attr format="dimension" name="gapBetweenBars"/><attr format="dimension" name="topBottomBarArrowSize"/><attr format="dimension" name="middleBarArrowSize"/><attr format="dimension" name="barSize"/><attr format="dimension" name="thickness"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat"><attr name="android:orientation"/><attr name="android:gravity"/><attr name="android:baselineAligned"/><attr name="android:baselineAlignedChildIndex"/><attr name="android:weightSum"/><attr format="boolean" name="measureWithLargestChild"/><attr name="divider"/><attr name="showDividers"><flag name="none" value="0"/><flag name="beginning" value="1"/><flag name="middle" value="2"/><flag name="end" value="4"/></attr><attr format="dimension" name="dividerPadding"/></declare-styleable>
@@ -132,11 +387,14 @@
     <declare-styleable name="PopupWindowBackgroundState"><attr format="boolean" name="state_above_anchor"/></declare-styleable>
     <declare-styleable name="SearchView"><attr format="reference" name="layout"/><attr format="boolean" name="iconifiedByDefault"/><attr name="android:maxWidth"/><attr format="string" name="queryHint"/><attr name="android:imeOptions"/><attr name="android:inputType"/><attr format="reference" name="closeIcon"/><attr format="reference" name="goIcon"/><attr format="reference" name="searchIcon"/><attr format="reference" name="voiceIcon"/><attr format="reference" name="commitIcon"/><attr format="reference" name="suggestionRowLayout"/><attr format="reference" name="queryBackground"/><attr format="reference" name="submitBackground"/><attr name="android:focusable"/></declare-styleable>
     <declare-styleable name="Spinner"><attr format="reference" name="prompt"/><attr format="enum" name="spinnerMode"><enum name="dialog" value="0"/><enum name="dropdown" value="1"/></attr><attr name="android:dropDownSelector"/><attr name="android:popupBackground"/><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/><attr name="android:dropDownWidth"/><attr format="reference" name="popupPromptView"/><attr name="android:gravity"/><attr format="boolean" name="disableChildrenWhenDisabled"/><attr name="android:background"/></declare-styleable>
+    <declare-styleable name="Switch"><attr format="reference" name="bpThumb"/><attr format="reference" name="bpTrack"/><attr format="reference" name="bpTextOn"/><attr format="reference" name="bpTextOff"/><attr format="dimension" name="bpThumbTextPadding"/><attr format="reference" name="bpSwitchTextAppearance"/><attr format="dimension" name="bpSwitchMinWidth"/><attr format="dimension" name="bpSwitchPadding"/></declare-styleable>
     <declare-styleable name="SwitchCompat"><attr name="android:thumb"/><attr format="reference" name="track"/><attr name="android:textOn"/><attr name="android:textOff"/><attr format="dimension" name="thumbTextPadding"/><attr format="reference" name="switchTextAppearance"/><attr format="dimension" name="switchMinWidth"/><attr format="dimension" name="switchPadding"/><attr format="boolean" name="splitTrack"/><attr format="boolean" name="showText"/></declare-styleable>
     <declare-styleable name="Theme"><attr format="boolean" name="windowActionBar"/><attr format="boolean" name="windowActionBarOverlay"/><attr format="boolean" name="windowActionModeOverlay"/><attr format="dimension|fraction" name="windowFixedWidthMajor"/><attr format="dimension|fraction" name="windowFixedHeightMinor"/><attr format="dimension|fraction" name="windowFixedWidthMinor"/><attr format="dimension|fraction" name="windowFixedHeightMajor"/><attr name="android:windowIsFloating"/><attr format="reference" name="actionBarTabStyle"/><attr format="reference" name="actionBarTabBarStyle"/><attr format="reference" name="actionBarTabTextStyle"/><attr format="reference" name="actionOverflowButtonStyle"/><attr format="reference" name="actionOverflowMenuStyle"/><attr format="reference" name="actionBarPopupTheme"/><attr format="reference" name="actionBarStyle"/><attr format="reference" name="actionBarSplitStyle"/><attr format="reference" name="actionBarTheme"/><attr format="reference" name="actionBarWidgetTheme"/><attr format="dimension" name="actionBarSize"><enum name="wrap_content" value="0"/></attr><attr format="reference" name="actionBarDivider"/><attr format="reference" name="actionBarItemBackground"/><attr format="reference" name="actionMenuTextAppearance"/><attr format="color|reference" name="actionMenuTextColor"/><attr format="reference" name="actionModeStyle"/><attr format="reference" name="actionModeCloseButtonStyle"/><attr format="reference" name="actionModeBackground"/><attr format="reference" name="actionModeSplitBackground"/><attr format="reference" name="actionModeCloseDrawable"/><attr format="reference" name="actionModeCutDrawable"/><attr format="reference" name="actionModeCopyDrawable"/><attr format="reference" name="actionModePasteDrawable"/><attr format="reference" name="actionModeSelectAllDrawable"/><attr format="reference" name="actionModeShareDrawable"/><attr format="reference" name="actionModeFindDrawable"/><attr format="reference" name="actionModeWebSearchDrawable"/><attr format="reference" name="actionModePopupWindowStyle"/><attr format="reference" name="textAppearanceLargePopupMenu"/><attr format="reference" name="textAppearanceSmallPopupMenu"/><attr format="reference" name="actionDropDownStyle"/><attr format="dimension" name="dropdownListPreferredItemHeight"/><attr format="reference" name="spinnerStyle"/><attr format="reference" name="spinnerDropDownItemStyle"/><attr format="reference" name="homeAsUpIndicator"/><attr format="reference" name="actionButtonStyle"/><attr format="reference" name="buttonBarStyle"/><attr format="reference" name="buttonBarButtonStyle"/><attr format="reference" name="selectableItemBackground"/><attr format="reference" name="selectableItemBackgroundBorderless"/><attr format="reference" name="dividerVertical"/><attr format="reference" name="dividerHorizontal"/><attr format="reference" name="activityChooserViewStyle"/><attr format="reference" name="toolbarStyle"/><attr format="reference" name="toolbarNavigationButtonStyle"/><attr format="reference" name="popupMenuStyle"/><attr format="reference" name="popupWindowStyle"/><attr format="reference|color" name="editTextColor"/><attr format="reference" name="editTextBackground"/><attr format="reference" name="switchStyle"/><attr format="reference" name="textAppearanceSearchResultTitle"/><attr format="reference" name="textAppearanceSearchResultSubtitle"/><attr format="reference|color" name="textColorSearchUrl"/><attr format="reference" name="searchViewStyle"/><attr format="dimension" name="listPreferredItemHeight"/><attr format="dimension" name="listPreferredItemHeightSmall"/><attr format="dimension" name="listPreferredItemHeightLarge"/><attr format="dimension" name="listPreferredItemPaddingLeft"/><attr format="dimension" name="listPreferredItemPaddingRight"/><attr format="reference" name="dropDownListViewStyle"/><attr format="reference" name="listPopupWindowStyle"/><attr format="reference" name="textAppearanceListItem"/><attr format="reference" name="textAppearanceListItemSmall"/><attr format="reference" name="panelBackground"/><attr format="dimension" name="panelMenuListWidth"/><attr format="reference" name="panelMenuListTheme"/><attr format="reference" name="listChoiceBackgroundIndicator"/><attr format="color" name="colorPrimary"/><attr format="color" name="colorPrimaryDark"/><attr format="color" name="colorAccent"/><attr format="color" name="colorControlNormal"/><attr format="color" name="colorControlActivated"/><attr format="color" name="colorControlHighlight"/><attr format="color" name="colorButtonNormal"/><attr format="color" name="colorSwitchThumbNormal"/></declare-styleable>
     <declare-styleable name="Toolbar"><attr format="reference" name="titleTextAppearance"/><attr format="reference" name="subtitleTextAppearance"/><attr name="title"/><attr name="subtitle"/><attr name="android:gravity"/><attr format="dimension" name="titleMargins"/><attr format="dimension" name="titleMarginStart"/><attr format="dimension" name="titleMarginEnd"/><attr format="dimension" name="titleMarginTop"/><attr format="dimension" name="titleMarginBottom"/><attr name="contentInsetStart"/><attr name="contentInsetEnd"/><attr name="contentInsetLeft"/><attr name="contentInsetRight"/><attr format="dimension" name="maxButtonHeight"/><attr format="reference" name="theme"/><attr name="buttonGravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/></attr><attr format="reference" name="collapseIcon"/><attr name="popupTheme"/><attr format="reference" name="navigationIcon"/><attr format="string" name="navigationContentDescription"/><attr name="android:minHeight"/></declare-styleable>
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/></declare-styleable>
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
     <dimen name="abc_action_bar_default_padding_material">4dp</dimen>
     <dimen name="abc_action_bar_icon_vertical_padding_material">16dp</dimen>
@@ -179,12 +437,29 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="add_button_margin">16dp</dimen>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="ampm_label_size">16sp</dimen>
+    <dimen name="ampm_left_padding">6dip</dimen>
+    <dimen name="body_font_padding">4dp</dimen>
+    <dimen name="date_picker_component_width">270dp</dimen>
+    <dimen name="date_picker_header_height">30dp</dimen>
+    <dimen name="date_picker_header_text_size">14dp</dimen>
+    <dimen name="date_picker_view_animator_height">270dp</dimen>
+    <dimen name="date_viewpager_height">275dip</dimen>
+    <dimen name="day_number_select_circle_radius">16dp</dimen>
+    <dimen name="day_number_size">16sp</dimen>
+    <dimen name="dialog_button_font_size">14sp</dimen>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment/>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
     <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="dialpad_font_size">48sp</dimen>
+    <dimen name="dialpad_font_size_ampm">24sp</dimen>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="diameter">48dp</dimen>
@@ -192,102 +467,115 @@
     <eat-comment/>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="done_button_height">42dp</dimen>
+    <dimen name="done_label_size">14sp</dimen>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="elevation_high">4dp</dimen>
     <dimen name="elevation_low">1dp</dimen>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="extra_time_label_margin">-30dp</dimen>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.github.shell-software/fab/1.0.5/res/values/values.xml -->
     <eat-comment/>
     <dimen name="fab_margin">16dp</dimen>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="footer_height">48dip</dimen>
+    <dimen name="header_height">96dip</dimen>
+    <dimen name="label_font_size">14sp</dimen>
+    <dimen name="medium_date_font_size">48dp</dimen>
+    <dimen name="medium_expiration_font_size">40dp</dimen>
+    <dimen name="medium_font_padding">12dp</dimen>
+    <dimen name="medium_font_size">60dp</dimen>
+    <dimen name="medium_font_size_header">24sp</dimen>
+    <dimen name="medium_font_size_hms">54dp</dimen>
+    <dimen name="minimum_margin_sides">48dip</dimen>
+    <dimen name="minimum_margin_top_bottom">24dip</dimen>
+    <dimen name="month_day_label_text_size">10sp</dimen>
+    <dimen name="month_label_size">16sp</dimen>
+    <dimen name="month_list_item_header_height">50dp</dimen>
+    <dimen name="month_select_circle_radius">45dp</dimen>
+    <dimen name="picker_dimen">270dip</dimen>
+    <dimen name="recurrence_picker_height">340dp</dimen>
+    <dimen name="recurrence_picker_width">300dp</dimen>
+    <dimen name="selected_calendar_layout_height">155dp</dimen>
+    <dimen name="selected_date_day_size">75dp</dimen>
+    <dimen name="selected_date_month_size">30dp</dimen>
+    <dimen name="selected_date_year_size">30dp</dimen>
+    <dimen name="separator_padding">4dip</dimen>
+    <dimen name="tablet_dialpad_font_size">60sp</dimen>
+    <dimen name="tablet_dialpad_font_size_ampm">30sp</dimen>
+    <dimen name="time_label_size">60sp</dimen>
+    <dimen name="timer_padding_left">16dip</dimen>
+    <dimen name="year_label_height">64dp</dimen>
+    <dimen name="year_label_text_size">22dp</dimen>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment/>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/ids.xml -->
+    <eat-comment/>
+    <item name="date_keyboard" type="id"/>
+    <item name="date_month_int" type="id"/>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <item name="home" type="id"/>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/ids.xml -->
+    <eat-comment/>
+    <item name="numbers_key" type="id"/>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
     <item name="split_action_bar" type="id"/>
     <item name="up" type="id"/>
     <integer name="abc_max_action_buttons">2</integer>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/net.danlew/android.joda/2.7.1/res/values/values.xml -->
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
     <eat-comment/>
-    <plurals name="abbrev_in_num_days">
-        <item quantity="one">tomorrow</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> days</item>
+    <plurals name="daily">
+        <item quantity="one">Daily</item>
+        <item quantity="other">Every <ns1:g id="number">%d</ns1:g> days</item>
     </plurals>
-    <plurals name="abbrev_in_num_hours">
-        <item quantity="one">in 1 hour</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> hours</item>
+    <plurals name="endByCount">
+        <item quantity="one">; for one time</item>
+        <item quantity="other">; for <ns1:g id="number">%d</ns1:g> times</item>
     </plurals>
-    <plurals name="abbrev_in_num_minutes">
-        <item quantity="one">in 1 min</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> mins</item>
+    <plurals name="recurrence_end_count">
+        <item quantity="one">For <ns1:g id="event_count">%d</ns1:g> event</item>
+        <item quantity="other">For <ns1:g id="event_count">%d</ns1:g> events</item>
     </plurals>
-    <plurals name="abbrev_in_num_seconds">
-        <item quantity="one">in 1 sec</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> secs</item>
+    <plurals name="recurrence_interval_daily">
+        <!-- Singular form [CHAR LIMIT=30] -->
+        <item quantity="one">Every <ns1:g id="count">%d</ns1:g> day</item>
+        <!-- Plural form [CHAR LIMIT=30] -->
+        <item quantity="other">Every <ns1:g id="count">%d</ns1:g> days</item>
     </plurals>
-    <plurals name="abbrev_num_days_ago">
-        <item quantity="one">yesterday</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> days ago</item>
+    <plurals name="recurrence_interval_monthly">
+        <!-- Singular form [CHAR LIMIT=30] -->
+        <item quantity="one">Every <ns1:g id="count">%d</ns1:g> month</item>
+        <!-- Plural form [CHAR LIMIT=30] -->
+        <item quantity="other">Every <ns1:g id="count">%d</ns1:g> months</item>
     </plurals>
-    <plurals name="abbrev_num_hours_ago">
-        <item quantity="one">1 hour ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> hours ago</item>
+    <plurals name="recurrence_interval_weekly">
+        <!-- Singular form [CHAR LIMIT=30] -->
+        <item quantity="one">Every <ns1:g id="count">%d</ns1:g> week</item>
+        <!-- Plural form [CHAR LIMIT=30] -->
+        <item quantity="other">Every <ns1:g id="count">%d</ns1:g> weeks</item>
     </plurals>
-    <plurals name="abbrev_num_minutes_ago">
-        <item quantity="one">1 min ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> mins ago</item>
+    <plurals name="recurrence_interval_yearly">
+        <!-- Singular form [CHAR LIMIT=30] -->
+        <item quantity="one">Every <ns1:g id="count">%d</ns1:g> year</item>
+        <!-- Plural form [CHAR LIMIT=30] -->
+        <item quantity="other">Every <ns1:g id="count">%d</ns1:g> years</item>
     </plurals>
-    <plurals name="abbrev_num_seconds_ago">
-        <item quantity="one">1 sec ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> secs ago</item>
-    </plurals>
-    <plurals name="duration_hours">
-        <item quantity="one">1 hour</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> hours</item>
-    </plurals>
-    <plurals name="duration_minutes">
-        <item quantity="one">1 minute</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> minutes</item>
-    </plurals>
-    <plurals name="duration_seconds">
-        <item quantity="one">1 second</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> seconds</item>
-    </plurals>
-    <plurals name="in_num_days">
-        <item quantity="one">tomorrow</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> days</item>
-    </plurals>
-    <plurals name="in_num_hours">
-        <item quantity="one">in 1 hour</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> hours</item>
-    </plurals>
-    <plurals name="in_num_minutes">
-        <item quantity="one">in 1 minute</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> minutes</item>
-    </plurals>
-    <plurals name="in_num_seconds">
-        <item quantity="one">in 1 second</item>
-        <item quantity="other">in <ns1:g id="count">%d</ns1:g> seconds</item>
-    </plurals>
-    <plurals name="num_days_ago">
-        <item quantity="one">yesterday</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> days ago</item>
-    </plurals>
-    <plurals name="num_hours_ago">
-        <item quantity="one">1 hour ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> hours ago</item>
-    </plurals>
-    <plurals name="num_minutes_ago">
-        <item quantity="one">1 minute ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> minutes ago</item>
-    </plurals>
-    <plurals name="num_seconds_ago">
-        <item quantity="one">1 second ago</item>
-        <item quantity="other"><ns1:g id="count">%d</ns1:g> seconds ago</item>
+    <plurals name="weekly">
+        <item quantity="one">Weekly on <ns1:g id="days_of_week">%2$s</ns1:g></item>
+        <item quantity="other">Every <ns1:g id="number">%1$d</ns1:g> weeks on <ns1:g id="days_of_week">%2$s</ns1:g></item>
     </plurals>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment/>
@@ -306,12 +594,26 @@
     <string name="abc_searchview_description_voice">Voice search</string>
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="acessibility_recurrence_choose_end_date_description">change end date</string>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <item format="float" name="ampm_circle_radius_multiplier" type="string">0.19</item>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="app_name">AgendaApp</string>
     <string name="assignments">Assignments</string>
     <string name="button_text">New Class</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <item format="float" name="circle_radius_multiplier" type="string">0.82</item>
+    <item format="float" name="circle_radius_multiplier_24HourMode" type="string">0.85</item>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="class_hint">Mathematics</string>
     <string name="class_name">Class Name:</string>
     <string name="class_time_end_text">Class time end: </string>
@@ -320,39 +622,139 @@
     <string name="date_assigned_text">Date Assigned:</string>
     <string name="date_due_text">Date Due:</string>
     <string name="date_hint">1/1/15</string>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/net.danlew/android.joda/2.7.1/res/values/values.xml -->
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
     <eat-comment/>
-    <string name="date_time">%1$s, %2$s</string>
+    <string name="day_c">DAY</string>
+    <string name="day_of_week_label_typeface">sans-serif</string>
+    <string name="day_picker_description">Month grid of days</string>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="default_classname">No Class</string>
     <string name="default_description">No Description</string>
     <string name="default_period">No Period</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="deleted_key">%1$s deleted</string>
+    <string name="done_label">Done</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="edit_assignment">Edit Assignment Info</string>
     <string name="edit_class">Edit Class Info</string>
     <string name="empty_assignment">Add a Assignment!</string>
     <string name="empty_class">Add a class by clicking the \"+\"</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="endByDate">; until <ns1:g id="date">%s</ns1:g></string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="enter">Enter</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="every_weekday">"Every weekday (Mon\u2013Fri)"</string>
+    <string name="expiration_picker_seperator">/</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="hello_world">Hello world!</string>
     <string name="hint_assignment_description">Enter assignment description</string>
     <string name="hint_assignment_title">Enter assignment title</string>
     <string name="hint_description">Enter class description</string>
     <string name="hint_period">1</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="hint_time_zone_search">Type country name</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="hint_title">Enter Class Name</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="hms_picker_hours_label">H</string>
+    <string name="hms_picker_minutes_label">M</string>
+    <string name="hms_picker_seconds_label">S</string>
+    <string name="hour_picker_description">Hours circular slider</string>
+    <string name="hours_label">h</string>
+    <string name="hours_label_description">hours</string>
+    <string name="item_is_selected">%1$s selected</string>
+    <string name="max_error">Please input a number less than or equal to %1$d</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="menu_delete">Delete</string>
     <string name="menu_rename">Rename</string>
-    <string name="new_class_label">New Class</string>
-    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/net.danlew/android.joda/2.7.1/res/values/values.xml -->
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
     <eat-comment/>
-    <string name="preposition_for_date">on <ns1:g example="May 29" id="date">%s</ns1:g></string>
-    <string name="preposition_for_time">at <ns1:g example="2:33 am" id="time">%s</ns1:g></string>
-    <string name="relative_time">"<ns1:g example="4 hours ago" id="date">%1$s</ns1:g>, <ns1:g example="11:00 am" id="time">%2$s</ns1:g>"</string>
+    <string name="min_error">Please input a number greater than or equal to %1$d</string>
+    <string name="min_max_error">Please input a number between %1$d and %2$d</string>
+    <string name="minute_picker_description">Minutes circular slider</string>
+    <string name="minutes_label">m</string>
+    <string name="minutes_label_description">minutes</string>
+    <string name="month_c">MONTH</string>
+    <string name="monthly">Monthly</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="new_class_label">New Class</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="no_results_found">No results found</string>
+    <string name="number_delete">Delete</string>
+    <string name="number_picker_minus_label">—</string>
+    <string name="number_picker_plus_minus">+/-</string>
+    <string name="number_picker_seperator">.</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <item format="float" name="numbers_radius_multiplier_inner" type="string">0.60</item>
+    <item format="float" name="numbers_radius_multiplier_normal" type="string">0.81</item>
+    <item format="float" name="numbers_radius_multiplier_outer" type="string">0.83</item>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="palestine_display_name">Palestine</string>
+    <string name="picker_cancel">Cancel</string>
+    <string name="picker_set">OK</string>
+    <string name="radial_numbers_typeface">sans-serif</string>
+    <string name="recurrence_end_continously">Forever</string>
+    <string name="recurrence_end_count_label">For a number of events</string>
+    <string name="recurrence_end_date">Until <ns1:g id="date">%s</ns1:g></string>
+    <string name="recurrence_end_date_label">Until a date</string>
+    <string name="recurrence_month_pattern_by_day">on the same day each month</string>
+    <string name="sans_serif">sans-serif</string>
+    <string name="save_label">Done</string>
+    <string name="searchview_description_clear">Clear query</string>
+    <string name="seconds_label">s</string>
+    <string name="seconds_label_description">seconds</string>
+    <string name="select_day">Select month and day</string>
+    <string name="select_hours">Select hours</string>
+    <string name="select_minutes">Select minutes</string>
+    <string name="select_year">Select year</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <item format="float" name="selection_radius_multiplier" type="string">0.16</item>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="switch_off">OFF</string>
+    <string name="switch_on">ON</string>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="text_edit_info">Edit Info</string>
     <string name="text_new_assignment">New Assignment</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/dimens.xml -->
+    <eat-comment/>
+    <item format="float" name="text_size_multiplier_inner" type="string">0.14</item>
+    <item format="float" name="text_size_multiplier_normal" type="string">0.17</item>
+    <item format="float" name="text_size_multiplier_outer" type="string">0.11</item>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="textview_period">Period: </string>
     <string name="time_hint">12:00 AM</string>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="time_picker_00_label">:00</string>
+    <string name="time_picker_30_label">:30</string>
+    <string name="time_picker_ampm_label">--</string>
+    <string name="time_picker_time_seperator">:</string>
+    <string name="time_placeholder">--</string>
+    <string name="time_separator">:</string>
+    <string name="timer_delete">Delete</string>
+    <string name="year_c">YEAR</string>
+    <string name="year_picker_description">Year list</string>
+    <string name="yearly_plain">Yearly</string>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
@@ -365,11 +767,13 @@
     <style name="AppTheme" parent="AppBaseTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:colorPrimary">@color/red_500</item>
+        <item name="android:colorPrimary">@color/primary_color</item>
         <!--   darker variant for the status bar and contextual app bars -->
-        <item name="android:colorPrimaryDark">@color/red_700</item>
+        <item name="android:colorPrimaryDark">@color/dark_primary</item>
         <!--   theme UI controls like checkboxes and text fields -->
-        <item name="android:colorAccent">@color/red_100</item>
+        <item name="android:colorAccent">@color/accent_color</item>
+        <item name="colorControlActivated">@color/accent_color</item>
+        <item name="colorControlHighlight">@color/accent_color</item>
 
     </style>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
@@ -1132,6 +1536,39 @@ m>        <item name="android:textColorLink">@color/link_text_material_dark</ite
         <item name="android:scaleType">center</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/themes.xml -->
+    <eat-comment/>
+    <style name="BetterPickersDialogFragment">
+        <item name="bpDialogBackground">@drawable/dialog_full_holo_dark</item>
+        <item name="bpTitleColor">@color/dialog_text_color_holo_dark</item>
+        <item name="bpTextColor">@color/dialog_text_color_holo_dark</item>
+        <item name="bpDeleteIcon">@drawable/ic_backspace_dark</item>
+        <item name="bpCheckIcon">@drawable/ic_check_dark</item>
+        <item name="bpKeyBackground">@drawable/key_background_dark</item>
+        <item name="bpButtonBackground">@drawable/button_background_dark</item>
+        <item name="bpTitleDividerColor">@color/default_keyboard_indicator_color_dark</item>
+        <item name="bpDividerColor">@color/default_divider_color_dark</item>
+        <item name="bpKeyboardIndicatorColor">@color/default_keyboard_indicator_color_dark</item>
+    </style>
+    <style name="BetterPickersDialogFragment.Light">
+        <item name="bpDialogBackground">@drawable/dialog_full_holo_light</item>
+        <item name="bpTitleColor">@color/dialog_text_color_holo_light</item>
+        <item name="bpTextColor">@color/dialog_text_color_holo_light</item>
+        <item name="bpDeleteIcon">@drawable/ic_backspace_light</item>
+        <item name="bpCheckIcon">@drawable/ic_check_light</item>
+        <item name="bpKeyBackground">@drawable/key_background_light</item>
+        <item name="bpButtonBackground">@drawable/button_background_light</item>
+        <item name="bpTitleDividerColor">@color/default_keyboard_indicator_color_dark</item>
+        <item name="bpDividerColor">@color/default_divider_color_light</item>
+        <item name="bpKeyboardIndicatorColor">@color/default_keyboard_indicator_color_light</item>
+    </style>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="MyCustomBetterPickerTheme">
+        <item name="bpTextColor">@color/red_500</item>
+    </style>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
         <item name="buttonBarStyle">@android:style/ButtonBar</item>
@@ -1257,6 +1694,29 @@ m>        <item name="android:textColorLink">@color/link_text_material_dark</ite
         <item name="android:listChoiceIndicatorMultiple">@drawable/abc_btn_check_material</item>
     </style>
     <style name="Platform.AppCompat.Light.Dialog" parent="Platform.AppCompat.Dialog"/>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="RecurrenceDayOfWeekStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dip</item>
+        <item name="android:layout_marginBottom">4dip</item>
+        <item name="android:layout_marginLeft">8dip</item>
+        <item name="android:layout_marginRight">8dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/recurrence_bubble_text_color</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/recurrence_bubble_fill</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="RtlOverlay.Widget.AppCompat.ActionBar.TitleItem" parent="android:Widget">
         <item name="android:layout_gravity">center_vertical|left</item>
         <item name="android:paddingRight">8dp</item>
@@ -1302,9 +1762,9 @@ m>        <item name="android:textColorLink">@color/link_text_material_dark</ite
     <eat-comment/>
     <style name="StyledDialog" parent="Theme.AppCompat.Light.Dialog">
 
-        <item name="android:colorPrimary">@color/red_500</item>
-        <item name="android:colorPrimaryDark">@color/red_700</item>
-        <item name="android:colorAccent">@color/red_100</item>
+        <item name="android:colorPrimary">@color/primary_color_picker</item>
+        <item name="android:colorPrimaryDark">@color/dark_primary_picker</item>
+        <item name="android:colorAccent">@color/accent_color_picker</item>
 
     </style>
     <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
@@ -1350,6 +1810,28 @@ m>        <item name="android:textColorLink">@color/link_text_material_dark</ite
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Large"/>
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Small" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"/>
     <style name="TextAppearance.AppCompat.Widget.Switch" parent="Base.TextAppearance.AppCompat.Widget.Switch"/>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="TextAppearance.EditEvent_Spinner" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FF333333</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+    </style>
+    <style name="TextAppearance.EditEvent_SpinnerButton" parent="TextAppearance.EditEvent_Spinner">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+    </style>
+    <style name="TextAppearance.Holo.Light.Widget.Switch" parent="android:TextAppearance.Small">
+        <!-- Switch thumb asset presents a dark background. -->
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TextAppearance.RecurrencePickerStyle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/dialog_text_color_holo_light</item>
+    </style>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="TextAppearance.Widget.AppCompat.ExpandedMenu.Item" parent="Base.TextAppearance.Widget.AppCompat.ExpandedMenu.Item"/>
     <style name="TextAppearance.Widget.AppCompat.Toolbar.Subtitle" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Subtitle"/>
     <style name="TextAppearance.Widget.AppCompat.Toolbar.Title" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Title"/>
@@ -1427,4 +1909,84 @@ m>        <item name="android:textColorLink">@color/link_text_material_dark</ite
     <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Base.Widget.AppCompat.Spinner.DropDown.ActionBar"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
+    <!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.doomonafireball.betterpickers/library/1.5.3/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="Widget.Holo.Light.CompoundButton.Switch" parent="android:Widget.CompoundButton">
+        <item name="bpTrack">@drawable/switch_track_holo_light</item>
+        <item name="bpThumb">@drawable/switch_thumb</item>
+        <item name="bpSwitchTextAppearance">@style/TextAppearance.Holo.Light.Widget.Switch</item>
+        <item name="bpTextOn">@string/switch_on</item>
+        <item name="bpTextOff">@string/switch_off</item>
+        <item name="bpThumbTextPadding">12dip</item>
+        <item name="bpSwitchMinWidth">96dip</item>
+        <item name="bpSwitchPadding">16dip</item>
+    </style>
+    <style name="aosp_ampm_label">
+        <item name="android:textSize">@dimen/ampm_label_size</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/ampm_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="aosp_day_of_week_label_condensed"/>
+    <style name="aosp_time_label">
+        <item name="android:textSize">@dimen/time_label_size</item>
+        <item name="android:textColor">@color/numbers_text_color</item>
+    </style>
+    <style name="dialog_button">
+        <item name="android:textSize">@dimen/dialog_button_font_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    <style name="dialpad">
+        <item name="android:textSize">@dimen/dialpad_font_size</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="dialpad_text" parent="dialpad">
+        <item name="android:textSize">@dimen/dialpad_font_size_ampm</item>
+    </style>
+    <style name="label">
+        <item name="android:textSize">@dimen/label_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="medium_bold">
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="medium_bold_date" parent="@style/medium_bold">
+        <item name="android:textSize">@dimen/medium_date_font_size</item>
+    </style>
+    <style name="medium_bold_hms" parent="medium_bold">
+        <item name="android:textSize">@dimen/medium_font_size_hms</item>
+    </style>
+    <style name="medium_light">
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="medium_light_date" parent="@style/medium_bold">
+        <item name="android:textSize">@dimen/medium_date_font_size</item>
+    </style>
+    <style name="medium_light_expiration">
+        <item name="android:textSize">@dimen/medium_expiration_font_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="medium_light_header" parent="medium_light">
+        <item name="android:textSize">@dimen/medium_font_size_header</item>
+    </style>
+    <style name="medium_light_hms" parent="medium_light">
+        <item name="android:textSize">@dimen/medium_font_size_hms</item>
+    </style>
+    <style name="tablet_dialpad">
+        <item name="android:textSize">@dimen/tablet_dialpad_font_size</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="tablet_dialpad_text">
+        <item name="android:textSize">@dimen/tablet_dialpad_font_size_ampm</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
 </resources>

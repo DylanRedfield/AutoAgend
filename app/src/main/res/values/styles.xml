@@ -16,18 +16,25 @@
     <style name="AppTheme" parent="AppBaseTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:colorPrimary">@color/red_500</item>
+        <item name="android:colorPrimary">@color/primary_color</item>
         <!--   darker variant for the status bar and contextual app bars -->
-        <item name="android:colorPrimaryDark">@color/red_700</item>
+        <item name="android:colorPrimaryDark">@color/dark_primary</item>
         <!--   theme UI controls like checkboxes and text fields -->
-        <item name="android:colorAccent">@color/red_100</item>
+        <item name="android:colorAccent">@color/accent_color</item>
+        <item name="colorControlActivated">@color/accent_color</item>
+        <item name="colorControlHighlight">@color/accent_color</item>
 
     </style>
+
     <style name="StyledDialog" parent="Theme.AppCompat.Light.Dialog">
 
-        <item name="android:colorPrimary">@color/red_500</item>
-        <item name="android:colorPrimaryDark">@color/red_700</item>
-        <item name="android:colorAccent">@color/red_100</item>
+        <item name="android:colorPrimary">@color/primary_color_picker</item>
+        <item name="android:colorPrimaryDark">@color/dark_primary_picker</item>
+        <item name="android:colorAccent">@color/accent_color_picker</item>
 
+    </style>
+
+    <style name="MyCustomBetterPickerTheme">
+        <item name="bpTextColor">@color/red_500</item>
     </style>
 </resources>

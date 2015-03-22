@@ -23,20 +23,6 @@
         <dex dex="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-9785fac43ae1c14e07406d5db65a80b628f7e5d9.jar" />
     </item>
     <item
-        jar="C:\Users\dylan_000\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.7\b321fd17a60912973a8344da427487c65ccbb552\joda-time-2.7-no-tzdb.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b321fd17a60912973a8344da427487c65ccbb552">
-        <dex dex="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\joda-time-2.7-no-tzdb-257c73dd05c39ce8ca1c0dcd5dc89a1f0c23038f.jar" />
-    </item>
-    <item
-        jar="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\exploded-aar\net.danlew\android.joda\2.7.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="18e495b860cfc2d0f526015a04f80cc7c099cfdc">
-        <dex dex="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-9aa4fbeaa35d41069a866231e2700ed554b54aec.jar" />
-    </item>
-    <item
         jar="C:\Users\dylan_000\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -72,11 +58,25 @@
         <dex dex="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-724a917dae47e93547ded8b3b9dbec6efecf378f.jar" />
     </item>
     <item
+        jar="C:\Users\dylan_000\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\library-2.4.0-4e9f4d7eb46a8147bc5d95ad062f437c16ec10ef.jar" />
+    </item>
+    <item
         jar="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex dex="C:\Users\dylan_000\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-8026c4c3e4314bb02108f8fdda9ef1d4a63c4190.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\exploded-aar\com.doomonafireball.betterpickers\library\1.5.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="84e91d1517fe52b3a40e0272d8af4f2290deb31d">
+        <dex dex="E:\AndroidStudioProjects\AgendaApp\app\build\intermediates\pre-dexed\debug\classes-6557a239737e714501a1c976d976e5db47357f48.jar" />
     </item>
 
 </items>
