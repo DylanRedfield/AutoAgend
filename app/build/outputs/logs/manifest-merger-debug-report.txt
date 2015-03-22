@@ -28,6 +28,7 @@ MERGED from com.android.support:appcompat-v7:21.0.0:15:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
 MERGED from com.github.shell-software:fab:1.0.5:25:5
 MERGED from com.doomonafireball.betterpickers:library:1.5.3:8:5
+MERGED from com.android.support:support-v4:21.0.3:15:5
 	android:targetSdkVersion
 		ADDED from AndroidManifest.xml:12:9
 		INJECTED from AndroidManifest.xml:0:0
@@ -40,6 +41,7 @@ application
 ADDED from AndroidManifest.xml:14:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 MERGED from com.android.support:appcompat-v7:21.0.0:16:5
+MERGED from com.android.support:support-v4:21.0.3:16:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 	android:label
 		ADDED from AndroidManifest.xml:17:9

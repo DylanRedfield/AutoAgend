@@ -61,32 +61,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5085302">
       <split-first>
         <leaf>
-          <file leaf-file-name="AddAssignmentActivity.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AddAssignmentActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4267">
-                  <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#2961#4130#0" expanded="true" />
-                    <element signature="e#3358#3977#0" expanded="true" />
-                    <element signature="e#3950#3951#0" expanded="true" />
-                    <element signature="e#4119#4120#0" expanded="true" />
-                    <element signature="e#4248#5401#0" expanded="true" />
-                    <element signature="e#4640#5244#0" expanded="true" />
-                    <element signature="e#5217#5218#0" expanded="true" />
-                    <element signature="e#5390#5391#0" expanded="true" />
-                    <element signature="e#5475#5476#0" expanded="true" />
-                    <element signature="e#5507#5508#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="AddAssignmentHomeActivity.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AddAssignmentHomeActivity.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1292" max-vertical-offset="5083">
-                  <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5083">
+                  <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
                   <folding>
                     <element signature="e#3548#4167#0" expanded="true" />
                     <element signature="e#4140#4141#0" expanded="true" />
@@ -97,38 +76,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="NewClassActivity.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/NewClassActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1411" max-vertical-offset="3553">
-                  <caret line="151" column="75" selection-start-line="151" selection-start-column="75" selection-end-line="151" selection-end-column="75" />
-                  <folding>
-                    <element signature="e#4167#4787#0" expanded="true" />
-                    <element signature="e#4760#4761#0" expanded="true" />
-                    <element signature="e#4949#6060#0" expanded="true" />
-                    <element signature="e#5340#5945#0" expanded="true" />
-                    <element signature="e#5918#5919#0" expanded="true" />
-                    <element signature="e#6049#6050#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="EditClassInfoActivity.java" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditClassInfoActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.0309407" vertical-offset="0" max-vertical-offset="3230">
-                  <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="EditAssignmentInfoActivity.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="EditAssignmentInfoActivity.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditAssignmentInfoActivity.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="3417">
-                  <caret line="118" column="86" selection-start-line="118" selection-start-column="86" selection-end-line="118" selection-end-column="86" />
+                <state vertical-scroll-proportion="0.76981133" vertical-offset="1037" max-vertical-offset="3927">
+                  <caret line="135" column="67" selection-start-line="135" selection-start-column="67" selection-end-line="135" selection-end-column="67" />
                   <folding />
                 </state>
               </provider>
@@ -138,11 +90,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="styles.xml" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="styles.xml" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
-                  <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+                <state vertical-scroll-proportion="0.7056604" vertical-offset="0" max-vertical-offset="795">
+                  <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -158,10 +110,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="colors.xml" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="colors.xml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.31559405" vertical-offset="0" max-vertical-offset="808">
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
                   <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
                   <folding />
                 </state>
@@ -1453,16 +1405,16 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AssignmentActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditAssignmentInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/ImageFullScreenActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/ClassActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_assignment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AddAssignmentActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AddAssignmentHomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/NewClassActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditClassInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AddAssignmentActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditClassInfoActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditAssignmentInfoActivity.java" />
       </list>
     </option>
   </component>
@@ -2110,7 +2062,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2132,7 +2084,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18763326" sideWeight="0.4991511" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18763326" sideWeight="0.4991511" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08839191" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23642172" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2513,34 +2465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AddAssignmentHomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1292" max-vertical-offset="5083">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-          <folding>
-            <element signature="e#3548#4167#0" expanded="true" />
-            <element signature="e#4140#4141#0" expanded="true" />
-            <element signature="e#4761#5365#0" expanded="true" />
-            <element signature="e#5338#5339#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/NewClassActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1411" max-vertical-offset="3553">
-          <caret line="151" column="75" selection-start-line="151" selection-start-column="75" selection-end-line="151" selection-end-column="75" />
-          <folding>
-            <element signature="e#4167#4787#0" expanded="true" />
-            <element signature="e#4760#4761#0" expanded="true" />
-            <element signature="e#4949#6060#0" expanded="true" />
-            <element signature="e#5340#5945#0" expanded="true" />
-            <element signature="e#5918#5919#0" expanded="true" />
-            <element signature="e#6049#6050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_assignment.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.9259257" vertical-offset="0" max-vertical-offset="1581">
@@ -2550,14 +2474,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
-          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
@@ -2581,16 +2497,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31559405" vertical-offset="0" max-vertical-offset="808">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
           <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7056604" vertical-offset="0" max-vertical-offset="795">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AddAssignmentActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4267">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="4267">
+          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
           <folding>
             <element signature="e#2961#4130#0" expanded="true" />
             <element signature="e#3358#3977#0" expanded="true" />
@@ -2606,18 +2530,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditAssignmentInfoActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditClassInfoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="3417">
-          <caret line="118" column="86" selection-start-line="118" selection-start-column="86" selection-end-line="118" selection-end-column="86" />
-          <folding />
+        <state vertical-scroll-proportion="1.0264151" vertical-offset="306" max-vertical-offset="3859">
+          <caret line="92" column="68" selection-start-line="92" selection-start-column="68" selection-end-line="92" selection-end-column="68" />
+          <folding>
+            <element signature="e#3358#3970#0" expanded="true" />
+            <element signature="e#3943#3944#0" expanded="true" />
+            <element signature="e#4520#5117#0" expanded="true" />
+            <element signature="e#5090#5091#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditClassInfoActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/NewClassActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0309407" vertical-offset="0" max-vertical-offset="3230">
-          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.4490566" vertical-offset="0" max-vertical-offset="3553">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+          <folding>
+            <element signature="e#4167#4787#0" expanded="true" />
+            <element signature="e#4760#4761#0" expanded="true" />
+            <element signature="e#4949#6060#0" expanded="true" />
+            <element signature="e#5340#5945#0" expanded="true" />
+            <element signature="e#5918#5919#0" expanded="true" />
+            <element signature="e#6049#6050#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/AddAssignmentHomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5083">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+          <folding>
+            <element signature="e#3548#4167#0" expanded="true" />
+            <element signature="e#4140#4141#0" expanded="true" />
+            <element signature="e#4761#5365#0" expanded="true" />
+            <element signature="e#5338#5339#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dylanredfield/agendaapp/EditAssignmentInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76981133" vertical-offset="1037" max-vertical-offset="3927">
+          <caret line="135" column="67" selection-start-line="135" selection-start-column="67" selection-end-line="135" selection-end-column="67" />
           <folding />
         </state>
       </provider>

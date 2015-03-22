@@ -87,7 +87,8 @@ public class AssignmentActivity extends ActionBarActivity {
     public void setBars() {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
-        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
+                .getColor(R.color.primary_color)));
         mActionBar.setTitle(mClassList.get(indexClass).getClassName());
 
         // if able to sets statusbar to dark red
@@ -95,7 +96,7 @@ public class AssignmentActivity extends ActionBarActivity {
             mWindow = this.getWindow();
             mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
         }
     }
 

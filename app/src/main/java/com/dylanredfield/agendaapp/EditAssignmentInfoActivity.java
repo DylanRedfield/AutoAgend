@@ -41,7 +41,10 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
     private EditText mDateAssigned;
     private Calendar mAssignedTime;
     private Calendar mDueTime;
+    private Calendar c;
     private android.support.v7.app.ActionBar mActionBar;
+
+    private String myFormat = "MM/dd/yy";
     private Window mWindow;
     private ArrayList<SchoolClass> mList;
 
@@ -54,6 +57,7 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
         mAssignmentIndex = getIntent().getIntExtra(
                 ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, 0);
         mList = ClassList.getInstance(getApplicationContext()).getList();
+        c = Calendar.getInstance();
 
         mTitleEditText = (EditText) findViewById(R.id.edittext_title);
         mDescriptionEditText = (EditText) findViewById(R.id.edittext_description);
@@ -89,15 +93,51 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
         mDateAssigned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getFragmentManager(), ASSIGNED_TAG);
+                //DialogFragment newFragment = new DatePickerFragment();
+                //newFragment.show(getFragmentManager(), ASSIGNED_TAG);
+                DatePickerDialog dpd = new DatePickerDialog(EditAssignmentInfoActivity.this,
+                        R.style.StyledDialog,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                c.set(year, monthOfYear, dayOfMonth);
+
+
+                                mAssignedTime = c;
+
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
+                            }
+                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                        c.get(Calendar.DAY_OF_MONTH));
+                dpd.show();
             }
         });
         mEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getFragmentManager(), DUE_TAG);
+                //DialogFragment newFragment = new DatePickerFragment();
+                //newFragment.show(getFragmentManager(), DUE_TAG);
+                DatePickerDialog dpd = new DatePickerDialog(EditAssignmentInfoActivity.this,
+                        R.style.StyledDialog,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                c.set(year, monthOfYear, dayOfMonth);
+
+
+                                mDueTime = c;
+
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                mEndTime.setText(sdf.format(mDueTime.getTime()));
+                            }
+                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                        c.get(Calendar.DAY_OF_MONTH));
+                dpd.show();
             }
         });
     }
@@ -107,7 +147,7 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().
-                getColor(R.color.red_500)));
+                getColor(R.color.primary_color)));
         mActionBar.setTitle(mList.get(classIndex).getClassName());
 
 
@@ -116,7 +156,7 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
             mWindow = this.getWindow();
             mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
         }
     }
 

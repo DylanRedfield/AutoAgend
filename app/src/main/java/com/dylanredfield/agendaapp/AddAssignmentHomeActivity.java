@@ -35,6 +35,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AddAssignmentHomeActivity extends ActionBarActivity {
+    public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
+    public static final String DUE_TAG = "DUE_TAG";
     private EditText mTitle;
     private EditText mDescription;
     private EditText mDateAssignedPicker;
@@ -43,6 +45,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     private Button mEnterButton;
     private Calendar mAssignedDate;
     private Calendar mDueDate;
+    private Calendar c;
     private Calendar time;
     private Context mContext;
     private Activity a;
@@ -51,8 +54,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     private ActionBar mActionBar;
     private ArrayList<SchoolClass> mClassList;
     private Window mWindow;
-    public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
-    public static final String DUE_TAG = "DUE_TAG";
+    private String myFormat = "MM/dd/yy";
     // get value from index from parent class
     private int index;
 
@@ -62,6 +64,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
 
         // Class index
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+        c = Calendar.getInstance();
 
         // Needs location of picture in order to make class
         mFileLocation = getIntent().getStringExtra("TEST");
@@ -102,16 +105,52 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getFragmentManager(), ASSIGNED_TAG);
+                //DialogFragment newFragment = new DatePickerFragment();
+                //newFragment.show(getFragmentManager(), ASSIGNED_TAG);
+                DatePickerDialog dpd = new DatePickerDialog(AddAssignmentHomeActivity.this,
+                        R.style.StyledDialog,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                c.set(year, monthOfYear, dayOfMonth);
+
+
+                                mAssignedDate = c;
+
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                mDateAssignedPicker.setText(sdf.format(mAssignedDate.getTime()));
+                            }
+                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                        c.get(Calendar.DAY_OF_MONTH));
+                dpd.show();
             }
         });
         mDateDuePicker.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getFragmentManager(), DUE_TAG);
+                //DialogFragment newFragment = new DatePickerFragment();
+                //newFragment.show(getFragmentManager(), DUE_TAG);
+                DatePickerDialog dpd = new DatePickerDialog(AddAssignmentHomeActivity.this,
+                        R.style.StyledDialog,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                c.set(year, monthOfYear, dayOfMonth);
+
+
+                                mDueDate = c;
+
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                mDateDuePicker.setText(sdf.format(mDueDate.getTime()));
+                            }
+                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
+                        c.get(Calendar.DAY_OF_MONTH) + 1);
+                dpd.show();
             }
         });
         mClassSelector.setOnClickListener(new View.OnClickListener() {
@@ -158,15 +197,14 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                         + mList.get(a).getStartTime().get(Calendar.MINUTE);
                 endMinutes = mList.get(a).getEndTime().get(Calendar.HOUR_OF_DAY) * 60
                         + mList.get(a).getEndTime().get(Calendar.MINUTE);
-                if(currentMintues > startMinutes && currentMintues < endMinutes) {
+                if (currentMintues >= startMinutes && currentMintues <= endMinutes) {
                     index = a;
                     updateClassEditText();
+                } else {
+                    Log.d("test1", "Current time: " + currentMintues
+                            + "\n Start Time: " + startMinutes
+                            + "\n End Time: " + endMinutes);
                 }
-                else {
-                Log.d("test1", "Current time: " + currentMintues
-                        + "\n Start Time: " + startMinutes
-                        + "\n End Time: " + endMinutes);
-            }
             }
 /*            if (mList.get(a).getStartTime() != null && mList.get(a).getEndTime() != null &&
                     time.after(mList.get(a).getStartTime().getTime()) && time.before(mList.get(a)
@@ -186,14 +224,15 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     public void setBars() {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
-        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.red_500)));
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
+                .getColor(R.color.primary_color)));
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
             mWindow = this.getWindow();
             mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
         }
     }
 

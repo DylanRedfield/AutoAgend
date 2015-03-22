@@ -39,6 +39,8 @@ public class EditClassInfoActivity extends ActionBarActivity {
     private Calendar mDueTime;
     private ActionBar mActionBar;
     private Window mWindow;
+    private String myFormat = "h:mm a";
+    private Calendar c;
     private ArrayList<SchoolClass> mList;
 
     @Override
@@ -56,6 +58,7 @@ public class EditClassInfoActivity extends ActionBarActivity {
         mPeriod = (EditText) findViewById(R.id.edittext_period);
         mAssignedTime = mList.get(classIndex).getStartTime();
         mDueTime = mList.get(classIndex).getEndTime();
+        c = Calendar.getInstance();
 
         setEditText();
         setListeners();
@@ -65,8 +68,13 @@ public class EditClassInfoActivity extends ActionBarActivity {
     public void setEditText() {
         mTitleEditText.setText(mList.get(classIndex).getClassName());
         mDescriptionEditText.setText(mList.get(classIndex).getDescription());
-        mDateAssigned.setText(calanderToString(mList.get(classIndex).getStartTime()));
-        mEndTime.setText(calanderToString(mList.get(classIndex).getEndTime()));
+        if (mList.get(classIndex).getStartTime() != null) {
+            mDateAssigned.setText(calanderToString(mList.get(classIndex).getStartTime()));
+        }
+
+        if (mList.get(classIndex).getEndTime() != null) {
+            mEndTime.setText(calanderToString(mList.get(classIndex).getEndTime()));
+        }
         mPeriod.setText("" + mList.get(classIndex).getPeriod());
     }
 
@@ -74,15 +82,49 @@ public class EditClassInfoActivity extends ActionBarActivity {
         mDateAssigned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getFragmentManager(), ASSIGNED_TIME_TAG);
+                //DialogFragment newFragment = new TimePickerFragment();
+                //newFragment.show(getFragmentManager(), ASSIGNED_TIME_TAG);
+                TimePickerDialog dpd = new TimePickerDialog(EditClassInfoActivity.this,
+                        R.style.StyledDialog,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                c.set(Calendar.MINUTE, minute);
+
+                                mAssignedTime = c;
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
+
+                            }
+                        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+
+                dpd.show();
             }
         });
         mEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getFragmentManager(), DUE_TIME_TAG);
+                //DialogFragment newFragment = new TimePickerFragment();
+                //newFragment.show(getFragmentManager(), DUE_TIME_TAG);
+                TimePickerDialog dpd = new TimePickerDialog(EditClassInfoActivity.this,
+                        R.style.StyledDialog,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                c.set(Calendar.MINUTE, minute);
+
+                                mDueTime = c;
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                mEndTime.setText(sdf.format(mDueTime.getTime()));
+
+                            }
+                        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+
+                dpd.show();
             }
         });
     }
@@ -92,7 +134,7 @@ public class EditClassInfoActivity extends ActionBarActivity {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().
-                getColor(R.color.red_500)));
+                getColor(R.color.primary_color)));
         mActionBar.setTitle(mList.get(classIndex).getClassName());
 
 
@@ -101,7 +143,7 @@ public class EditClassInfoActivity extends ActionBarActivity {
             mWindow = this.getWindow();
             mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
         }
     }
 

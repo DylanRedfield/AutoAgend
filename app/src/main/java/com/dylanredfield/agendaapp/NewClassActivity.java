@@ -28,22 +28,24 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class NewClassActivity extends ActionBarActivity {
+    public static final String ASSIGNED_TIME_TAG = "ASSIGNED_TIME_TAG";
+    public static final String DUE_TIME_TAG = "DUE_TIME_TAG";
+    String mTitleString;
+    int period;
     private EditText mTitle;
     private EditText mDescription;
     private EditText mPeriod;
     private EditText mTimeAssignedSelector;
     private EditText mTimeDueSelector;
     private Calendar mAssignedTime;
+    private Calendar c;
     private Calendar mDueTime;
     private Button mEnter;
     private ActionBar mActionBar;
     private ArrayList<SchoolClass> mClassList;
     private Window mWindow;
-    public static final String ASSIGNED_TIME_TAG = "ASSIGNED_TIME_TAG";
-    public static final String DUE_TIME_TAG = "DUE_TIME_TAG";
-
-    String mTitleString;
-    int period;
+    private String myFormat = "h:mm a";
+    private String mFileLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class NewClassActivity extends ActionBarActivity {
         mPeriod = (EditText) findViewById(R.id.edittext_period);
         mTimeAssignedSelector = (EditText) findViewById(R.id.timepicker_assigned);
         mTimeDueSelector = (EditText) findViewById(R.id.timepicker_due);
+
+        c = Calendar.getInstance();
 
         setBars();
         setListeners();
@@ -108,15 +112,49 @@ public class NewClassActivity extends ActionBarActivity {
         mTimeAssignedSelector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getFragmentManager(), ASSIGNED_TIME_TAG);
+                //DialogFragment newFragment = new TimePickerFragment();
+                //newFragment.show(getFragmentManager(), ASSIGNED_TIME_TAG);
+                TimePickerDialog dpd = new TimePickerDialog(NewClassActivity.this,
+                        R.style.StyledDialog,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                c.set(Calendar.MINUTE, minute);
+
+                                mAssignedTime = c;
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                mTimeAssignedSelector.setText(sdf.format(mAssignedTime.getTime()));
+
+                            }
+                        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+
+                dpd.show();
             }
         });
         mTimeDueSelector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getFragmentManager(), DUE_TIME_TAG);
+                //DialogFragment newFragment = new TimePickerFragment();
+                //newFragment.show(getFragmentManager(), DUE_TIME_TAG);
+                TimePickerDialog dpd = new TimePickerDialog(NewClassActivity.this,
+                        R.style.StyledDialog,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                c.set(Calendar.MINUTE, minute);
+
+                                mDueTime = c;
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                mTimeDueSelector.setText(sdf.format(mDueTime.getTime()));
+
+                            }
+                        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+
+                dpd.show();
             }
         });
     }
@@ -126,14 +164,14 @@ public class NewClassActivity extends ActionBarActivity {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
-                .getColor(R.color.red_500)));
+                .getColor(R.color.primary_color)));
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
             mWindow = this.getWindow();
             mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            mWindow.setStatusBarColor(this.getResources().getColor(R.color.red_700));
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
         }
     }
 
@@ -145,6 +183,17 @@ public class NewClassActivity extends ActionBarActivity {
         DatabaseHandler.getInstance(getApplicationContext()).addAllClasses(
                 mClassList);
 
+    }
+
+    public void updateEditText(String tag) {
+        String myFormat = "h:mm a";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        if (mAssignedTime != null && tag.equals(ASSIGNED_TIME_TAG)) {
+            mTimeAssignedSelector.setText(sdf.format(mAssignedTime.getTime()));
+        }
+        if (mDueTime != null && tag.equals(DUE_TIME_TAG)) {
+            mTimeDueSelector.setText(sdf.format(mDueTime.getTime()));
+        }
     }
 
     public class TimePickerFragment extends DialogFragment
@@ -177,16 +226,6 @@ public class NewClassActivity extends ActionBarActivity {
                 mDueTime = c;
             }
             updateEditText(getTag());
-        }
-    }
-    public void updateEditText(String tag) {
-        String myFormat = "h:mm a";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        if (mAssignedTime != null && tag.equals(ASSIGNED_TIME_TAG)) {
-            mTimeAssignedSelector.setText(sdf.format(mAssignedTime.getTime()));
-        }
-        if (mDueTime != null && tag.equals(DUE_TIME_TAG)) {
-            mTimeDueSelector.setText(sdf.format(mDueTime.getTime()));
         }
     }
 }
