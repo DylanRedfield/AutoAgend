@@ -3,5 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="default_pit">1</string>
+    <string name="default_pit">0</string>
+    <string name="player_one">Player One</string>
+    <string name="player_two">Player Two</string>
+    <string name="turn_error">It is not your turn!</string>
 </resources>
