@@ -1,5 +1,6 @@
 <resources>
 
+<<<<<<< HEAD
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -33,4 +34,11 @@
         <item name="android:colorAccent">@color/accent_color_picker</item>
 
     </style>
+=======
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+>>>>>>> 5b65b7e689eded0ae5a37c88988d0313353f0269
 </resources>
