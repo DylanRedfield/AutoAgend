@@ -4,4 +4,4 @@
     <item
         android:id="@+id/delete_assignment"
         android:title="@string/menu_delete"/>
-</menu><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/assignment_context.xml -->
+</menu><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/assignment_context.xml -->

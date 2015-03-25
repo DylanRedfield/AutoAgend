@@ -63,15 +63,6 @@ public class AssignmentActivity extends ActionBarActivity {
         mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
     }
 
-    public void makeListView(ListView listView, ArrayAdapter<String> adapter,
-                             ArrayList<String> list) {
-
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, list);
-
-        listView.setAdapter(adapter);
-    }
-
     // Method with android:onClick attribute in XML
     public void onTextViewClick(View view) {
         Intent i = new Intent(getApplicationContext(), ImageFullScreenActivity.class);

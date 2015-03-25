@@ -40,21 +40,17 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ClassActivity extends ActionBarActivity {
-    private ListView mClassInfoListView;
     private ListView mAssignmentsListView;
-    private ArrayAdapter<String> mClassInfoAdapter;
-    private AssignmentAdapter mAssignmentsAdapter;
     private ActionButton mButtonClass;
     private ActionButton mButtonPicture;
     private ActionButton mButtonText;
     private String mCurrentPhotoPath;
     private boolean showFlag;
-    private int index;
-    private ActionBar mActionBar;
-    private Window mWindow;
+    private int mClassIndex;
     private ArrayList<SchoolClass> mClassList;
     public static int REQUEST_IMAGE_CAPTURE_CLASS = 2;
-    public static String EXTRA_INT_ASSIGNMENT_POSTITION = "com.dylanredfield.agendaapp.int_assignment_position";
+    public static String EXTRA_INT_ASSIGNMENT_POSTITION =
+            "com.dylanredfield.agendaapp.int_assignment_position";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +62,8 @@ public class ClassActivity extends ActionBarActivity {
         setContentView(R.layout.activity_class);
 
         mClassList = ClassList.getInstance(getApplicationContext()).getList();
-        // Gets index extra of class
-        index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+
+        mClassIndex = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
 
         // Creates AssignmentAdapter, ect
         instaniateAssignmentAdapter();
@@ -77,25 +73,23 @@ public class ClassActivity extends ActionBarActivity {
         declareActionButtons();
 
 
-        // Adds all listeners
         setListeners();
 
         // Sets statusbar and actionbar
         setBars();
 
         // Registers for context menu for Assignments
-        // TODO make/rename to add context menu for InfoList
         registerForContextMenu(mAssignmentsListView);
     }
 
     public void instaniateAssignmentAdapter() {
         mAssignmentsListView = (ListView) findViewById(R.id.assignments_list);
-        mClassList.get(index)
+        mClassList.get(mClassIndex)
                 .sortAssignmentsByCompleted();
-        mAssignmentsAdapter = new AssignmentAdapter(getApplicationContext(),
+        AssignmentAdapter mAssignmentsAdapter = new AssignmentAdapter(getApplicationContext(),
                 android.R.layout.simple_list_item_1, android.R.id.text1,
                 mClassList
-                        .get(index).getAssignments());
+                        .get(mClassIndex).getAssignments());
         mAssignmentsListView.setAdapter(mAssignmentsAdapter);
         mAssignmentsListView.setEmptyView(findViewById(R.id.empty_list));
     }
@@ -159,7 +153,7 @@ public class ClassActivity extends ActionBarActivity {
                 // intent to NewClassActivity
                 Intent i = new Intent(getApplicationContext(),
                         AddAssignmentActivity.class);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                i.putExtra(MainActivity.EXTRA_INT_POSTITION, mClassIndex);
                 startActivity(i);
             }
         });
@@ -174,7 +168,7 @@ public class ClassActivity extends ActionBarActivity {
                 Intent i = new Intent(getApplicationContext(),
                         AssignmentActivity.class);
                 i.putExtra(EXTRA_INT_ASSIGNMENT_POSTITION, position);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                i.putExtra(MainActivity.EXTRA_INT_POSTITION, mClassIndex);
                 startActivity(i);
 
             }
@@ -184,18 +178,18 @@ public class ClassActivity extends ActionBarActivity {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setBars() {
         // Changes ActionBar color
-        mActionBar = getSupportActionBar();
-        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources()
                 .getColor(R.color.primary_color)));
-        mActionBar.setTitle(mClassList
-                .get(index).getClassName());
+        actionBar.setTitle(mClassList
+                .get(mClassIndex).getClassName());
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
-            mWindow = this.getWindow();
-            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            mWindow.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
         }
     }
 
@@ -233,7 +227,7 @@ public class ClassActivity extends ActionBarActivity {
             Intent i = new Intent(getApplicationContext(), AddAssignmentActivity.class);
 
             i.putExtra("TEST", mCurrentPhotoPath);
-            i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+            i.putExtra(MainActivity.EXTRA_INT_POSTITION, mClassIndex);
             startActivity(i);
         }
     }
@@ -255,11 +249,11 @@ public class ClassActivity extends ActionBarActivity {
 
         // recreates adapters to update them
         // TODO check to see if bundle is better for this
-        index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+        mClassIndex = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
         /*
          * mClassInfoListView = (ListView) findViewById(R.id.classinfo_list);
 		 * makeListView(mClassInfoListView, mClassInfoAdapter, ClassList
-		 * .getInstance(getApplicationContext()).getList().get(index)
+		 * .getInstance(getApplicationContext()).getList().get(mClassIndex)
 		 * .makeList());
 		 */
         instaniateAssignmentAdapter();
@@ -270,15 +264,6 @@ public class ClassActivity extends ActionBarActivity {
 
         setBars();
 
-    }
-
-    public void makeListView(ListView listView, ArrayAdapter<String> adapter,
-                             ArrayList<String> list) {
-
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, list);
-
-        listView.setAdapter(adapter);
     }
 
     @Override
@@ -310,7 +295,7 @@ public class ClassActivity extends ActionBarActivity {
     public void emptyPress(View v) {
         Intent i = new Intent(getApplicationContext(),
                 AddAssignmentActivity.class);
-        i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+        i.putExtra(MainActivity.EXTRA_INT_POSTITION, mClassIndex);
 
         startActivity(i);
     }
@@ -324,7 +309,7 @@ public class ClassActivity extends ActionBarActivity {
             // delete assignment
             case R.id.delete_assignment:
 
-                mClassList.get(index)
+                mClassList.get(mClassIndex)
                         .getAssignments().remove(info.position);
                 // Reinstaniate the list
                 instaniateAssignmentAdapter();
@@ -382,7 +367,7 @@ public class ClassActivity extends ActionBarActivity {
                 public void onClick(View v) {
                     // Sets coresponding mCompleted to if the box is checked
                     mClassList
-                            .get(index).getAssignments().get((int) v.getTag())
+                            .get(mClassIndex).getAssignments().get((int) v.getTag())
                             .setCompleted(((CheckBox) v).isChecked());
 
                     updateDatabase();
@@ -422,7 +407,7 @@ public class ClassActivity extends ActionBarActivity {
             case R.id.action_settings:
                 Intent i = new Intent(getApplicationContext(),
                         EditClassInfoActivity.class);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                i.putExtra(MainActivity.EXTRA_INT_POSTITION, mClassIndex);
                 startActivity(i);
 
                 return true;

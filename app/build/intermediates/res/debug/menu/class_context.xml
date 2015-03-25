@@ -7,4 +7,4 @@
     <item
         android:id="@+id/rename_class"
         android:title="@string/menu_rename"/>
-</menu><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/class_context.xml -->
+</menu><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/class_context.xml -->

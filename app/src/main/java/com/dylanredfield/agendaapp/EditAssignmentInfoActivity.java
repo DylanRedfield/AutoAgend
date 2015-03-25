@@ -1,10 +1,7 @@
 package com.dylanredfield.agendaapp;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,26 +23,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-/**
- * Created by dylan_000 on 3/19/2015.
- */
 public class EditAssignmentInfoActivity extends ActionBarActivity {
-    public static final String ASSIGNED_TAG = "ASSIGNED_TAG";
-    public static final String DUE_TAG = "DUE_TAG";
-    private int classIndex;
+    private int mClassIndex;
     private int mAssignmentIndex;
     private EditText mTitleEditText;
     private EditText mDescriptionEditText;
     private EditText mEndTime;
-    private EditText mPeriod;
     private EditText mDateAssigned;
     private Calendar mAssignedTime;
     private Calendar mDueTime;
-    private Calendar c;
-    private android.support.v7.app.ActionBar mActionBar;
+    private Calendar mDialogCalander;
 
-    private String myFormat = "MM/dd/yy";
-    private Window mWindow;
+    private String mFormat = "MM/dd/yy";
     private ArrayList<SchoolClass> mList;
 
     @Override
@@ -53,38 +42,42 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
         super.onCreate(b);
         setContentView(R.layout.activity_edit_assignment_info);
 
-        classIndex = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+        mClassIndex = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
         mAssignmentIndex = getIntent().getIntExtra(
                 ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, 0);
         mList = ClassList.getInstance(getApplicationContext()).getList();
-        c = Calendar.getInstance();
+        mDialogCalander = Calendar.getInstance();
 
-        mTitleEditText = (EditText) findViewById(R.id.edittext_title);
-        mDescriptionEditText = (EditText) findViewById(R.id.edittext_description);
-        mDateAssigned = (EditText) findViewById(R.id.date_assigned_picker);
-        mEndTime = (EditText) findViewById(R.id.date_due_picker);
-        mAssignedTime = mList.get(classIndex).getAssignments().get(mAssignmentIndex)
+
+        mAssignedTime = mList.get(mClassIndex).getAssignments().get(mAssignmentIndex)
                 .getDateAssigned();
-        mDueTime = mList.get(classIndex).getAssignments().get(mAssignmentIndex).getDateDue();
+        mDueTime = mList.get(mClassIndex).getAssignments().get(mAssignmentIndex).getDateDue();
 
+        findViewsByIds();
         setEditText();
         setListeners();
         setBars();
     }
 
+    public void findViewsByIds() {
+        mTitleEditText = (EditText) findViewById(R.id.edittext_title);
+        mDescriptionEditText = (EditText) findViewById(R.id.edittext_description);
+        mDateAssigned = (EditText) findViewById(R.id.date_assigned_picker);
+        mEndTime = (EditText) findViewById(R.id.date_due_picker);
+    }
     public void setEditText() {
-        mTitleEditText.setText(mList.get(classIndex).getAssignments().get(mAssignmentIndex)
+        mTitleEditText.setText(mList.get(mClassIndex).getAssignments().get(mAssignmentIndex)
                 .getTitle());
-        mDescriptionEditText.setText(mList.get(classIndex).getAssignments().get(mAssignmentIndex)
+        mDescriptionEditText.setText(mList.get(mClassIndex).getAssignments().get(mAssignmentIndex)
                 .getDescription());
-        if (mList.get(classIndex).getAssignments()
+        if (mList.get(mClassIndex).getAssignments()
                 .get(mAssignmentIndex).getDateAssigned() != null) {
-            mDateAssigned.setText(calanderToString(mList.get(classIndex).getAssignments()
+            mDateAssigned.setText(calanderToString(mList.get(mClassIndex).getAssignments()
                     .get(mAssignmentIndex).getDateAssigned()));
         }
-        if (mList.get(classIndex).getAssignments()
+        if (mList.get(mClassIndex).getAssignments()
                 .get(mAssignmentIndex).getDateDue() != null) {
-            mEndTime.setText(calanderToString(mList.get(classIndex).getAssignments()
+            mEndTime.setText(calanderToString(mList.get(mClassIndex).getAssignments()
                     .get(mAssignmentIndex).getDateDue()));
         }
     }
@@ -102,16 +95,16 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                c.set(year, monthOfYear, dayOfMonth);
+                                mDialogCalander.set(year, monthOfYear, dayOfMonth);
 
 
-                                mAssignedTime = c;
+                                mAssignedTime = mDialogCalander;
 
-                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                SimpleDateFormat sdf = new SimpleDateFormat(mFormat, Locale.US);
                                 mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
                             }
-                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
-                        c.get(Calendar.DAY_OF_MONTH));
+                        }, mDialogCalander.get(Calendar.YEAR), mDialogCalander.get(Calendar.MONTH),
+                        mDialogCalander.get(Calendar.DAY_OF_MONTH));
                 dpd.show();
             }
         });
@@ -127,16 +120,16 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                c.set(year, monthOfYear, dayOfMonth);
+                                mDialogCalander.set(year, monthOfYear, dayOfMonth);
 
 
-                                mDueTime = c;
+                                mDueTime = mDialogCalander;
 
-                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                                SimpleDateFormat sdf = new SimpleDateFormat(mFormat, Locale.US);
                                 mEndTime.setText(sdf.format(mDueTime.getTime()));
                             }
-                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH),
-                        c.get(Calendar.DAY_OF_MONTH));
+                        }, mDialogCalander.get(Calendar.YEAR), mDialogCalander.get(Calendar.MONTH),
+                        mDialogCalander.get(Calendar.DAY_OF_MONTH));
                 dpd.show();
             }
         });
@@ -145,29 +138,29 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setBars() {
         // Changes ActionBar color
-        mActionBar = getSupportActionBar();
-        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().
                 getColor(R.color.primary_color)));
-        mActionBar.setTitle(mList.get(classIndex).getClassName());
+        actionBar.setTitle(mList.get(mClassIndex).getClassName());
 
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
-            mWindow = this.getWindow();
-            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            mWindow.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
         }
     }
 
     public void updateList() {
 
         //Need to copy assignments while making new class
-        String temp = mList.get(classIndex).getAssignments().get(mAssignmentIndex).getFilePath();
+        String temp = mList.get(mClassIndex).getAssignments().get(mAssignmentIndex).getFilePath();
 
         if (!mTitleEditText.getText().toString().equals("")) {
 
-            mList.get(classIndex).getAssignments().set(mAssignmentIndex,
+            mList.get(mClassIndex).getAssignments().set(mAssignmentIndex,
                     new Assignment(mTitleEditText.getText().toString(),
                             mDescriptionEditText.getText().toString(),
                             mAssignedTime,
@@ -217,49 +210,5 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
         return sdf.format(c.getTime());
     }
 
-    public void updateEditText(String tag) {
-        String myFormat = "MM/dd/yy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        if (mAssignedTime != null && tag.equals(ASSIGNED_TAG)) {
-            mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
-        }
-        if (mDueTime != null && tag.equals(DUE_TAG)) {
-            mEndTime.setText(sdf.format(mDueTime.getTime()));
-        }
-    }
 
-    public class DatePickerFragment extends DialogFragment implements
-            DatePickerDialog.OnDateSetListener {
-        Calendar c;
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // If date due set 1 day behind
-            if (getTag().equals(DUE_TAG)) {
-                day++;
-            }
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            // Do something with the date chosen by the user
-            c.set(year, month, day);
-
-            // If assign was tagged set assign ET
-            if (getTag().equals(ASSIGNED_TAG)) {
-                mAssignedTime = c;
-            }
-            if (getTag().equals(DUE_TAG)) {
-                mDueTime = c;
-            }
-            updateEditText(getTag());
-
-        }
-    }
 }
