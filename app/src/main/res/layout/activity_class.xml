@@ -2,32 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <TextView
+<!--    <TextView
         android:id="@+id/assignment_textview"
+        android:textColor="@color/primary_text_default_material_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="@string/assignments"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" /> -->
 
     <ListView
         android:id="@+id/assignments_list"
-        android:layout_below="@id/assignment_textview"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
-    </ListView>
+        android:layout_height="fill_parent"
+></ListView>
 
     <LinearLayout
         android:id="@+id/empty_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/assignment_textview"
-        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="12dp"
         android:onClick="emptyPress"
-        android:visibility="gone" >
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             style="?android:listSeparatorTextViewStyle"
@@ -35,9 +40,11 @@
             android:layout_height="wrap_content"
             android:text="@string/empty_assignment"
             android:textAllCaps="false"
+            android:paddingBottom="8dp"
             android:textSize="20sp"
             android:textStyle="normal" />
     </LinearLayout>
+
     <com.software.shell.fab.ActionButton
         android:id="@+id/action_button"
         android:layout_width="wrap_content"

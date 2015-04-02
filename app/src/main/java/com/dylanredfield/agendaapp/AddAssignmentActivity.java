@@ -2,7 +2,10 @@ package com.dylanredfield.agendaapp;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,11 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.dylanredfield.agendaapp2.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class AddAssignmentActivity extends ActionBarActivity {
     private EditText mDateDuePicker;
     private Calendar mAssignedDate;
     private Calendar mDueDate;
-    private Calendar mDialogCalendar;
     private String mFileLocation;
     private ArrayList<SchoolClass> mClassList;
     private SimpleDateFormat mSimpleDateFormat;
@@ -73,12 +73,15 @@ public class AddAssignmentActivity extends ActionBarActivity {
     public void setListneres() {
 
         // Used to create so Calender variable can be referenced to this
-        mDialogCalendar = Calendar.getInstance();
 
         mDateAssignedPicker.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                mAssignedDate = Calendar.getInstance();
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mTitle.getWindowToken(), 0);
                 DatePickerDialog dpd = new DatePickerDialog(AddAssignmentActivity.this,
                         R.style.StyledDialog,
                         new DatePickerDialog.OnDateSetListener() {
@@ -86,16 +89,22 @@ public class AddAssignmentActivity extends ActionBarActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                mDialogCalendar.set(year, monthOfYear, dayOfMonth);
 
-
-                                mAssignedDate = mDialogCalendar;
+                                mAssignedDate.set(year, monthOfYear, dayOfMonth);
 
                                 // Formats Calender into viewable date
-                                mDateAssignedPicker.setText(mSimpleDateFormat.format(mAssignedDate.getTime()));
+                                mDateAssignedPicker.setText(mSimpleDateFormat
+                                        .format(mAssignedDate.getTime()));
                             }
-                        }, mDialogCalendar.get(Calendar.YEAR), mDialogCalendar.get(Calendar.MONTH),
-                        mDialogCalendar.get(Calendar.DAY_OF_MONTH));
+                        }, mAssignedDate.get(Calendar.YEAR), mAssignedDate.get(Calendar.MONTH),
+                        mAssignedDate.get(Calendar.DAY_OF_MONTH));
+                dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        mAssignedDate = null;
+                        mDateAssignedPicker.setText("");
+                    }
+                });
                 dpd.show();
             }
         });
@@ -104,8 +113,10 @@ public class AddAssignmentActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                //DialogFragment newFragment = new DatePickerFragment();
-                //newFragment.show(getFragmentManager(), DUE_TAG);
+                mDueDate = Calendar.getInstance();
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mTitle.getWindowToken(), 0);
                 DatePickerDialog dpd = new DatePickerDialog(AddAssignmentActivity.this,
                         R.style.StyledDialog,
                         new DatePickerDialog.OnDateSetListener() {
@@ -113,15 +124,22 @@ public class AddAssignmentActivity extends ActionBarActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                mDialogCalendar.set(year, monthOfYear, dayOfMonth);
+                                mDueDate.set(year, monthOfYear, dayOfMonth);
 
-
-                                mDueDate = mDialogCalendar;
-
-                                mDateDuePicker.setText(mSimpleDateFormat.format(mDueDate.getTime()));
+                                mDateDuePicker.setText(mSimpleDateFormat
+                                        .format(mDueDate.getTime()));
                             }
-                        }, mDialogCalendar.get(Calendar.YEAR), mDialogCalendar.get(Calendar.MONTH), //Adds 1 to day as most
-                        mDialogCalendar.get(Calendar.DAY_OF_MONTH) + 1);            //assignments will be 1 day
+                        }, mDueDate.get(Calendar.YEAR), mDueDate.get(Calendar.MONTH),
+                        mDueDate.get(Calendar.DAY_OF_MONTH) + 1);
+                dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        mDueDate = null;
+                        mDateDuePicker.setText("");
+                    }
+                });
+                //Adds 1 to day as most
+                //assignments will be 1 day
                 dpd.show();
             }
         });
@@ -161,9 +179,6 @@ public class AddAssignmentActivity extends ActionBarActivity {
             case R.id.enter_actionbar:
                 // Cant make assignment without mActivityContext title
                 if (!mTitle.getText().toString().equals("")) {
-                    if (mAssignedDate == null) {
-                        mAssignedDate = Calendar.getInstance();
-                    }
                     mClassList
                             .get(mClassIndex)
                             .getAssignments()
@@ -173,8 +188,18 @@ public class AddAssignmentActivity extends ActionBarActivity {
                     updateDatabase();
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Enter mActivityContext title",
-                            Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(
+                            AddAssignmentActivity.this);
+                    builder.setMessage("Enter a Title")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                }
+                            });
+                    builder.setTitle("Missing Information");
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
                 return true;
             default:

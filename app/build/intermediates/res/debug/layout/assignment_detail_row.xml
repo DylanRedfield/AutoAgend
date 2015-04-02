@@ -16,6 +16,7 @@
 
     <TextView
         android:id="@+id/assignment_info"
+        android:textColor="@color/primary_text_default_material_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/assignment_info_label"
@@ -23,4 +24,4 @@
         android:layout_marginStart="8dp"
         android:textSize="20sp" />
 
-</RelativeLayout><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/assignment_detail_row.xml -->
+</RelativeLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/assignment_detail_row.xml -->

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/delete_class"
-        android:title="@string/menu_delete"/>
+        android:id="@+id/edit_class"
+        android:title="@string/edit_class" />
     <item
-        android:id="@+id/rename_class"
-        android:title="@string/menu_rename"/>
-</menu><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/class_context.xml -->
+        android:id="@+id/delete_class"
+        android:title="@string/menu_delete" />
+
+</menu><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/class_context.xml -->

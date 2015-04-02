@@ -3,8 +3,8 @@
     android:id="@+id/test"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:layout_marginRight="12dp"
     android:layout_marginEnd="12dp"
+    android:layout_marginRight="12dp"
     android:orientation="vertical">
 
     <TextView
@@ -15,49 +15,79 @@
         android:layout_marginRight="12dp"
         android:layout_marginTop="20dp"
         android:text="@string/new_class_label"
+        android:textColor="@color/primary_text_default_material_light"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edittext_title"
+    <LinearLayout
+        android:id="@+id/title_assigned_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/label_text"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:gravity="bottom"
-        android:hint="@string/hint_title"
-        android:inputType="textCapWords" />
+        android:layout_marginTop="12dp">
 
-    <EditText
-        android:id="@+id/edittext_description"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/class_name"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edittext_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/hint_title"
+            android:inputType="textCapSentences" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/description_assigned_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edittext_title"
+        android:layout_below="@id/title_assigned_layout"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:gravity="bottom"
-        android:hint="@string/hint_description"
-        android:inputType="text" />
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/teacher"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edittext_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/hint_description"
+            android:inputType="textCapWords" />
+    </LinearLayout>
 
 
     <LinearLayout
         android:id="@+id/timepicker_assigned_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edittext_description"
-        android:layout_marginTop="12dp"
+        android:layout_below="@id/description_assigned_layout"
         android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp">
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="18sp"
-            android:text="@string/class_time_start_text" />
+            android:text="@string/class_time_start_text"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/timepicker_assigned"
@@ -75,16 +105,17 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/timepicker_assigned_layout"
-        android:layout_marginTop="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp">
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="18sp"
-            android:text="@string/class_time_end_text" />
+            android:text="@string/class_time_end_text"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/timepicker_due"
@@ -111,10 +142,12 @@
             android:layout_height="fill_parent"
             android:gravity="bottom"
             android:text="@string/textview_period"
+            android:textColor="@color/primary_text_default_material_light"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edittext_period"
+            android:selectAllOnFocus="true"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="bottom"
@@ -123,4 +156,4 @@
             android:padding="12dp" />
     </LinearLayout>
 
-</RelativeLayout><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_new_class.xml -->
+</RelativeLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_new_class.xml -->

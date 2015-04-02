@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/edit_assignment"
+        android:title="@string/edit_assignment" />
+    <item
         android:id="@+id/delete_assignment"
-        android:title="@string/menu_delete"/>
-</menu><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/assignment_context.xml -->
+        android:title="@string/menu_delete" />
+
+</menu><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/assignment_context.xml -->

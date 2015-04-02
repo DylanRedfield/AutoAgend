@@ -1,24 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lin"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:paddingLeft="12dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"/>
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="wrap_content"
+        android:paddingLeft="8dp"
+        android:layout_height="wrap_content">
         <TextView
-        android:id="@+id/current_assignment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-            android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/class_name_text"
-        android:layout_below="@id/current_assignment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="6dp"
-        android:textSize="20sp"
-        android:layout_gravity="center"/>
+            android:id="@+id/class_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/current_assignment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/class_name_text"/>
+        <TextView
+            android:id="@+id/period_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/current_assignment"/>
 
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

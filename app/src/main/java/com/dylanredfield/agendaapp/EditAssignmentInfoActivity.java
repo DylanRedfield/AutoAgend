@@ -1,7 +1,10 @@
 package com.dylanredfield.agendaapp;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,11 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.dylanredfield.agendaapp2.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class EditAssignmentInfoActivity extends ActionBarActivity {
-    private int mClassIndex;
+    private int classIndex;
     private int mAssignmentIndex;
     private EditText mTitleEditText;
     private EditText mDescriptionEditText;
@@ -32,9 +34,10 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
     private EditText mDateAssigned;
     private Calendar mAssignedTime;
     private Calendar mDueTime;
-    private Calendar mDialogCalander;
+    private android.support.v7.app.ActionBar mActionBar;
 
-    private String mFormat = "MM/dd/yy";
+    private String myFormat = "MM/dd/yy";
+    private Window mWindow;
     private ArrayList<SchoolClass> mList;
 
     @Override
@@ -42,42 +45,39 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
         super.onCreate(b);
         setContentView(R.layout.activity_edit_assignment_info);
 
-        mClassIndex = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+        classIndex = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
         mAssignmentIndex = getIntent().getIntExtra(
                 ClassActivity.EXTRA_INT_ASSIGNMENT_POSTITION, 0);
         mList = ClassList.getInstance(getApplicationContext()).getList();
-        mDialogCalander = Calendar.getInstance();
+        mAssignedTime = Calendar.getInstance();
+        mDueTime = Calendar.getInstance();
 
-
-        mAssignedTime = mList.get(mClassIndex).getAssignments().get(mAssignmentIndex)
+        mTitleEditText = (EditText) findViewById(R.id.edittext_title);
+        mDescriptionEditText = (EditText) findViewById(R.id.edittext_description);
+        mDateAssigned = (EditText) findViewById(R.id.date_assigned_picker);
+        mEndTime = (EditText) findViewById(R.id.date_due_picker);
+        mAssignedTime = mList.get(classIndex).getAssignments().get(mAssignmentIndex)
                 .getDateAssigned();
-        mDueTime = mList.get(mClassIndex).getAssignments().get(mAssignmentIndex).getDateDue();
+        mDueTime = mList.get(classIndex).getAssignments().get(mAssignmentIndex).getDateDue();
 
-        findViewsByIds();
         setEditText();
         setListeners();
         setBars();
     }
 
-    public void findViewsByIds() {
-        mTitleEditText = (EditText) findViewById(R.id.edittext_title);
-        mDescriptionEditText = (EditText) findViewById(R.id.edittext_description);
-        mDateAssigned = (EditText) findViewById(R.id.date_assigned_picker);
-        mEndTime = (EditText) findViewById(R.id.date_due_picker);
-    }
     public void setEditText() {
-        mTitleEditText.setText(mList.get(mClassIndex).getAssignments().get(mAssignmentIndex)
+        mTitleEditText.setText(mList.get(classIndex).getAssignments().get(mAssignmentIndex)
                 .getTitle());
-        mDescriptionEditText.setText(mList.get(mClassIndex).getAssignments().get(mAssignmentIndex)
+        mDescriptionEditText.setText(mList.get(classIndex).getAssignments().get(mAssignmentIndex)
                 .getDescription());
-        if (mList.get(mClassIndex).getAssignments()
+        if (mList.get(classIndex).getAssignments()
                 .get(mAssignmentIndex).getDateAssigned() != null) {
-            mDateAssigned.setText(calanderToString(mList.get(mClassIndex).getAssignments()
+            mDateAssigned.setText(calanderToString(mList.get(classIndex).getAssignments()
                     .get(mAssignmentIndex).getDateAssigned()));
         }
-        if (mList.get(mClassIndex).getAssignments()
+        if (mList.get(classIndex).getAssignments()
                 .get(mAssignmentIndex).getDateDue() != null) {
-            mEndTime.setText(calanderToString(mList.get(mClassIndex).getAssignments()
+            mEndTime.setText(calanderToString(mList.get(classIndex).getAssignments()
                     .get(mAssignmentIndex).getDateDue()));
         }
     }
@@ -88,6 +88,10 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
             public void onClick(View v) {
                 //DialogFragment newFragment = new DatePickerFragment();
                 //newFragment.show(getFragmentManager(), ASSIGNED_TAG);
+                mAssignedTime = Calendar.getInstance();
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mTitleEditText.getWindowToken(), 0);
                 DatePickerDialog dpd = new DatePickerDialog(EditAssignmentInfoActivity.this,
                         R.style.StyledDialog,
                         new DatePickerDialog.OnDateSetListener() {
@@ -95,17 +99,21 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                mDialogCalander.set(year, monthOfYear, dayOfMonth);
+                                mAssignedTime.set(year, monthOfYear, dayOfMonth);
 
-
-                                mAssignedTime = mDialogCalander;
-
-                                SimpleDateFormat sdf = new SimpleDateFormat(mFormat, Locale.US);
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                                 mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
                             }
-                        }, mDialogCalander.get(Calendar.YEAR), mDialogCalander.get(Calendar.MONTH),
-                        mDialogCalander.get(Calendar.DAY_OF_MONTH));
+                        }, mAssignedTime.get(Calendar.YEAR), mAssignedTime.get(Calendar.MONTH),
+                        mAssignedTime.get(Calendar.DAY_OF_MONTH));
                 dpd.show();
+                dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        mAssignedTime = null;
+                        mDateAssigned.setText("");
+                    }
+                });
             }
         });
         mEndTime.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +121,11 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
             public void onClick(View v) {
                 //DialogFragment newFragment = new DatePickerFragment();
                 //newFragment.show(getFragmentManager(), DUE_TAG);
+
+                mDueTime = Calendar.getInstance();
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mTitleEditText.getWindowToken(), 0);
                 DatePickerDialog dpd = new DatePickerDialog(EditAssignmentInfoActivity.this,
                         R.style.StyledDialog,
                         new DatePickerDialog.OnDateSetListener() {
@@ -120,17 +133,21 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                mDialogCalander.set(year, monthOfYear, dayOfMonth);
+                                mDueTime.set(year, monthOfYear, dayOfMonth);
 
-
-                                mDueTime = mDialogCalander;
-
-                                SimpleDateFormat sdf = new SimpleDateFormat(mFormat, Locale.US);
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                                 mEndTime.setText(sdf.format(mDueTime.getTime()));
                             }
-                        }, mDialogCalander.get(Calendar.YEAR), mDialogCalander.get(Calendar.MONTH),
-                        mDialogCalander.get(Calendar.DAY_OF_MONTH));
+                        }, mDueTime.get(Calendar.YEAR), mDueTime.get(Calendar.MONTH),
+                        mDueTime.get(Calendar.DAY_OF_MONTH));
                 dpd.show();
+                dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        mDueTime = null;
+                        mEndTime.setText("");
+                    }
+                });
             }
         });
     }
@@ -138,29 +155,28 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setBars() {
         // Changes ActionBar color
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().
+        mActionBar = getSupportActionBar();
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().
                 getColor(R.color.primary_color)));
-        actionBar.setTitle(mList.get(mClassIndex).getClassName());
+        mActionBar.setTitle(mList.get(classIndex).getClassName());
 
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
+            mWindow = this.getWindow();
+            mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            mWindow.setStatusBarColor(this.getResources().getColor(R.color.dark_primary));
         }
     }
 
     public void updateList() {
 
         //Need to copy assignments while making new class
-        String temp = mList.get(mClassIndex).getAssignments().get(mAssignmentIndex).getFilePath();
+        String temp = mList.get(classIndex).getAssignments().get(mAssignmentIndex).getFilePath();
 
         if (!mTitleEditText.getText().toString().equals("")) {
-
-            mList.get(mClassIndex).getAssignments().set(mAssignmentIndex,
+            mList.get(classIndex).getAssignments().set(mAssignmentIndex,
                     new Assignment(mTitleEditText.getText().toString(),
                             mDescriptionEditText.getText().toString(),
                             mAssignedTime,
@@ -168,7 +184,18 @@ public class EditAssignmentInfoActivity extends ActionBarActivity {
             updateDatabase();
             finish();
         } else {
-            Toast.makeText(getApplicationContext(), "Enter a Title", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(
+                    EditAssignmentInfoActivity.this);
+            builder.setMessage("Enter a Title")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            builder.setTitle("Missing Information");
+            AlertDialog alert = builder.create();
+            alert.show();
         }
     }
 

@@ -11,28 +11,9 @@
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:text="@string/text_new_assignment"
+        android:textColor="@color/primary_text_default_material_light"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/edittext_title"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_margin="12dp"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:hint="@string/hint_assignment_title"
-        android:inputType="textCapWords" />
-
-    <EditText
-        android:id="@+id/edittext_description"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_margin="12dp"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:hint="@string/hint_assignment_description"
-        android:inputType="text" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -44,7 +25,52 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/date_assigned_text" />
+            android:text="@string/assignment_title"
+            android:textColor="@color/primary_text_default_material_light" />
+
+        <EditText
+            android:id="@+id/edittext_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/hint_assignment_title"
+            android:inputType="textCapSentences" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/assignment_description"
+            android:textColor="@color/primary_text_default_material_light" />
+
+        <EditText
+            android:id="@+id/edittext_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/hint_assignment_description"
+            android:inputType="textCapSentences" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/date_assigned_text"
+            android:textColor="@color/primary_text_default_material_light" />
 
         <EditText
             android:id="@+id/date_assigned_picker"
@@ -67,7 +93,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/date_due_text" />
+            android:text="@string/date_due_text"
+            android:textColor="@color/primary_text_default_material_light" />
 
         <EditText
             android:id="@+id/date_due_picker"
@@ -83,6 +110,6 @@
     <TextView
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_weight="4"/>
+        android:layout_weight="5" />
 
 </LinearLayout>

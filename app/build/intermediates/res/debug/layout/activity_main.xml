@@ -10,8 +10,7 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="16dp"></ListView>
+        android:layout_height="fill_parent"></ListView>
 
     <LinearLayout
         android:id="@+id/empty_list"
@@ -22,7 +21,6 @@
         android:layout_marginRight="12dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:onClick="buttonClick"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -68,4 +66,4 @@
         android:layout_marginBottom="8dp"
         android:layout_marginRight="@dimen/fab_margin"
         android:visibility="invisible" />
-</RelativeLayout><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_main.xml -->
+</RelativeLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_main.xml -->

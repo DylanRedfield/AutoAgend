@@ -1,9 +1,10 @@
 package com.dylanredfield.agendaapp;
 
 import android.annotation.TargetApi;
-import android.app.Dialog;
-import android.app.DialogFragment;
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,11 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import com.dylanredfield.agendaapp2.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,8 +27,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class EditClassInfoActivity extends ActionBarActivity {
-    public static final String ASSIGNED_TIME_TAG = "ASSIGNED_TIME_TAG";
-    public static final String DUE_TIME_TAG = "DUE_TIME_TAG";
     private int classIndex;
     private EditText mTitleEditText;
     private EditText mDescriptionEditText;
@@ -40,8 +38,8 @@ public class EditClassInfoActivity extends ActionBarActivity {
     private ActionBar mActionBar;
     private Window mWindow;
     private String myFormat = "h:mm a";
-    private Calendar c;
     private ArrayList<SchoolClass> mList;
+    private boolean dateSet;
 
     @Override
     protected void onCreate(Bundle b) {
@@ -58,7 +56,7 @@ public class EditClassInfoActivity extends ActionBarActivity {
         mPeriod = (EditText) findViewById(R.id.edittext_period);
         mAssignedTime = mList.get(classIndex).getStartTime();
         mDueTime = mList.get(classIndex).getEndTime();
-        c = Calendar.getInstance();
+
 
         setEditText();
         setListeners();
@@ -82,48 +80,77 @@ public class EditClassInfoActivity extends ActionBarActivity {
         mDateAssigned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DialogFragment newFragment = new TimePickerFragment();
-                //newFragment.show(getFragmentManager(), ASSIGNED_TIME_TAG);
+                dateSet = false;
+                mAssignedTime = Calendar.getInstance();
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mTitleEditText.getWindowToken(), 0);
                 TimePickerDialog dpd = new TimePickerDialog(EditClassInfoActivity.this,
                         R.style.StyledDialog,
                         new TimePickerDialog.OnTimeSetListener() {
 
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                                c.set(Calendar.MINUTE, minute);
+                                dateSet = true;
+                                mAssignedTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                mAssignedTime.set(Calendar.MINUTE, minute);
 
-                                mAssignedTime = c;
                                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                                 mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
 
                             }
-                        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+                        }, mAssignedTime.get(Calendar.HOUR_OF_DAY),
+                        mAssignedTime.get(Calendar.MINUTE), false);
+                dpd.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        // Cancel code here
 
+                        if (!dateSet) {
+                            mAssignedTime = null;
+                            mDateAssigned.setText("");
+                        }
+                    }
+
+                });
                 dpd.show();
             }
         });
         mEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DialogFragment newFragment = new TimePickerFragment();
-                //newFragment.show(getFragmentManager(), DUE_TIME_TAG);
+                dateSet = false;
+
+                mDueTime = Calendar.getInstance();
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mTitleEditText.getWindowToken(), 0);
                 TimePickerDialog dpd = new TimePickerDialog(EditClassInfoActivity.this,
                         R.style.StyledDialog,
                         new TimePickerDialog.OnTimeSetListener() {
 
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                                c.set(Calendar.MINUTE, minute);
+                                dateSet = true;
+                                mDueTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                mDueTime.set(Calendar.MINUTE, minute);
 
-                                mDueTime = c;
                                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                                 mEndTime.setText(sdf.format(mDueTime.getTime()));
 
                             }
-                        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+                        }, mDueTime.get(Calendar.HOUR_OF_DAY),
+                        mDueTime.get(Calendar.MINUTE), false);
 
+                dpd.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        if (!dateSet) {
+                            mDueTime = null;
+                            mEndTime.setText("");
+                        }
+                    }
+                });
                 dpd.show();
             }
         });
@@ -150,19 +177,45 @@ public class EditClassInfoActivity extends ActionBarActivity {
     public void updateList() {
 
         //Need to copy assignments while making new class
-        ArrayList<Assignment> temp = new ArrayList<Assignment>();
+        ArrayList<Assignment> temp;
         temp = mList.get(classIndex).getAssignments();
 
         if (!mTitleEditText.getText().toString().equals("")) {
-            mList.set(classIndex, new SchoolClass(mTitleEditText.getText().toString(),
-                    mDescriptionEditText.getText().toString(),
-                    Integer.parseInt(mPeriod.getText().toString()), mAssignedTime, mDueTime));
-            mList.get(classIndex).setAssignments(temp);
-            updateDatabase();
-            finish();
+
+            if (String.valueOf(Integer.parseInt(mPeriod.getText().toString())).length() < 3) {
+                mList.set(classIndex, new SchoolClass(mTitleEditText.getText().toString(),
+                        mDescriptionEditText.getText().toString(),
+                        Integer.parseInt(mPeriod.getText().toString()), mAssignedTime, mDueTime));
+                mList.get(classIndex).setAssignments(temp);
+                updateDatabase();
+                finish();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(
+                        EditClassInfoActivity.this);
+                builder.setMessage("Enter a smaller period")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //do things
+                            }
+                        });
+                builder.setTitle("Period Too Large");
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
         } else {
-            Toast.makeText(getApplicationContext(), "Enter a Class Name", Toast.LENGTH_SHORT)
-                    .show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(
+                    EditClassInfoActivity.this);
+            builder.setMessage("Enter a Title")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            builder.setTitle("Missing Information");
+            AlertDialog alert = builder.create();
+            alert.show();
         }
     }
 
@@ -205,47 +258,4 @@ public class EditClassInfoActivity extends ActionBarActivity {
         return sdf.format(c.getTime());
     }
 
-    public void updateEditText(String tag) {
-        String myFormat = "h:mm a";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        if (mAssignedTime != null && tag.equals(ASSIGNED_TIME_TAG)) {
-            mDateAssigned.setText(sdf.format(mAssignedTime.getTime()));
-        }
-        if (mDueTime != null && tag.equals(DUE_TIME_TAG)) {
-            mEndTime.setText(sdf.format(mDueTime.getTime()));
-        }
-    }
-
-    public class TimePickerFragment extends DialogFragment
-            implements TimePickerDialog.OnTimeSetListener {
-        Calendar c;
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current time as the default values for the picker
-            c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-
-
-            // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute,
-                    false);
-        }
-
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            // Do something with the time chosen by the user
-            c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            c.set(Calendar.MINUTE, minute);
-
-            // If assign was tagged set assign ET
-            if (getTag().equals(ASSIGNED_TIME_TAG)) {
-                mAssignedTime = c;
-            }
-            if (getTag().equals(DUE_TIME_TAG)) {
-                mDueTime = c;
-            }
-            updateEditText(getTag());
-        }
-    }
 }

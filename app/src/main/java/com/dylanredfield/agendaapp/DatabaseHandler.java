@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private Context mAppContext;
     private static DatabaseHandler sInstance;
     // All Static variables
     // Database Version
@@ -34,7 +33,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        mAppContext = context.getApplicationContext();
     }
 
     // Contacts Table Columns names
@@ -51,7 +49,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_SCHOOL_CLASS_TABLE = "CREATE TABLE "
                 + TABLE_SCHOOL_CLASSES + "(" + KEY_PERIOD
-                + " INTEGER PRIMARY KEY," + KEY_START +  " INTEGER," + KEY_END
+                + " INTEGER," + KEY_START +  " INTEGER," + KEY_END
                 + " INTEGER," + KEY_DESCRIPTION + " TEXT,"
                 + KEY_CLASS_NAME + " TEXT," + KEY_ASSIGNMENTS + " TEXT" + ")";
         db.execSQL(CREATE_SCHOOL_CLASS_TABLE);
@@ -68,29 +66,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public void deleteClass(int row) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String whereClause = "_id" + "=?";
-        String[] whereArgs = new String[]{String.valueOf(row)};
-        db.delete(TABLE_SCHOOL_CLASSES, whereClause, whereArgs);
-    }
+
 
     public void deleteAllClasses() {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from " + TABLE_SCHOOL_CLASSES);
-    }
-
-    public void addClass(SchoolClass sc) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        // values.put(KEY_PERIOD, sc.getPeriod());
-        values.put(KEY_CLASS_NAME, sc.getClassName());
-
-        // Inserting Row
-        db.insert(TABLE_SCHOOL_CLASSES, null, values);
-        db.close();
     }
 
     public ArrayList<SchoolClass> getAllClasses() {
@@ -167,22 +148,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public String arrayListToString(ArrayList<Assignment> classList) {
-        // shit dont work, arrayList is comoing in as null?
-        /*
-		 * JSONObject json = new JSONObject(); String arrayList = ""; try {
-		 * Toast.makeText(mAppContext, new JSONArray(classList).toString(),
-		 * Toast.LENGTH_SHORT).show(); JSONArray jsonArray = new JSONArray();
-		 * for (Assignment a : classList) jsonArray.put(a); json.put(KEY_JSON,
-		 * jsonArray);
-		 * 
-		 * Toast.makeText(mAppContext, classList.get(0).toString(),
-		 * Toast.LENGTH_SHORT).show();
-		 * 
-		 * arrayList = json.toString();
-		 * 
-		 * } catch (JSONException e) { // e.printStackTrace(); } return
-		 * arrayList;
-		 */
 
         Gson gson = new Gson();
         return gson.toJson(classList);

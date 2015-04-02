@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.dylanredfield.agendaapp2.R;
 
 import java.util.ArrayList;
 
@@ -46,10 +45,6 @@ public class AssignmentActivity extends ActionBarActivity {
 
         makeListView();
 
-        if (mClassList.get(mIndexClass)
-                .getAssignments().get(mIndexAssignment).getFilePath() != null) {
-
-        }
         setBars();
 
     }
@@ -62,6 +57,7 @@ public class AssignmentActivity extends ActionBarActivity {
                 .get(mIndexClass).getAssignments().get(mIndexAssignment).makeList2());
         mAssignmentInfoList.setAdapter(mAssignmentInfoAdapter);
     }
+
 
     // Method with android:onClick attribute in XML
     public void onTextViewClick(View view) {

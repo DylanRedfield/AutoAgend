@@ -20,20 +20,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.dylanredfield.agendaapp2.R;
-import com.dylanredfield.agendaapp2.R.id;
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.dylanredfield.agendaapp.R.id;
 import com.software.shell.fab.ActionButton;
 
 import java.io.File;
@@ -45,23 +46,19 @@ import java.util.Date;
 
 // TODO Add due date to assignment list
 public class MainActivity extends ActionBarActivity {
+    public static final String EXTRA_INT_POSTITION = "com.dylanredfield.agendaapp.int_postition";
+    public static final int REQUEST_IMAGE_CAPTURE = 1;
+    public static final String FILE_LOCATION_STRING = "FILE_LOCATION";
     private ListView mListView;
     private ActionButton mButtonClass;
-    private ActionButton mButtonCancel;
     private ActionButton mButtonPicture;
     private ActionButton mButtonText;
     private ActionBar mActionBar;
     private Window mWindow;
-    private RelativeLayout mLinearLayout;
     private CustomAdapter adapter;
     private boolean showFlag;
     private String mCurrentPhotoPath;
     private ArrayList<SchoolClass> mClassList;
-    public static final String EXTRA_INT_POSTITION = "com.dylanredfield.agendaapp.int_postition";
-    public int tempInt;
-    public static final int REQUEST_IMAGE_CAPTURE = 1;
-    public static final String BITMAP_STRING = "BIT_MAP_IMAGE";
-    public static final String FILE_LOCATION_STRING = "FILE_LOCATION";
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -69,12 +66,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mClassList = ClassList.getInstance(getApplicationContext()).getList();
+
         // Makes listview that holds classes, sets up adapter, and applies adapter
         makeListView();
 
         // Creates ActionButton for 3 buttons and sets properties
         declareActionButtons();
+
 
         // Adds all listeners for buttons, and items in list
         setListeners();
@@ -90,6 +88,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void makeListView() {
 
+        ClassList.getInstance(getApplicationContext()).sortByPeriod();
+        mClassList = ClassList.getInstance(getApplicationContext()).getList();
         // Creates listview holding mClassList
         mListView = (ListView) findViewById(R.id.list);
         /*
@@ -109,13 +109,13 @@ public class MainActivity extends ActionBarActivity {
         mButtonClass = (ActionButton) findViewById(id.action_button);
 
         // Call to second helper method that sets properties
-        makeActionButton(mButtonClass, R.drawable.ic_note_add_white_36dp);
+        makeActionButton(mButtonClass, R.drawable.ic_file_document_white_36dp);
 
         mButtonPicture = (ActionButton) findViewById(id.action_button_picture);
-        makeActionButton(mButtonPicture, R.drawable.ic_file_image_box_white_48dp);
+        makeActionButton(mButtonPicture, R.drawable.ic_camera_white_36dp);
 
         mButtonText = (ActionButton) findViewById(id.action_button_assignment);
-        makeActionButton(mButtonText, R.drawable.ic_note_add_white_36dp);
+        makeActionButton(mButtonText, R.drawable.ic_file_document_white_36dp);
     }
 
     public ActionButton makeActionButton(ActionButton ab, int drawable) {
@@ -159,6 +159,7 @@ public class MainActivity extends ActionBarActivity {
                     mButtonPicture.setVisibility(View.VISIBLE);
                     mButtonText.setVisibility(View.VISIBLE);
 
+
                     // Changes base button to drawable close
                     mButtonClass.setImageDrawable(getResources()
                             .getDrawable(R.drawable.ic_close_white_48dp));
@@ -169,7 +170,7 @@ public class MainActivity extends ActionBarActivity {
                     mButtonPicture.setVisibility(View.INVISIBLE);
                     mButtonText.setVisibility(View.INVISIBLE);
                     mButtonClass.setImageDrawable(getResources()
-                            .getDrawable(R.drawable.ic_note_add_white_36dp));
+                            .getDrawable(R.drawable.ic_file_document_white_36dp));
                     showFlag = false;
                 }
 
@@ -201,9 +202,18 @@ public class MainActivity extends ActionBarActivity {
                     startActivity(i);
                 } else {
                     // If there was no class forces to add one
-                    Toast.makeText(getApplicationContext(), "Create a class first by clicking " +
-                                    "plus above",
-                            Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(
+                            MainActivity.this);
+                    builder.setMessage("Create a class by clicking the \"+\" above!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                }
+                            });
+                    builder.setTitle("No Class Created");
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
             }
         });
@@ -234,12 +244,6 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    // Is used for xml android:onClick. Used when listView is empty
-    public void buttonClick(View v) {
-        Intent i = new Intent(getApplicationContext(), NewClassActivity.class);
-        startActivity(i);
-    }
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenuInfo menuInfo) {
@@ -252,59 +256,55 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+        final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
                 .getMenuInfo();
         switch (item.getItemId()) {
 
             // Delete class from list
             case R.id.delete_class:
                 // mClassList.getList().remove(info.position);
-                ClassList.getInstance(getApplicationContext()).getList()
-                        .remove(info.position);
-                makeListView();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                updateDatabase();
+                builder.setTitle("Confirm");
+                builder.setMessage("Are you sure?");
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+
+                        ClassList.getInstance(getApplicationContext()).getList()
+                                .remove(info.position);
+                        adapter.notifyDataSetChanged();
+
+                        updateDatabase();
+                        dialog.dismiss();
+                    }
+
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
                 return true;
-            // Rename class
-            case R.id.rename_class:
-                // Makes int the value of index spot
-                tempInt = info.position;
-                userInputDialog("Rename class", "Enter new class name");
-                adapter.notifyDataSetChanged();
-                updateDatabase();
+            case R.id.edit_class:
+                Intent i = new Intent(getApplicationContext(), EditClassInfoActivity.class);
+                i.putExtra(EXTRA_INT_POSTITION, info.position);
+                startActivity(i);
             default:
                 return true;
         }
     }
 
-    public void userInputDialog(String title, String message) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle(title);
-        alert.setMessage(message);
-
-        // Set an EditText view to get user input
-        final EditText input = new EditText(this);
-
-        alert.setView(input);
-
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Uses index spot to change name in array list
-                mClassList.get(tempInt).setClassName(input.getText().toString());
-
-            }
-        });
-
-        alert.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                    }
-                });
-
-        alert.show();
-    }
 
     private void dispatchTakePictureIntent() {
 
@@ -351,16 +351,17 @@ public class MainActivity extends ActionBarActivity {
         super.onResume();
 
         // as the app resumes from any activity update listview
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
-        } else {
+        if (adapter == null) {
             makeListView();
+        } else {
+            adapter.notifyDataSetChanged();
         }
         mButtonPicture.setVisibility(View.INVISIBLE);
         mButtonText.setVisibility(View.INVISIBLE);
         mButtonClass.setImageDrawable(getResources()
-                .getDrawable(R.drawable.ic_note_add_white_36dp));
+                .getDrawable(R.drawable.ic_file_document_white_36dp));
         showFlag = false;
+        updateDatabase();
 
     }
 
@@ -381,58 +382,6 @@ public class MainActivity extends ActionBarActivity {
         super.onDestroy();
 
         updateDatabase();
-
-    }
-
-    // CustomAdapter for ListView
-    public class CustomAdapter extends ArrayAdapter<SchoolClass> {
-
-        private ArrayList<SchoolClass> mList;
-        private TextView titleTextView;
-        private TextView currentAssignment;
-        private String titleString;
-
-        public CustomAdapter(Context context, int resource,
-                             int textViewResourceId, ArrayList<SchoolClass> objects) {
-            super(context, resource, textViewResourceId, objects);
-            mList = objects;
-
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = getLayoutInflater().inflate(R.layout.class_row,
-                        null);
-            }
-            titleTextView = (TextView) convertView
-                    .findViewById(R.id.class_name_text);
-
-            // Set to class name
-            titleString = mList.get(position).getClassName();
-            if(titleString.length() > 20) {
-                titleString = titleString.substring(0, 20) + "...";
-            }
-            titleTextView.setText(titleString);
-
-            currentAssignment = (TextView) convertView
-                    .findViewById(R.id.current_assignment);
-
-            // Sets to ammount of current assignments.
-            // Get assignment String makes sure correct plural is used
-            currentAssignment.setText(getAssignmentString(mList.get(position).getAssignments()
-                    .size()));
-            return convertView;
-
-        }
-
-        private String getAssignmentString(int assignments) {
-            if (assignments == 0 || assignments > 1) {
-                return "" + assignments + " assignments";
-            } else {
-                return "" + assignments + " assignment";
-            }
-        }
 
     }
 
@@ -458,4 +407,104 @@ public class MainActivity extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    // CustomAdapter for ListView
+    public class CustomAdapter extends ArrayAdapter<SchoolClass> {
+
+        private ArrayList<SchoolClass> mList;
+        private TextView titleTextView;
+        private TextView currentAssignment;
+        private TextView period;
+        private String titleString;
+        private TextDrawable textDrawable;
+        private ImageView imageView;
+        private RelativeLayout rel;
+        private ColorGenerator generator;
+        private int color;
+
+        public CustomAdapter(Context context, int resource,
+                             int textViewResourceId, ArrayList<SchoolClass> objects) {
+            super(context, resource, textViewResourceId, objects);
+            mList = objects;
+
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = getLayoutInflater().inflate(R.layout.class_row,
+                        null);
+            }
+            generator = ColorGenerator.DEFAULT;
+
+
+            rel = (RelativeLayout) convertView.findViewById(R.id.relative);
+            titleTextView = (TextView) convertView
+                    .findViewById(R.id.class_name_text);
+
+
+            // Set to class name
+            titleString = mList.get(position).getClassName();
+            if (titleString.length() > 20) {
+                titleString = titleString.substring(0, 20) + "...";
+            }
+            titleTextView.setText(titleString);
+            period = (TextView) convertView.findViewById(R.id.period_text);
+            period.setText("Period " + mList.get(position).getPeriod());
+
+            color = generator.getColor(titleString);
+
+            currentAssignment = (TextView) convertView
+                    .findViewById(R.id.current_assignment);
+
+            // Sets to ammount of current assignments.
+            // Get assignment String makes sure correct plural is used
+            currentAssignment.setText(getAssignmentString(mList.get(position).getAssignments()
+                    .size()));
+
+            imageView = (ImageView) convertView.findViewById(R.id.test);
+            rel.getViewTreeObserver().addOnPreDrawListener(new RelOnPreDrawListener(imageView,
+                    titleString.substring(0, 1), color));
+            return convertView;
+
+        }
+
+        private String getAssignmentString(int assignments) {
+            if (assignments == 0 || assignments > 1) {
+                return "" + assignments + " assignments";
+            } else {
+                return "" + assignments + " assignment";
+            }
+        }
+
+        private class RelOnPreDrawListener implements ViewTreeObserver.OnPreDrawListener {
+            private ImageView imageView;
+            private String character;
+            private int colorSet;
+
+            public RelOnPreDrawListener(ImageView imageView, String s, int c) {
+                this.imageView = imageView;
+                this.character = s;
+                this.colorSet = c;
+            }
+
+            @Override
+            public boolean onPreDraw() {
+                ViewTreeObserver observer = imageView.getViewTreeObserver();
+                if (observer.isAlive()) {
+                    textDrawable = TextDrawable.builder()
+                            .beginConfig()
+                            .height(rel.getHeight() - 5)
+                            .width(rel.getHeight() - 5)
+                            .endConfig()
+                            .buildRoundRect(character, colorSet, 100);
+                    imageView.setImageDrawable(textDrawable);
+                }
+                observer.removeOnPreDrawListener(this);
+                return true;
+            }
+        }
+    }
+
+
 }

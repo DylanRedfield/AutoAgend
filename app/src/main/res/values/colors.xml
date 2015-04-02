@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red_100">#d32f2f</color>
-    <color name="red_500">#d32f2f</color>
-    <color name="red_700">#d50000</color>
-    <color name="red_900">#d50000</color>
+    <color name="dark_primary">#1976D2</color>
+    <color name="primary_color">#2196F3</color>
+    <color name="light_primary_color">#64B5F6</color>
+    <color name="accent_color">#2196F3</color>
 
-
-    <color name="dark_primary">#D84315</color>
-    <color name="primary_color">#FF5722</color>
-    <color name="light_primary_color">#FFCDD2</color>
-    <color name="accent_color">#FF5722</color>
-
-    <color name="dark_primary_picker">#FF8A65</color>
-    <color name="primary_color_picker">#F4511E</color>
-    <color name="accent_color_picker">#FF5722</color>
+    <color name="dark_primary_picker">#64B5F6</color>
+    <color name="primary_color_picker">#1E88E5</color>
+    <color name="accent_color_picker">#2196F3</color>
 </resources>

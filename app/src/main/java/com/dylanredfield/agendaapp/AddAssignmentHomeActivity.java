@@ -2,28 +2,29 @@ package com.dylanredfield.agendaapp;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.dylanredfield.agendaapp2.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,7 +39,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
     private EditText mClassSelector;
     private Calendar mAssignedDate;
     private Calendar mDueDate;
-    private Calendar mDialogCalendar;
     private Activity mActivityContext;
     private ArrayList<SchoolClass> mClassList;
     private String myFormat = "MM/dd/yy";
@@ -55,7 +55,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
         // Needs location of picture in order to make class
         mFileLocation = getIntent().getStringExtra(MainActivity.FILE_LOCATION_STRING);
 
-        mDialogCalendar = Calendar.getInstance();
 
         mClassList = ClassList.getInstance(getApplicationContext()).getList();
 
@@ -86,6 +85,10 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
             public void onClick(View v) {
                 //DialogFragment newFragment = new DatePickerFragment();
                 //newFragment.show(getFragmentManager(), ASSIGNED_TAG);
+                mAssignedDate = Calendar.getInstance();
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mTitle.getWindowToken(), 0);
                 DatePickerDialog dpd = new DatePickerDialog(AddAssignmentHomeActivity.this,
                         R.style.StyledDialog,
                         new DatePickerDialog.OnDateSetListener() {
@@ -93,18 +96,22 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                mDialogCalendar.set(year, monthOfYear, dayOfMonth);
-
-
-                                mAssignedDate = mDialogCalendar;
+                                mAssignedDate.set(year, monthOfYear, dayOfMonth);
 
                                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                                 mDateAssignedPicker.setText(sdf.format(mAssignedDate.getTime()));
                             }
                         },
-                        mDialogCalendar.get(Calendar.YEAR),
-                        mDialogCalendar.get(Calendar.MONTH),
-                        mDialogCalendar.get(Calendar.DAY_OF_MONTH));
+                        mAssignedDate.get(Calendar.YEAR),
+                        mAssignedDate.get(Calendar.MONTH),
+                        mAssignedDate.get(Calendar.DAY_OF_MONTH));
+                dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        mAssignedDate = null;
+                        mDateAssignedPicker.setText("");
+                    }
+                });
                 dpd.show();
             }
         });
@@ -114,6 +121,11 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
             public void onClick(View v) {
                 //DialogFragment newFragment = new DatePickerFragment();
                 //newFragment.show(getFragmentManager(), DUE_TAG);
+                mDueDate = Calendar.getInstance();
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mTitle.getWindowToken(), 0);
+
                 DatePickerDialog dpd = new DatePickerDialog(AddAssignmentHomeActivity.this,
                         R.style.StyledDialog,
                         new DatePickerDialog.OnDateSetListener() {
@@ -121,19 +133,23 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                mDialogCalendar.set(year, monthOfYear, dayOfMonth);
-
-
-                                mDueDate = mDialogCalendar;
+                                mDueDate.set(year, monthOfYear, dayOfMonth);
 
                                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                                 mDateDuePicker.setText(sdf.format(mDueDate.getTime()));
                             }
                         },
-                        mDialogCalendar.get(Calendar.YEAR),
-                        mDialogCalendar.get(Calendar.MONTH),
+                        mDueDate.get(Calendar.YEAR),
+                        mDueDate.get(Calendar.MONTH),
                         // Add 1 because most assignments are due the day after
-                        mDialogCalendar.get(Calendar.DAY_OF_MONTH) + 1);
+                        mDueDate.get(Calendar.DAY_OF_MONTH) + 1);
+                dpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        mDueDate = null;
+                        mDateDuePicker.setText("");
+                    }
+                });
                 dpd.show();
             }
         });
@@ -190,10 +206,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                 if (currentMinutes >= startMinutes && currentMinutes <= endMinutes) {
                     index = a;
                     updateClassEditText();
-                } else {
-                    Log.d("test1", "Current mTimeFrameCalendar: " + currentMinutes
-                            + "\n Start Time: " + startMinutes
-                            + "\n End Time: " + endMinutes);
                 }
             }
         }
@@ -246,9 +258,6 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
             case R.id.enter_actionbar:
                 if (!mTitle.getText().toString().equals("")) {
                     if (!mClassSelector.getText().toString().equals("")) {
-                        if (mAssignedDate == null) {
-                            mAssignedDate = Calendar.getInstance();
-                        }
                         mClassList
                                 .get(index)
                                 .getAssignments()
@@ -256,14 +265,37 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                                         mDescription.getText().toString(),
                                         mAssignedDate, mDueDate, mFileLocation));
                         updateDatabase();
+                        Intent i = new Intent(getApplicationContext(), ClassActivity.class);
+                        i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                        startActivity(i);
                         finish();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Select class",
-                                Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(
+                                AddAssignmentHomeActivity.this);
+                        builder.setMessage("Select a Class")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //do things
+                                    }
+                                });
+                        builder.setTitle("Missing Information");
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Enter title",
-                            Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(
+                            AddAssignmentHomeActivity.this);
+                    builder.setMessage("Enter a Title")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                }
+                            });
+                    builder.setTitle("Missing Information");
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
                 return true;
             default:

@@ -16,6 +16,7 @@
 
     <TextView
         android:id="@+id/assignment_info"
+        android:textColor="@color/primary_text_default_material_light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/assignment_info_label"

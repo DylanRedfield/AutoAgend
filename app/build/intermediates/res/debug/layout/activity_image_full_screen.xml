@@ -8,4 +8,4 @@
         android:id="@+id/full_screen_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</LinearLayout><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_image_full_screen.xml -->
+</LinearLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_image_full_screen.xml -->

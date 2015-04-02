@@ -99,8 +99,7 @@ public class SchoolClass {
     }
 
     public String toString() {
-        String rep = "" + mClassName;
-        return rep;
+        return "" + mClassName;
     }
 
 }

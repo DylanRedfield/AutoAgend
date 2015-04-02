@@ -11,13 +11,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.dylanredfield.agendaapp2.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by dylan_000 on 3/9/2015.
- */
+import uk.co.senab.photoview.PhotoViewAttacher;
+
 public class ImageFullScreenActivity extends ActionBarActivity {
     private ImageView mImageView;
     private int indexClass;
@@ -25,6 +23,7 @@ public class ImageFullScreenActivity extends ActionBarActivity {
     private ActionBar mActionBar;
     private ArrayList<SchoolClass> mClassList;
     private Window mWindow;
+    private PhotoViewAttacher mAttacher;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -45,7 +44,9 @@ public class ImageFullScreenActivity extends ActionBarActivity {
         mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
                 .getColor(R.color.primary_color)));
         mActionBar.setTitle(mClassList
-        .get(indexClass).getAssignments().get(indexAssignment).getTitle());
+                .get(indexClass).getAssignments().get(indexAssignment).getTitle());
+        mAttacher = new PhotoViewAttacher(mImageView);
+
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
