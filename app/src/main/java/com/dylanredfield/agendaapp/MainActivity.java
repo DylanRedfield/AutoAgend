@@ -183,8 +183,25 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 // Creates intent to take picture
-                dispatchTakePictureIntent();
+                if (ClassList.getInstance(getApplicationContext()).getList().size() > 0) {
 
+                    dispatchTakePictureIntent();
+
+                } else {
+                    // If there was no class forces to add one
+                    AlertDialog.Builder builder = new AlertDialog.Builder(
+                            MainActivity.this);
+                    builder.setMessage("Create a class by clicking the \"+\" above!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                }
+                            });
+                    builder.setTitle("No Class Created");
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
             }
         });
 
@@ -223,7 +240,8 @@ public class MainActivity extends ActionBarActivity {
     public void setBars() {
         // Changes ActionBar color
         mActionBar = getSupportActionBar();
-        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.primary_color)));
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
+                .getColor(R.color.primary_color)));
 
         // if able to sets statusbar to dark red
         if (21 <= Build.VERSION.SDK_INT) {
