@@ -38,4 +38,4 @@
             android:layout_below="@id/current_assignment"/>
 
     </RelativeLayout>
-</LinearLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/class_row.xml -->
+</LinearLayout><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/class_row.xml -->

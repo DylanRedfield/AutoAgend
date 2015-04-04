@@ -184,9 +184,7 @@ public class MainActivity extends ActionBarActivity {
 
                 // Creates intent to take picture
                 if (ClassList.getInstance(getApplicationContext()).getList().size() > 0) {
-
                     dispatchTakePictureIntent();
-
                 } else {
                     // If there was no class forces to add one
                     AlertDialog.Builder builder = new AlertDialog.Builder(

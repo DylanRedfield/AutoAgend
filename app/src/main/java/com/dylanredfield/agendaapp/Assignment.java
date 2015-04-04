@@ -15,6 +15,7 @@ public class Assignment {
     private Bitmap mThumbnail;
     private String mFilePath;
     private boolean mCompleted;
+    private boolean isHidden;
     private Bitmap thumbnail;
 
     public Assignment(String title, String description, Calendar dateAssigned,
@@ -24,6 +25,7 @@ public class Assignment {
         mDateAssigned = dateAssigned;
         mDateDue = dateDue;
         mFilePath = filePath;
+        isHidden = false;
     }
 
     public String getTitle() {
@@ -61,6 +63,9 @@ public class Assignment {
     public boolean isCompleted() {
         return mCompleted;
     }
+    public boolean isHidden() {
+        return isHidden;
+    }
 
     public String getFilePath() {
         return mFilePath;
@@ -68,6 +73,9 @@ public class Assignment {
 
     public void setCompleted(boolean completed) {
         mCompleted = completed;
+    }
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 
     public Bitmap getThumbnail() {

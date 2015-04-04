@@ -53,6 +53,7 @@ public class ClassActivity extends ActionBarActivity {
     private boolean showFlag = false;
     private int index;
     private ArrayList<SchoolClass> mClassList;
+    private ArrayList<Assignment> mHiddenList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +66,16 @@ public class ClassActivity extends ActionBarActivity {
 
         // Gets index extra of class
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
+        mHiddenList = new ArrayList<>();
 
         ClassList.getInstance(getApplicationContext()).getList()
                 .get(index).sortAssignmentsByCompleted();
         mClassList = ClassList.getInstance(getApplicationContext()).getList();
+        for (int i = 0; i < mClassList.get(index).getAssignments().size(); i++) {
+            if (!mClassList.get(index).getAssignments().get(i).isHidden()) {
+                mHiddenList.add(mClassList.get(index).getAssignments().get(i));
+            }
+        }
         // Creates AssignmentAdapter, ect
         instaniateAssignmentAdapter();
 
@@ -93,9 +100,7 @@ public class ClassActivity extends ActionBarActivity {
         mClassList.get(index)
                 .sortAssignmentsByCompleted();
         mAssignmentsAdapter = new AssignmentAdapter(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1,
-                mClassList
-                        .get(index).getAssignments());
+                android.R.layout.simple_list_item_1, android.R.id.text1, mHiddenList);
         mAssignmentsListView.setAdapter(mAssignmentsAdapter);
         mAssignmentsListView.setEmptyView(findViewById(R.id.empty_list));
     }
@@ -256,10 +261,17 @@ public class ClassActivity extends ActionBarActivity {
         // TODO check to see if bundle is better for this
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
         mClassList = ClassList.getInstance(getApplicationContext()).getList();
+        mHiddenList = new ArrayList<>();
+        for (int i = 0; i < mClassList.get(index).getAssignments().size(); i++) {
+            if (!mClassList.get(index).getAssignments().get(i).isHidden()) {
+                mHiddenList.add(mClassList.get(index).getAssignments().get(i));
+            }
+        }
         if (mAssignmentsAdapter == null) {
             instaniateAssignmentAdapter();
         } else {
-            mAssignmentsAdapter.notifyDataSetChanged();
+            //mAssignmentsAdapter.notifyDataSetChanged();
+            instaniateAssignmentAdapter();
         }
         mButtonPicture.setVisibility(View.INVISIBLE);
         mButtonText.setVisibility(View.INVISIBLE);
@@ -350,6 +362,9 @@ public class ClassActivity extends ActionBarActivity {
                 i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
                 i.putExtra(EXTRA_INT_ASSIGNMENT_POSTITION, info.position);
                 startActivity(i);
+                return true;
+            case R.id.hide_assignment:
+                mClassList.get(index).getAssignments().get(info.position).setHidden(true);
             default:
                 return true;
         }
@@ -375,6 +390,20 @@ public class ClassActivity extends ActionBarActivity {
                 startActivity(i);
 
                 return true;
+            case R.id.add_assignment:
+                Intent intent = new Intent(getApplicationContext(),
+                        AddAssignmentActivity.class);
+                intent.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                startActivity(intent);
+
+                return true;
+            case R.id.show_hidden:
+                Intent hiddenIntent = new Intent(getApplicationContext(),
+                        ClassHiddenActivity.class);
+                hiddenIntent.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                startActivity(hiddenIntent);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

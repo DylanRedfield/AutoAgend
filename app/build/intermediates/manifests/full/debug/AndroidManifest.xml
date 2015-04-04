@@ -63,6 +63,10 @@
             android:name="com.dylanredfield.agendaapp.EditAssignmentInfoActivity"
             android:label="@string/new_class_label"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.dylanredfield.agendaapp.ClassHiddenActivity"
+            android:label="@string/hidden_assignments"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

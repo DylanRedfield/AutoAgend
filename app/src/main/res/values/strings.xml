@@ -27,6 +27,7 @@
     <string name="date_hint">1/1/15</string>
     <string name="empty_class">Add a class by clicking the \"+\"</string>
     <string name="empty_assignment">No Assignments</string>
+    <string name="empty_hidden_assignment">No Hidden Assignments</string>
     <string name="class_name">Class Name:</string>
     <string name="class_hint">Mathematics</string>
     <string name="click_for_pic">Click Here to View Picture</string>
@@ -39,5 +40,9 @@
     <string name="teacher">Teacher:</string>
     <string name="assignment_title">Assignment Title:</string>
     <string name="assignment_description">Assignment Description:</string>
+    <string name="hidden_assignments">Hidden Assignments</string>
+    <string name="show_hidden">Hidden Assignments</string>
+    <string name="add_assignment">Add New Assignment</string>
+    <string name="hide_assignment">Hide Assignment</string>
 
 </resources>
