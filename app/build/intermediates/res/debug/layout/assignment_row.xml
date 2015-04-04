@@ -66,8 +66,7 @@
     </LinearLayout>
 
 
-    <CheckBox
-        android:id="@+id/is_completed_check"
+    <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -72,7 +72,6 @@ public class SchoolClass {
     public Calendar getEndTime() {
         return mEndTime;
     }
-
     public ArrayList<String> makeList() {
         ArrayList<String> temp = new ArrayList<String>();
         temp.add("Class: " + mClassName);

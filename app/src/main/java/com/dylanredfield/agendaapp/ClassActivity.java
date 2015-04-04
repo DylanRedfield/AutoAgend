@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -43,7 +45,8 @@ import java.util.Locale;
 
 public class ClassActivity extends ActionBarActivity {
     public static int REQUEST_IMAGE_CAPTURE_CLASS = 2;
-    public static String EXTRA_INT_ASSIGNMENT_POSTITION = "com.dylanredfield.agendaapp.int_assignment_position";
+    public static String EXTRA_INT_ASSIGNMENT_POSTITION =
+            "com.dylanredfield.agendaapp.int_assignment_position";
     private ListView mAssignmentsListView;
     private AssignmentAdapter mAssignmentsAdapter;
     private ActionButton mButtonClass;
@@ -54,6 +57,7 @@ public class ClassActivity extends ActionBarActivity {
     private int index;
     private ArrayList<SchoolClass> mClassList;
     private ArrayList<Assignment> mHiddenList;
+    private ArrayList<Assignment> mVisibleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,16 +70,7 @@ public class ClassActivity extends ActionBarActivity {
 
         // Gets index extra of class
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
-        mHiddenList = new ArrayList<>();
-
-        ClassList.getInstance(getApplicationContext()).getList()
-                .get(index).sortAssignmentsByCompleted();
-        mClassList = ClassList.getInstance(getApplicationContext()).getList();
-        for (int i = 0; i < mClassList.get(index).getAssignments().size(); i++) {
-            if (!mClassList.get(index).getAssignments().get(i).isHidden()) {
-                mHiddenList.add(mClassList.get(index).getAssignments().get(i));
-            }
-        }
+        createLists();
         // Creates AssignmentAdapter, ect
         instaniateAssignmentAdapter();
 
@@ -95,12 +90,27 @@ public class ClassActivity extends ActionBarActivity {
         registerForContextMenu(mAssignmentsListView);
     }
 
+    public void createLists() {
+        ClassList.getInstance(getApplicationContext()).sortByPeriod();
+        mClassList = ClassList.getInstance(getApplicationContext()).getList();
+        mClassList.get(index).sortAssignmentsByCompleted();
+        mHiddenList = new ArrayList<>();
+        mVisibleList = new ArrayList<>();
+        for (Assignment a : mClassList.get(index).getAssignments()) {
+            if (a.isHidden()) {
+                mHiddenList.add(a);
+            } else {
+                mVisibleList.add(a);
+            }
+        }
+
+    }
+
     public void instaniateAssignmentAdapter() {
         mAssignmentsListView = (ListView) findViewById(R.id.assignments_list);
-        mClassList.get(index)
-                .sortAssignmentsByCompleted();
+
         mAssignmentsAdapter = new AssignmentAdapter(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, mHiddenList);
+                android.R.layout.simple_list_item_1, android.R.id.text1, mVisibleList);
         mAssignmentsListView.setAdapter(mAssignmentsAdapter);
         mAssignmentsListView.setEmptyView(findViewById(R.id.empty_list));
     }
@@ -260,18 +270,13 @@ public class ClassActivity extends ActionBarActivity {
         // recreates adapters to update them
         // TODO check to see if bundle is better for this
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
-        mClassList = ClassList.getInstance(getApplicationContext()).getList();
-        mHiddenList = new ArrayList<>();
-        for (int i = 0; i < mClassList.get(index).getAssignments().size(); i++) {
-            if (!mClassList.get(index).getAssignments().get(i).isHidden()) {
-                mHiddenList.add(mClassList.get(index).getAssignments().get(i));
-            }
-        }
+        createLists();
         if (mAssignmentsAdapter == null) {
             instaniateAssignmentAdapter();
         } else {
-            //mAssignmentsAdapter.notifyDataSetChanged();
             instaniateAssignmentAdapter();
+            mAssignmentsAdapter.notifyDataSetChanged();
+            Log.d("resumeTest", "resume");
         }
         mButtonPicture.setVisibility(View.INVISIBLE);
         mButtonText.setVisibility(View.INVISIBLE);
@@ -288,9 +293,87 @@ public class ClassActivity extends ActionBarActivity {
                                     ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        // Creates contextMenu
+        // Creates context
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.assignment_context, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+                .getMenuInfo();
+
+        switch (item.getItemId()) {
+            // delete assignment
+            case R.id.delete_assignment:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("Confirm");
+                builder.setMessage("Are you sure?");
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+
+
+                        mVisibleList.remove(mClassList.get(index)
+                                .getAssignments().get(info.position));
+                        mClassList.get(index)
+                                .getAssignments().remove(info.position);
+                        // Reinstaniate the list
+                        mAssignmentsAdapter.notifyDataSetChanged();
+                        updateDatabase();
+                        dialog.dismiss();
+                    }
+
+                });
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+                return true;
+            case R.id.edit_assignment:
+                int temp;
+                temp = mClassList.get(index).getAssignments()
+                        .lastIndexOf(mVisibleList.get(info.position));
+                Intent i = new Intent(getApplicationContext(), EditAssignmentInfoActivity.class);
+                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
+                i.putExtra(EXTRA_INT_ASSIGNMENT_POSTITION, temp);
+                startActivity(i);
+                return true;
+            case R.id.hide_assignment:
+                int tempHide;
+
+                tempHide = mClassList.get(index).getAssignments()
+                        .lastIndexOf(mVisibleList.get(info.position));
+                mClassList.get(index).getAssignments().get(tempHide).setHidden(true);
+                mVisibleList.remove(info.position);
+                mAssignmentsAdapter.notifyDataSetChanged();
+                updateDatabase();
+                return true;
+            case R.id.set_complete:
+                int tempComplete;
+
+                tempComplete = mClassList.get(index).getAssignments()
+                        .lastIndexOf(mVisibleList.get(info.position));
+                mClassList.get(index).getAssignments().get(tempComplete).setCompleted(
+                        !mClassList.get(index).getAssignments().get(tempComplete).isCompleted());
+                mAssignmentsAdapter.notifyDataSetChanged();
+                updateDatabase();
+                return true;
+            default:
+                return true;
+        }
+
     }
 
     public void updateDatabase() {
@@ -317,59 +400,6 @@ public class ClassActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
-                .getMenuInfo();
-
-        switch (item.getItemId()) {
-            // delete assignment
-            case R.id.delete_assignment:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-                builder.setTitle("Confirm");
-                builder.setMessage("Are you sure?");
-
-                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do nothing but close the dialog
-
-                        mClassList.get(index)
-                                .getAssignments().remove(info.position);
-                        // Reinstaniate the list
-                        mAssignmentsAdapter.notifyDataSetChanged();
-                        updateDatabase();
-                        dialog.dismiss();
-                    }
-
-                });
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do nothing
-                        dialog.dismiss();
-                    }
-                });
-
-                AlertDialog alert = builder.create();
-                alert.show();
-
-                return true;
-            case R.id.edit_assignment:
-                Intent i = new Intent(getApplicationContext(), EditAssignmentInfoActivity.class);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
-                i.putExtra(EXTRA_INT_ASSIGNMENT_POSTITION, info.position);
-                startActivity(i);
-                return true;
-            case R.id.hide_assignment:
-                mClassList.get(index).getAssignments().get(info.position).setHidden(true);
-            default:
-                return true;
-        }
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -414,7 +444,6 @@ public class ClassActivity extends ActionBarActivity {
         private ArrayList<Assignment> mList;
         private TextView titleTextView;
         private TextView backUpDueTextView;
-        private CheckBox isCompletedCheck;
         private TextView assignedDate;
         private TextView dueDate;
         private TextView divider;
@@ -450,8 +479,6 @@ public class ClassActivity extends ActionBarActivity {
             assignedDate = (TextView) convertView.findViewById(R.id.assigned_text);
             dueDate = (TextView) convertView.findViewById(R.id.due_text);
             imageView = (ImageView) convertView.findViewById(R.id.icon_image);
-            isCompletedCheck = (CheckBox) convertView
-                    .findViewById(R.id.is_completed_check);
             backUpDueTextView = (TextView) convertView.findViewById(R.id.backup_due);
 
             if (calendarAssigned != null && calendarDue != null) {
@@ -489,27 +516,30 @@ public class ClassActivity extends ActionBarActivity {
                         .getDrawable(R.drawable.ic_file_document_grey600_36dp));
             }
 
-            isCompletedCheck.setChecked(mList.get(position).isCompleted());
+            if (mList.get(position).isCompleted()) {
+                titleTextView.setPaintFlags
+                        (titleTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                assignedDate.setPaintFlags
+                        (assignedDate.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                divider.setPaintFlags
+                        (divider.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                dueDate.setPaintFlags
+                        (dueDate.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                backUpDueTextView.setPaintFlags
+                        (backUpDueTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            } else {
+                titleTextView.setPaintFlags
+                        (titleTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                assignedDate.setPaintFlags
+                        (assignedDate.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                divider.setPaintFlags
+                        (divider.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                dueDate.setPaintFlags
+                        (dueDate.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                backUpDueTextView.setPaintFlags
+                        (backUpDueTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+            }
 
-            // Sets cb tag as position
-            isCompletedCheck.setTag(position);
-
-            isCompletedCheck.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    // Sets coresponding mCompleted to if the box is checked
-                    mClassList
-                            .get(index).getAssignments().get((int) v.getTag())
-                            .setCompleted(((CheckBox) v).isChecked());
-                    ClassList.getInstance(getApplicationContext()).getList()
-                            .get(index).sortAssignmentsByCompleted();
-                    mClassList = ClassList.getInstance(getApplicationContext()).getList();
-                    instaniateAssignmentAdapter();
-                    updateDatabase();
-
-                }
-            });
 
             return convertView;
 

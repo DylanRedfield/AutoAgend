@@ -13,16 +13,25 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static DatabaseHandler sInstance;
     // All Static variables
     // Database Version
     private static final int DATABASE_VERSION = 1;
-
     // Database Name
     private static final String DATABASE_NAME = "classManager";
-
     // Contacts table name
     private static final String TABLE_SCHOOL_CLASSES = "schoolClass";
+    // Contacts Table Columns names
+    private static final String KEY_PERIOD = "period";
+    private static final String KEY_CLASS_NAME = "classname";
+    private static final String KEY_ASSIGNMENTS = "assignments";
+    private static final String KEY_DESCRIPTION = "description";
+    private static final String KEY_START = "timeStart";
+    private static final String KEY_END = "timeEnd";
+    private static DatabaseHandler sInstance;
+
+    private DatabaseHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
     public static DatabaseHandler getInstance(Context context) {
         if (sInstance == null) {
@@ -31,25 +40,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return sInstance;
     }
 
-    private DatabaseHandler(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
-
-    // Contacts Table Columns names
-    private static final String KEY_PERIOD = "period";
-    private static final String KEY_CLASS_NAME = "classname";
-    private static final String KEY_ASSIGNMENTS = "assignments";
-    private static final String KEY_DESCRIPTION = "description";
-    private static final String KEY_START = "timeStart";
-    private static final String KEY_END= "timeEnd";
-
     // private static final String KEY_ASSIGNMENTS = "assignments";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_SCHOOL_CLASS_TABLE = "CREATE TABLE "
                 + TABLE_SCHOOL_CLASSES + "(" + KEY_PERIOD
-                + " INTEGER," + KEY_START +  " INTEGER," + KEY_END
+                + " INTEGER," + KEY_START + " INTEGER," + KEY_END
                 + " INTEGER," + KEY_DESCRIPTION + " TEXT,"
                 + KEY_CLASS_NAME + " TEXT," + KEY_ASSIGNMENTS + " TEXT" + ")";
         db.execSQL(CREATE_SCHOOL_CLASS_TABLE);
@@ -65,7 +62,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
 
     }
-
 
 
     public void deleteAllClasses() {
@@ -96,14 +92,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         new TypeToken<ArrayList<Assignment>>() {
                         }.getType());
                 sc.setAssignments(obj);
-                if(cursor.getString(1) != null) {
+                if (cursor.getString(1) != null) {
                     tempStartTime.setTimeInMillis(Long.parseLong(cursor.getString(1)));
                 } else {
                     tempStartTime = null;
                 }
                 sc.setStartTime(tempStartTime);
 
-                if(cursor.getString(2) != null) {
+                if (cursor.getString(2) != null) {
                     tempEndTime.setTimeInMillis(Long.parseLong(cursor.getString(2)));
                 } else {
                     tempEndTime = null;
@@ -133,10 +129,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_PERIOD, classList.get(a).getPeriod());
             values.put(KEY_ASSIGNMENTS, arrayListToString(classList.get(a)
                     .getAssignments()));
-            if(classList.get(a).getStartTime() != null) {
+            if (classList.get(a).getStartTime() != null) {
                 values.put(KEY_START, classList.get(a).getStartTime().getTimeInMillis());
             }
-            if(classList.get(a).getEndTime() != null) {
+            if (classList.get(a).getEndTime() != null) {
                 values.put(KEY_END, classList.get(a).getEndTime().getTimeInMillis());
             }
             // Inserting Row
@@ -148,9 +144,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public String arrayListToString(ArrayList<Assignment> classList) {
-
         Gson gson = new Gson();
         return gson.toJson(classList);
-
     }
 }

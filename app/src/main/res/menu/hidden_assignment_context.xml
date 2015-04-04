@@ -2,15 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/edit_assignment"
-        android:title="@string/edit_assignment" />
-    <item
         android:id="@+id/delete_assignment"
         android:title="@string/menu_delete" />
     <item
         android:id="@+id/hide_assignment"
         android:title="@string/hide_assignment" />
-    <item
-        android:id="@+id/set_complete"
-        android:title="@string/set_completed" />
 </menu>

@@ -25,7 +25,6 @@ public class Assignment {
         mDateAssigned = dateAssigned;
         mDateDue = dateDue;
         mFilePath = filePath;
-        isHidden = false;
     }
 
     public String getTitle() {

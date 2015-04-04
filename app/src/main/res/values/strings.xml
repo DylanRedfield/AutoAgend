@@ -43,6 +43,7 @@
     <string name="hidden_assignments">Hidden Assignments</string>
     <string name="show_hidden">Hidden Assignments</string>
     <string name="add_assignment">Add New Assignment</string>
-    <string name="hide_assignment">Hide Assignment</string>
+    <string name="hide_assignment">Toggle Hidden</string>
+    <string name="set_completed">Toggle Completed</string>
 
 </resources>

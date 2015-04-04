@@ -437,6 +437,7 @@ public class MainActivity extends ActionBarActivity {
         private RelativeLayout rel;
         private ColorGenerator generator;
         private int color;
+        private int assignmentCount;
 
         public CustomAdapter(Context context, int resource,
                              int textViewResourceId, ArrayList<SchoolClass> objects) {
@@ -475,8 +476,13 @@ public class MainActivity extends ActionBarActivity {
 
             // Sets to ammount of current assignments.
             // Get assignment String makes sure correct plural is used
-            currentAssignment.setText(getAssignmentString(mList.get(position).getAssignments()
-                    .size()));
+            for(Assignment a : mList.get(position).getAssignments()) {
+                if(!a.isHidden() && !a.isCompleted()) {
+                    assignmentCount++;
+                }
+            }
+            currentAssignment.setText(getAssignmentString(assignmentCount));
+            assignmentCount = 0;
 
             imageView = (ImageView) convertView.findViewById(R.id.test);
             rel.getViewTreeObserver().addOnPreDrawListener(new RelOnPreDrawListener(imageView,

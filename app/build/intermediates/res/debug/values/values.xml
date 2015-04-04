@@ -271,7 +271,7 @@
     <string name="enter">Enter</string>
     <string name="hello_world">Hello world!</string>
     <string name="hidden_assignments">Hidden Assignments</string>
-    <string name="hide_assignment">Hide Assignment</string>
+    <string name="hide_assignment">Toggle Hidden</string>
     <string name="hint_assignment_description">Chapters 4–5</string>
     <string name="hint_assignment_title">Read the great gatsby</string>
     <string name="hint_description">Mr. Smith</string>
@@ -280,6 +280,7 @@
     <string name="menu_delete">Delete</string>
     <string name="menu_rename">Rename</string>
     <string name="new_class_label">New Class</string>
+    <string name="set_completed">Toggle Completed</string>
     <string name="show_hidden">Hidden Assignments</string>
     <string name="teacher">Teacher:</string>
     <string name="text_edit_info">Edit Info</string>

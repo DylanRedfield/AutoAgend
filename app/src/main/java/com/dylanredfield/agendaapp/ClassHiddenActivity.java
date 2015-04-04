@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -46,9 +47,6 @@ public class ClassHiddenActivity extends ActionBarActivity {
     public static String EXTRA_INT_ASSIGNMENT_POSTITION = "com.dylanredfield.agendaapp.int_assignment_position";
     private ListView mAssignmentsListView;
     private AssignmentAdapter mAssignmentsAdapter;
-    private ActionButton mButtonClass;
-    private ActionButton mButtonPicture;
-    private ActionButton mButtonText;
     private String mCurrentPhotoPath;
     private boolean showFlag = false;
     private int index;
@@ -67,21 +65,12 @@ public class ClassHiddenActivity extends ActionBarActivity {
         // Gets index extra of class
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
 
-        ClassList.getInstance(getApplicationContext()).getList()
-                .get(index).sortAssignmentsByCompleted();
         mClassList = ClassList.getInstance(getApplicationContext()).getList();
-
         mHiddenList = new ArrayList<Assignment>();
+
         // Creates AssignmentAdapter, ect
         instaniateAssignmentAdapter();
 
-
-        // Instaniates ActionButtons and sets properties
-        declareActionButtons();
-
-
-        // Adds all listeners
-        setListeners();
 
         // Sets statusbar and actionbar
         setBars();
@@ -92,101 +81,19 @@ public class ClassHiddenActivity extends ActionBarActivity {
     }
 
     public void instaniateAssignmentAdapter() {
-        int afterCount = 0;
         mAssignmentsListView = (ListView) findViewById(R.id.assignments_list);
-        mClassList.get(index)
-                .sortAssignmentsByCompleted();
-        for(int i = 0; i < mClassList.get(index).getAssignments().size(); i++) {
-            if(mClassList.get(index).getAssignments().get(i).isCompleted()) {
+        for (int i = 0; i < mClassList.get(index).getAssignments().size(); i++) {
+            if (mClassList.get(index).getAssignments().get(i).isHidden()) {
                 mHiddenList.add(mClassList.get(index).getAssignments().get(i));
             }
         }
         mAssignmentsAdapter = new AssignmentAdapter(getApplicationContext(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, mHiddenList);
+                android.R.layout.simple_list_item_1, android.R.id.text1,
+                mHiddenList);
         mAssignmentsListView.setAdapter(mAssignmentsAdapter);
         mAssignmentsListView.setEmptyView(findViewById(R.id.empty_list));
     }
 
-    public void declareActionButtons() {
-        mButtonClass = (ActionButton) findViewById(R.id.action_button);
-
-        // Call to second helper method that sets properties
-        makeActionButton(mButtonClass, R.drawable.ic_file_document_white_36dp);
-
-        mButtonPicture = (ActionButton) findViewById(R.id.action_button_picture);
-        makeActionButton(mButtonPicture, R.drawable.ic_camera_white_36dp);
-
-        mButtonText = (ActionButton) findViewById(R.id.action_button_assignment);
-        makeActionButton(mButtonText, R.drawable.ic_file_document_white_36dp);
-    }
-
-    public ActionButton makeActionButton(ActionButton ab, int drawable) {
-        // Creates, and sets ActionButtons
-        ab.setButtonColor(getResources().getColor(R.color.primary_color));
-        ab.setButtonColorPressed(getResources().getColor(R.color.dark_primary));
-        ab.setImageDrawable(getResources().getDrawable(drawable));
-
-        return ab;
-    }
-
-    public void setListeners() {
-        mButtonClass.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (!showFlag) {
-                    mButtonPicture.setVisibility(View.VISIBLE);
-                    mButtonText.setVisibility(View.VISIBLE);
-
-                    mButtonClass.setImageDrawable(getResources()
-                            .getDrawable(R.drawable.ic_close_white_48dp));
-                    showFlag = true;
-                } else {
-                    mButtonPicture.setVisibility(View.INVISIBLE);
-                    mButtonText.setVisibility(View.INVISIBLE);
-                    mButtonClass.setImageDrawable(getResources()
-                            .getDrawable(R.drawable.ic_file_document_white_36dp));
-                    showFlag = false;
-                }
-
-
-            }
-        });
-        mButtonPicture.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                dispatchTakePictureIntent();
-            }
-        });
-        mButtonText.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // intent to NewClassActivity
-                Intent i = new Intent(getApplicationContext(),
-                        AddAssignmentActivity.class);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
-                startActivity(i);
-            }
-        });
-
-        // Set onItemClickListener for assignmentsList
-        /*mAssignmentsListView.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                Intent i = new Intent(getApplicationContext(),
-                        AssignmentActivity.class);
-                i.putExtra(EXTRA_INT_ASSIGNMENT_POSTITION, position);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
-                startActivity(i);
-
-            }
-        });*/
-    }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setBars() {
@@ -258,7 +165,6 @@ public class ClassHiddenActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        showFlag = false;
         // recreates adapters to update them
         // TODO check to see if bundle is better for this
         index = getIntent().getIntExtra(MainActivity.EXTRA_INT_POSTITION, 0);
@@ -266,15 +172,8 @@ public class ClassHiddenActivity extends ActionBarActivity {
         if (mAssignmentsAdapter == null) {
             instaniateAssignmentAdapter();
         } else {
-            //mAssignmentsAdapter.notifyDataSetChanged();
-            instaniateAssignmentAdapter();
+            mAssignmentsAdapter.notifyDataSetChanged();
         }
-        mButtonPicture.setVisibility(View.INVISIBLE);
-        mButtonText.setVisibility(View.INVISIBLE);
-        mButtonClass.setImageDrawable(getResources()
-                .getDrawable(R.drawable.ic_file_document_white_36dp));
-        declareActionButtons();
-
         setBars();
 
     }
@@ -286,7 +185,7 @@ public class ClassHiddenActivity extends ActionBarActivity {
 
         // Creates contextMenu
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.assignment_context, menu);
+        inflater.inflate(R.menu.hidden_assignment_context, menu);
     }
 
     public void updateDatabase() {
@@ -331,6 +230,9 @@ public class ClassHiddenActivity extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
 
+
+                        mHiddenList.remove(mClassList.get(index)
+                                .getAssignments().get(info.position));
                         mClassList.get(index)
                                 .getAssignments().remove(info.position);
                         // Reinstaniate the list
@@ -353,11 +255,17 @@ public class ClassHiddenActivity extends ActionBarActivity {
                 alert.show();
 
                 return true;
-            case R.id.edit_assignment:
-                Intent i = new Intent(getApplicationContext(), EditAssignmentInfoActivity.class);
-                i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
-                i.putExtra(EXTRA_INT_ASSIGNMENT_POSTITION, info.position);
-                startActivity(i);
+
+            case R.id.hide_assignment:
+                int tempHide;
+
+                tempHide = mClassList.get(index).getAssignments()
+                        .lastIndexOf(mHiddenList.get(info.position));
+                mClassList.get(index).getAssignments().get(tempHide).setCompleted(true);
+                mClassList.get(index).getAssignments().get(tempHide).setHidden(false);
+                mHiddenList.remove(info.position);
+                mAssignmentsAdapter.notifyDataSetChanged();
+                updateDatabase();
                 return true;
             default:
                 return true;
@@ -394,7 +302,6 @@ public class ClassHiddenActivity extends ActionBarActivity {
         private ArrayList<Assignment> mList;
         private TextView titleTextView;
         private TextView backUpDueTextView;
-        private CheckBox isCompletedCheck;
         private TextView assignedDate;
         private TextView dueDate;
         private TextView divider;
@@ -430,8 +337,6 @@ public class ClassHiddenActivity extends ActionBarActivity {
             assignedDate = (TextView) convertView.findViewById(R.id.assigned_text);
             dueDate = (TextView) convertView.findViewById(R.id.due_text);
             imageView = (ImageView) convertView.findViewById(R.id.icon_image);
-            isCompletedCheck = (CheckBox) convertView
-                    .findViewById(R.id.is_completed_check);
             backUpDueTextView = (TextView) convertView.findViewById(R.id.backup_due);
 
             if (calendarAssigned != null && calendarDue != null) {
@@ -469,27 +374,6 @@ public class ClassHiddenActivity extends ActionBarActivity {
                         .getDrawable(R.drawable.ic_file_document_grey600_36dp));
             }
 
-            isCompletedCheck.setChecked(mList.get(position).isCompleted());
-
-            // Sets cb tag as position
-            isCompletedCheck.setTag(position);
-
-            isCompletedCheck.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    // Sets coresponding mCompleted to if the box is checked
-                    /*mClassList
-                            .get(index).getAssignments().get((int) v.getTag())
-                            .setCompleted(((CheckBox) v).isChecked());
-                    ClassList.getInstance(getApplicationContext()).getList()
-                            .get(index).sortAssignmentsByCompleted();
-                    mClassList = ClassList.getInstance(getApplicationContext()).getList();
-                    instaniateAssignmentAdapter();
-                    updateDatabase();*/
-
-                }
-            });
 
             return convertView;
 
