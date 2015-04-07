@@ -37,18 +37,18 @@
         <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-096e7419071f1874c568987ddf716058269d35eb.jar" />
     </item>
     <item
-        jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/classes-b7e286e965d8d76e6dbf6b8fb34d9d8b1575c346.jar" />
-    </item>
-    <item
         jar="/home/dylan/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
         <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/gson-2.3.1-87ddda2d855a3fb4eebfd8203c3d68ab82af9760.jar" />
+    </item>
+    <item
+        jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/classes-b7e286e965d8d76e6dbf6b8fb34d9d8b1575c346.jar" />
     </item>
     <item
         jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.github.chrisbanes.photoview/library/1.2.3/classes.jar"

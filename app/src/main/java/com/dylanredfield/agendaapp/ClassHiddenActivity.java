@@ -229,13 +229,11 @@ public class ClassHiddenActivity extends ActionBarActivity {
 
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
-
-
-                        mHiddenList.remove(mClassList.get(index)
-                                .getAssignments().get(info.position));
-                        mClassList.get(index)
-                                .getAssignments().remove(info.position);
-                        // Reinstaniate the list
+                        int tempDel;
+                        tempDel = mClassList.get(index).getAssignments()
+                                .lastIndexOf(mHiddenList.get(info.position));
+                        mClassList.get(index).getAssignments().remove(tempDel);
+                        mHiddenList.remove(info.position);
                         mAssignmentsAdapter.notifyDataSetChanged();
                         updateDatabase();
                         dialog.dismiss();

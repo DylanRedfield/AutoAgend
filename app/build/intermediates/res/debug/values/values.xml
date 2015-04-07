@@ -299,11 +299,11 @@
     <style name="AppTheme" parent="AppBaseTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:colorPrimary">@color/primary_color</item>
+        <item name="colorPrimary">@color/primary_color</item>
         <!--   darker variant for the status bar and contextual app bars -->
-        <item name="android:colorPrimaryDark">@color/dark_primary</item>
+        <item name="colorPrimaryDark">@color/dark_primary</item>
         <!--   theme UI controls like checkboxes and text fields -->
-        <item name="android:colorAccent">@color/accent_color</item>
+        <item name="colorAccent">@color/accent_color</item>
         <item name="colorControlActivated">@color/accent_color</item>
         <item name="colorControlHighlight">@color/accent_color</item>
 
@@ -1238,9 +1238,9 @@ m>        <item name="android:textColorLink">@color/link_text_material_dark</ite
     <eat-comment/>
     <style name="StyledDialog" parent="Theme.AppCompat.Light.Dialog">
 
-        <item name="android:colorPrimary">@color/primary_color_picker</item>
-        <item name="android:colorPrimaryDark">@color/dark_primary_picker</item>
-        <item name="android:colorAccent">@color/accent_color_picker</item>
+        <item name="colorPrimary">@color/primary_color_picker</item>
+        <item name="colorPrimaryDark">@color/dark_primary_picker</item>
+        <item name="colorAccent">@color/accent_color_picker</item>
 
     </style>
     <!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->

@@ -66,8 +66,7 @@
     </LinearLayout>
 
 
-    <CheckBox
-        android:id="@+id/is_completed_check"
+    <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -76,4 +75,4 @@
         android:layout_weight="1"
         android:focusable="false" />
 
-</LinearLayout><!-- From: file:/E:/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/assignment_row.xml -->
+</LinearLayout><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/assignment_row.xml -->

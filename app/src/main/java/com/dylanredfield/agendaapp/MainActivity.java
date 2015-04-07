@@ -1,7 +1,10 @@
 package com.dylanredfield.agendaapp;
 
 import android.annotation.TargetApi;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
@@ -41,6 +45,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -49,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
     public static final String EXTRA_INT_POSTITION = "com.dylanredfield.agendaapp.int_postition";
     public static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final String FILE_LOCATION_STRING = "FILE_LOCATION";
+    public static int NOTIFCATION_CODE = 20;
     private ListView mListView;
     private ActionButton mButtonClass;
     private ActionButton mButtonPicture;
@@ -82,8 +88,6 @@ public class MainActivity extends ActionBarActivity {
 
         // Creates contextMenu
         registerForContextMenu(mListView);
-
-
     }
 
     public void makeListView() {
@@ -476,8 +480,8 @@ public class MainActivity extends ActionBarActivity {
 
             // Sets to ammount of current assignments.
             // Get assignment String makes sure correct plural is used
-            for(Assignment a : mList.get(position).getAssignments()) {
-                if(!a.isHidden() && !a.isCompleted()) {
+            for (Assignment a : mList.get(position).getAssignments()) {
+                if (!a.isHidden() && !a.isCompleted()) {
                     assignmentCount++;
                 }
             }
