@@ -7,4 +7,4 @@
     <item
         android:id="@+id/hide_assignment"
         android:title="@string/hide_assignment" />
-</menu><!-- From: file:/home/dylan/AndroidStudioProjects/AgendaApp/app/src/main/res/menu/hidden_assignment_context.xml -->
+</menu><!-- From: file:/E:/AndroidStudioProjects/AutoAgend/app/src/main/res/menu/hidden_assignment_context.xml -->

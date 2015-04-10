@@ -2,60 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="95fd37732ec852e99f07eeb516a3650172f1d136">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/classes-ac9a02f712077ac82d9f442142285551bd281c12.jar" />
-    </item>
-    <item
-        jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.github.shell-software/fab/1.0.5/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/classes-27f46bed6cec8a0a6d5c9c381f04d10e00cbe375.jar" />
-    </item>
-    <item
-        jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-c9c4d46fa632b02b889045a8039fa37636da4430.jar" />
-    </item>
-    <item
-        jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/classes.jar"
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.amulyakhare\com.amulyakhare.textdrawable\1.0.1\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d237556caead5b93d97e18a071059a2c0045978e">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/classes-f03535f9e35d45dd40db7582a72b07c44a9f86a1.jar" />
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\classes-dd18a06bf40a25d35e182614a175acc01a9dfa18.jar" />
     </item>
     <item
-        jar="/home/dylan/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-096e7419071f1874c568987ddf716058269d35eb.jar" />
-    </item>
-    <item
-        jar="/home/dylan/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/gson-2.3.1-87ddda2d855a3fb4eebfd8203c3d68ab82af9760.jar" />
-    </item>
-    <item
-        jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/classes-b7e286e965d8d76e6dbf6b8fb34d9d8b1575c346.jar" />
-    </item>
-    <item
-        jar="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/exploded-aar/com.github.chrisbanes.photoview/library/1.2.3/classes.jar"
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.github.chrisbanes.photoview\library\1.2.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81aa0e8e77d948204aa6754019c6f3c04dd922e3">
-        <dex dex="/home/dylan/AndroidStudioProjects/AgendaApp/app/build/intermediates/pre-dexed/debug/classes-b001b18ae47e0f1a3740767ed65b1a187e7fba01.jar" />
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\classes-73531819a9b9d9de1f6697957313e6bce5b7291c.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\classes-65a6a18a8347d4279170fe8acd5cc44f9eab4a46.jar" />
+    </item>
+    <item
+        jar="C:\Users\dylan_000\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\gson-2.3.1-0f66db1bd0d551742a8fc450e346a229174ed828.jar" />
+    </item>
+    <item
+        jar="C:\Users\dylan_000\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\support-annotations-21.0.3-79259d7f0237d226266354804908a1618f69f313.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="95fd37732ec852e99f07eeb516a3650172f1d136">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\classes-2d12c1280bfb211b20440d9c0027965a2a99654b.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.github.shell-software\fab\1.0.5\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\classes-c3ed3c6d6d108c20c277cebffab0bfb6f9d4e292.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\internal_impl-21.0.3-036c84e9898d950421d6c2b2f0d41d47ba347bf7.jar" />
     </item>
 
 </items>
