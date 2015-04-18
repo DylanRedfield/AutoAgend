@@ -33,6 +33,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.software.shell.fab.ActionButton;
 
 import java.io.File;
@@ -146,12 +148,20 @@ public class ClassActivity extends ActionBarActivity {
                     mButtonPicture.setVisibility(View.VISIBLE);
                     mButtonText.setVisibility(View.VISIBLE);
 
+                    YoYo.with(Techniques.ZoomIn).duration(200).playOn(mButtonPicture);
+                    YoYo.with(Techniques.ZoomIn).duration(200).playOn(mButtonText);
+
                     mButtonClass.setImageDrawable(getResources()
                             .getDrawable(R.drawable.ic_close_white_48dp));
                     showFlag = true;
                 } else {
-                    mButtonPicture.setVisibility(View.INVISIBLE);
-                    mButtonText.setVisibility(View.INVISIBLE);
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    YoYo.with(Techniques.ZoomOut).duration(200).playOn(mButtonPicture);
+                    YoYo.with(Techniques.ZoomOut).duration(200).playOn(mButtonText);
                     mButtonClass.setImageDrawable(getResources()
                             .getDrawable(R.drawable.ic_file_document_white_36dp));
                     showFlag = false;

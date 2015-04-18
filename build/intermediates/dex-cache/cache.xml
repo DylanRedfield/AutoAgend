@@ -30,6 +30,13 @@
         <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\gson-2.3.1-0f66db1bd0d551742a8fc450e346a229174ed828.jar" />
     </item>
     <item
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.github.shell-software\fab\1.0.5\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\classes-c3ed3c6d6d108c20c277cebffab0bfb6f9d4e292.jar" />
+    </item>
+    <item
         jar="C:\Users\dylan_000\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -44,18 +51,32 @@
         <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\classes-2d12c1280bfb211b20440d9c0027965a2a99654b.jar" />
     </item>
     <item
-        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.github.shell-software\fab\1.0.5\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="21b7e1533326a38d45ea24d04c6acfcbf8ea33af">
-        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\classes-c3ed3c6d6d108c20c277cebffab0bfb6f9d4e292.jar" />
-    </item>
-    <item
         jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
         <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\release\internal_impl-21.0.3-036c84e9898d950421d6c2b2f0d41d47ba347bf7.jar" />
+    </item>
+    <item
+        jar="C:\Users\dylan_000\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\debug\library-2.4.0-4e9f4d7eb46a8147bc5d95ad062f437c16ec10ef.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.daimajia.easing\library\1.0.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d7e947f993bf32a00fcb3078cdda8bb11c930afb">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\debug\classes-097a7bd267a56e632c910e5de328155ddf864df2.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\exploded-aar\com.daimajia.androidanimations\library\1.1.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8cec50fc9cc847bad0d6ed7d93814f4b34744521">
+        <dex dex="E:\AndroidStudioProjects\AutoAgend\app\build\intermediates\pre-dexed\debug\classes-33c3023cb062269c5dba890fad3e96d6f6851e33.jar" />
     </item>
 
 </items>

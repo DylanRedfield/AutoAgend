@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -35,9 +36,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.dylanredfield.agendaapp.R.id;
 import com.software.shell.fab.ActionButton;
 
@@ -162,6 +166,8 @@ public class MainActivity extends ActionBarActivity {
                     // Sets buttons visible (relative layout)
                     mButtonPicture.setVisibility(View.VISIBLE);
                     mButtonText.setVisibility(View.VISIBLE);
+                    YoYo.with(Techniques.ZoomIn).duration(200).playOn(mButtonPicture);
+                    YoYo.with(Techniques.ZoomIn).duration(200).playOn(mButtonText);
 
 
                     // Changes base button to drawable close
@@ -169,10 +175,16 @@ public class MainActivity extends ActionBarActivity {
                             .getDrawable(R.drawable.ic_close_white_48dp));
                     showFlag = true;
                 } else {
-
                     // Opposite as above
-                    mButtonPicture.setVisibility(View.INVISIBLE);
-                    mButtonText.setVisibility(View.INVISIBLE);
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    YoYo.with(Techniques.ZoomOut).duration(200).playOn(mButtonPicture);
+                    YoYo.with(Techniques.ZoomOut).duration(200).playOn(mButtonText);
+
+
                     mButtonClass.setImageDrawable(getResources()
                             .getDrawable(R.drawable.ic_file_document_white_36dp));
                     showFlag = false;
