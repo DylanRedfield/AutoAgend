@@ -263,7 +263,7 @@ public class AddAssignmentHomeActivity extends ActionBarActivity {
                                 .getAssignments()
                                 .add(new Assignment(mTitle.getText().toString(),
                                         mDescription.getText().toString(),
-                                        mAssignedDate, mDueDate, mFileLocation));
+                                           mAssignedDate, mDueDate, mFileLocation));
                         updateDatabase();
                         Intent i = new Intent(getApplicationContext(), ClassActivity.class);
                         i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);

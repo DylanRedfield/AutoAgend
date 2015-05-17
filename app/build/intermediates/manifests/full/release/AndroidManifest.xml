@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dylanredfield.agendaapp2"
-    android:versionCode="2"
-    android:versionName="1.1" >
+    android:versionCode="3"
+    android:versionName="1.2" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -23,8 +23,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.dylanredfield.agendaapp.MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,8 +40,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.dylanredfield.agendaapp.ClassActivity"
-            android:label="@string/new_class_label"
-            android:screenOrientation="portrait" />
+            android:label="@string/new_class_label" />
         <activity
             android:name="com.dylanredfield.agendaapp.AssignmentActivity"
             android:label="@string/new_class_label"

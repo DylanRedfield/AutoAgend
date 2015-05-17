@@ -195,10 +195,13 @@ public class ClassActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                int tempPosition = 0;
+                tempPosition = mClassList.get(index).getAssignments()
+                        .lastIndexOf(mVisibleList.get(position));
 
                 Intent i = new Intent(getApplicationContext(),
                         AssignmentActivity.class);
-                i.putExtra(EXTRA_INT_ASSIGNMENT_POSTITION, position);
+                i.putExtra(EXTRA_INT_ASSIGNMENT_POSTITION, tempPosition);
                 i.putExtra(MainActivity.EXTRA_INT_POSTITION, index);
                 startActivity(i);
 
