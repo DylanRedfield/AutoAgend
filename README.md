@@ -1,7 +1,7 @@
 # AgendaApp
 AutoAgend allows you to quickly create and sort new homework assignments so you never forget an assignment again!
 
-<b><u>Features: </u></b>
+<b><u>Features:</u></b>
 
 -Quickly take photos to represent a homework assignment
 
